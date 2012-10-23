@@ -1,22 +1,30 @@
-#header{
- background-color:#09F;
- text-align:center
+.nav-glyphish-example .ui-btn .ui-btn-inner {
+	padding-top: 40px !important;
 }
 
-#side{
- background-color:#999;
- height:250px;
- width:100px;
- float:left;
- border-right-style:solid;
- border-right-width:5px;
- border-right-color:#000;
+.nav-glyphish-example .ui-btn .ui-icon {
+	width: 30px!important;
+	height: 30px!important;
+	margin-left: -15px !important;
+	box-shadow: none!important;
+	-moz-box-shadow: none!important;
+	-webkit-box-shadow: none!important;
+	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important;
 }
 
-#content{
- background-color:#999;
- height:250px;
- width:395px;
- float:right;
- text-align:center
+#acts .ui-icon {
+	background:  url(PNGicons/152-rolodex.png) 50% 50% no-repeat; background-size: 24px 22px;
+}
+
+#chars .ui-icon {
+	background:  url(PNGicons/112-group.png) 50% 50% no-repeat; background-size: 24px 22px;
+}
+
+#props .ui-icon {
+	background:  url(PNGicons/115-bow-and-arrow.png) 50% 50% no-repeat; background-size: 24px 22px;
+}
+
+#scheduler .ui-icon {
+	background:  url(PNGicons/83-calendar.png) 50% 50% no-repeat; background-size: 24px 22px;
 }
