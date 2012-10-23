@@ -1,0 +1,22 @@
+#header{
+ background-color:#09F;
+ text-align:center
+}
+
+#side{
+ background-color:#999;
+ height:250px;
+ width:100px;
+ float:left;
+ border-right-style:solid;
+ border-right-width:5px;
+ border-right-color:#000;
+}
+
+#content{
+ background-color:#999;
+ height:250px;
+ width:395px;
+ float:right;
+ text-align:center
+}
