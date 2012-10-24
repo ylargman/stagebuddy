@@ -13,7 +13,7 @@ $(document).live('pageinit', function(){
 		html += '<div data-role="fieldcontain">';
 		html += '<input type="submit" id="playCreateButton" value="Create" />';
 		html += '</div>';
-		$('#scenePop').html(html);
+		$('#scenePopContents').html(html);
 		$('#scenePop').popup("open");
 		$('.ui-page').trigger('create');
 	});
