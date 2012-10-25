@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Stage Buddy</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>Acts</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	      
+		<form action="submit.php" method="post">
+			<fieldset data-role="controlgroup" data-type="horizontal">
+     		<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1"  checked="checked"/>
+     		<label for="radio-choice-1">View</label>
+
+     		<input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+     		<label for="radio-choice-2">Edit</label>
+
+			</fieldset>
+		</form>
+
+		<div data-role="navbar">
+			<ul>
+				<li><a href="a.html" class="ui-btn-active ui-state-persist">Act 1</a></li>
+				<li><a href="b.html">Act 2</a></li>
+				<li><a href="b.html">Act 3</a></li>
+			</ul>
+		</div><!-- /navbar -->
+		
+		<div data-role="collapsible">
+   			<h3>I'm a header</h3>
+   			<p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
+		</div>
+				
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
+		<div data-role="navbar" class="nav-glyphish-example">
+		<ul>
+			<li><a href="acts.html" id="acts" data-icon="custom">Acts</a></li>
+			<li><a href="characters.html" id="chars" data-icon="custom">Characters/Actors</a></li>
+			<li><a href="props.html" id="props" data-icon="custom">Props</a></li>
+			<li><a href="scheduler.html" id="scheduler" data-icon="custom">Scheduler</a></li>
+		</ul>
+		</div>
+	</div>
+
+</div><!-- /page -->
+
+</body>
+</html>
