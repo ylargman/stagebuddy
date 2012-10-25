@@ -20,7 +20,16 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	      
-		Content goes here
+		<form action="submit.php" method="post">
+			<fieldset data-role="controlgroup" data-type="horizontal">
+     		<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1"  checked="checked"/>
+     		<label for="radio-choice-1">View</label>
+
+     		<input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+     		<label for="radio-choice-2">Edit</label>
+
+			</fieldset>
+		</form>
 	</div><!-- /content -->
 	
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
