@@ -21,10 +21,10 @@
 	<div data-role="content">	      
 		<form action="submit.php" method="post">
 			<fieldset data-role="controlgroup" data-type="horizontal">
-     		<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1"  checked="checked"/>
+     		<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1"/>
      		<label for="radio-choice-1">View</label>
 
-     		<input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+     		<input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  checked="checked"/>
      		<label for="radio-choice-2">Edit</label>
 
 			</fieldset>
@@ -38,9 +38,51 @@
 			</ul>
 		</div><!-- /navbar -->
 		
-		<div data-role="collapsible">
-   			<h3>I'm a header</h3>
-   			<p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
+		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+
+			<div data-role="collapsible" data-collapsed="false">
+			<h3>1.1</h3>
+			<p>I'm the collapsible set content for section 1.</p>
+			</div>
+	
+			<div data-role="collapsible">
+			<h3>1.2</h3>
+				<p>
+					<label for="location">Location:</label>
+    				<input type="text" name="name" id="location" value=""  />
+    				
+    				Timer: 0:30
+    				
+    				<div data-role="fieldcontain">
+    					<fieldset data-role="controlgroup">
+    						<legend>Characters:</legend>
+	   						<input type="checkbox" name="character1" id="character1" class="custom" />
+	   						<label for="character1">Shag</label>
+	   						
+	   						<input type="checkbox" name="character2" id="character2" class="custom" />
+	   						<label for="character2">Judith</label>
+   					 	</fieldset>
+					</div>
+					
+					<div data-role="fieldcontain">
+    					<fieldset data-role="controlgroup">
+    						<legend>Props:</legend>
+	   						<input type="checkbox" name="prop1" id="prop1" class="custom" />
+	   						<label for="prop1">feather duster</label>
+	   						
+	   						<input type="checkbox" name="prop2" id="prop2" class="custom" />
+	   						<label for="prop2">packages</label>
+   					 	</fieldset>
+   					 	
+   					 	<label for="textarea-a">Notes:</label>
+						<textarea name="textarea" id="textarea-a">
+This scene comes second.  It's a good one.
+						</textarea>
+					</div>
+
+				</p>
+			</div>
+	
 		</div>
 				
 	</div><!-- /content -->
