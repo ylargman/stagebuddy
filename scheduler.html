@@ -7,20 +7,34 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 	
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="jscript.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 </head> 
 
 <body> 
 
-<div data-role="page">
+<div data-role="page" id="scheduler-page" style="min-height:100%">
 
 	<div data-role="header">
 		<a href="index.html" data-icon="grid">Home</a>
 		<h1>Scheduler</h1>
 	</div><!-- /header -->
 
-	<div data-role="content">	      
-		Content goes here
+	<div data-role="content" id="scheduler-content">	      
+		<div class="ui-grid-a" id="scheduler-grid">
+		
+		<div class="ui-block-a" id="calendar-pane">
+			<div class="ui-bar">
+			Calendar
+			</div>
+		</div>
+		<div class="ui-block-b">
+			<div class="ui-bar" id="data-view-pane">
+				Data View
+			</div>
+		</div>
+		
+		</div>
 	</div><!-- /content -->
 	
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">

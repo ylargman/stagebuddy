@@ -17,5 +17,9 @@ $(document).live('pageinit', function(){
 		$('#scenePop').popup("open");
 		$('.ui-page').trigger('create');
 	});
+	
+	$('#data-view-pane').load('acts_view_content.html',function(){
+		$('#data-view-pane').trigger('create');
+	});
 })
 
