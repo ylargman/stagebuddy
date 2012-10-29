@@ -32,6 +32,57 @@
 		
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
 
+			<?php
+			include("config.php");
+			$query="SELECT * FROM Props";
+			$result=mysql_query($query);
+			$numrows=mysql_numrows($result);
+			
+			$i=0;
+			while($i < $numrows){
+			
+			$name=mysql_result($result, $i, "Name");
+			$a1s1=mysql_result($result, $i, "a1s1");
+			$a1s2=mysql_result($result, $i, "a1s2");
+			$notes=mysql_result($result, $i, "Notes");
+			?>
+			<div data-role="collapsible" data-collapsed="false">
+			<h3><?php echo $name ?></h3>
+			<p>    				
+    				<div data-role="fieldcontain">
+    					<fieldset data-role="controlgroup">
+    						<legend>Scenes:</legend>
+	   						<input type="checkbox" name="scene1" id="scene1" class="custom"
+							<?php
+							if($a1s1)
+							echo 'checked="checked"'
+							?>
+							/>
+	   						<label for="scene1">1.1</label>
+	   						
+	   						<input type="checkbox" name="scene2" id="scene2" class="custom"
+							<?php
+							if($a1s2)
+							echo 'checked="checked"'
+							?>
+							/>
+	   						<label for="scene2">1.2</label>
+   					 	</fieldset>
+					<p>
+   					</p>
+					<label for="textarea-a">Notes:</label>
+						<textarea name="textarea" id="textarea-a"><?php echo $notes ?>
+						</textarea>
+
+					</div>
+				</p>
+			</div>
+			<?php
+			$i++;
+			}
+			?>
+			
+			
 			<div data-role="collapsible" data-collapsed="false">
 			<h3>Feather duster</h3>
 			<p>    				
@@ -78,6 +129,7 @@ This prop comes second.  It's a good one.
 				</p>
 			</div>
 			<div data-role="collapsible" data-collapsed="false">
+			<form action="insert.php" method="post"> 
 			<h3>Add New Prop</h3>
 				<p>    				
     				<div data-role="fieldcontain">
@@ -86,11 +138,11 @@ This prop comes second.  It's a good one.
 						
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
-	   						<input type="checkbox" name="scene1" id="scene1" class="custom" />
-	   						<label for="scene1">1.1</label>
+	   						<input type="checkbox" name="a1s1" id="a1s1" class="custom" />
+	   						<label for="a1s1">1.1</label>
 	   						
-	   						<input type="checkbox" name="scene2" id="scene2" class="custom" />
-	   						<label for="scene2">1.2</label>
+	   						<input type="checkbox" name="a1s2" id="a1s2" class="custom" />
+	   						<label for="a1s2">1.2</label>
    					 	</fieldset>
 						
 						<label for="newnote">Notes:</label>
@@ -101,10 +153,10 @@ This prop comes second.  It's a good one.
 
 					</div>
 				</p>
+			</form>
 			</div>
 	
 		</div>
-
 	</div><!-- /content -->
 	
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
