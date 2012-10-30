@@ -19,8 +19,10 @@
 		<h1>Props</h1>
 	</div><!-- /header -->
 
-	<div data-role="content">	      
-		<form action="submit.php" method="post">
+	<div data-role="content">
+	
+		      
+		<form action="submit.php" method="post" data-ajax="false">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
      		<a href="props.html" data-role="button">
      		View</a>
@@ -83,54 +85,8 @@
 			?>
 			
 			
-			<div data-role="collapsible" data-collapsed="false">
-			<h3>Feather duster</h3>
-			<p>    				
-    				<div data-role="fieldcontain">
-    					<fieldset data-role="controlgroup">
-    						<legend>Scenes:</legend>
-	   						<input type="checkbox" name="scene1" id="scene1" class="custom" />
-	   						<label for="scene1">1.1</label>
-	   						
-	   						<input type="checkbox" name="scene2" id="scene2" class="custom" />
-	   						<label for="scene2">1.2</label>
-   					 	</fieldset>
-					<p>
-   					</p>
-					<label for="textarea-a">Notes:</label>
-						<textarea name="textarea" id="textarea-a">
-This prop comes first.  It's the worst.
-						</textarea>
-
-					</div>
-				</p>
-			</div>
-	
-			<div data-role="collapsible">
-			<h3>Packages</h3>
-				<p>    				
-    				<div data-role="fieldcontain">
-    					<fieldset data-role="controlgroup">
-    						<legend>Scenes:</legend>
-	   						<input type="checkbox" name="scene1" id="scene1" class="custom" />
-	   						<label for="scene1">1.1</label>
-	   						
-	   						<input type="checkbox" name="scene2" id="scene2" class="custom" />
-	   						<label for="scene2">1.2</label>
-   					 	</fieldset>
-					<p>
-   					</p>
-					<label for="textarea-a">Notes:</label>
-						<textarea name="textarea" id="textarea-a">
-This prop comes second.  It's a good one.
-						</textarea>
-
-					</div>
-				</p>
-			</div>
-			<div data-role="collapsible" data-collapsed="false">
-			<form action="insert.php" method="post"> 
 			<h3>Add New Prop</h3>
+			<form action="insert.php" method="post" data-ajax="false">
 				<p>    				
     				<div data-role="fieldcontain">
 						<label for="newpropname">Prop name:</label>
@@ -154,7 +110,7 @@ This prop comes second.  It's a good one.
 					</div>
 				</p>
 			</form>
-			</div>
+			
 	
 		</div>
 	</div><!-- /content -->

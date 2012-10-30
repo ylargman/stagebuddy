@@ -24,4 +24,9 @@
 	
 	$query = "INSERT INTO Props VALUES ('$name', '$a1s1', '$a1s2', '$note')";
 	mysql_query($query);
+	
+	print_r($_POST);
+	print_r($_GET);
+	
+	print "Hello";
 ?>
