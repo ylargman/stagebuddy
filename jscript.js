@@ -1,6 +1,7 @@
-$(document).live('pageinit', function(){
+$(document).live('pageshow', function(){
+	alert("test");
 	$("#generate").click(function(){
-		
+		alert("test");
 		numActs = $("#numActs").val();
 		html = '';
 		for (var i = 0; i < numActs; i++){

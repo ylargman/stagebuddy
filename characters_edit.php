@@ -17,7 +17,7 @@
 
 	<div data-role="header">
 		<a href="index.html" data-icon="grid">Home</a>
-		<h1>Props</h1>
+		<h1>Characters</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">
@@ -25,10 +25,10 @@
 		      
 		<form action="submit.php" method="post" data-ajax="false">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="props.html" data-role="button">
+     		<a href="characters.html" data-role="button">
      		View</a>
 
-     		<a href="props_edit.html" data-role="button" class="ui-btn-active">
+     		<a href="characters_edit.php" data-role="button" class="ui-btn-active">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -37,23 +37,27 @@
 
 			<?php
 			include("config.php");
-			$query="SELECT * FROM Props";
+			$query="SELECT * FROM Characters";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
 			$i=0;
 			while($i < $numrows){
 			
-			$name=mysql_result($result, $i, "Name");
+			$name=mysql_result($result, $i, "name");
+			$actor=mysql_result($result, $i, "actor");
 			$a1s1=mysql_result($result, $i, "a1s1");
 			$a1s2=mysql_result($result, $i, "a1s2");
-			$notes=mysql_result($result, $i, "Notes");
+			$notes=mysql_result($result, $i, "notes");
 			?>
-			<div class="propCollapsible" data-role="collapsible" data-collapsed="false">
-			<h3><div class="propName"><?php echo $name ?></div></h3>
+			<div class="charCollapsible" data-role="collapsible" data-collapsed="false">
+			<h3><div class="charName"><?php echo $name ?></div></h3>
 			<p>    				
-				<form class="curPropForm" data-ajax="false">
+				<form class="curCharForm" data-ajax="false">
     				<div data-role="fieldcontain">
+						<label for="actorname">Actor:</label>
+						<textarea name="actorname" id="actorname"><?php echo $actor ?>
+						</textarea>
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
 	   						<input type="checkbox" name="a1s1" id="a1s1" class="custom"
@@ -74,15 +78,15 @@
    					 	</fieldset>
 						<p>
 						</p>
-						<label for="propnotes">Notes:</label>
-						<textarea name="propnotes" id="propnotes"><?php echo $notes ?>
+						<label for="charnotes">Notes:</label>
+						<textarea name="charnotes" id="charnotes"><?php echo $notes ?>
 						</textarea>
 					</div>
 				</form>
 				<a data-role="button" data-inline="true"
-				class="saveprop">Save</a>
+				class="savechar">Save</a>
 				<a data-role="button" data-inline="true"
-				class="deleteprop">Delete</a>
+				class="deletechar">Delete</a>
 			</p>
 			</div>
 			<?php
@@ -91,12 +95,15 @@
 			?>
 			
 			
-			<h3>Add New Prop</h3>
-			<form action="insert.php" method="post" id="newPropForm" data-ajax="false">
+			<h3>Add New Character</h3>
+			<form action="insert_char.php" method="post" id="newCharForm" data-ajax="false">
 				<p>    				
     				<div data-role="fieldcontain">
-						<label for="newpropname">Prop name:</label>
-						<input type="text" name="newpropname" id="newpropname" value=""  />
+						<label for="newcharname">Character name:</label>
+						<input type="text" name="newcharname" id="newcharname" value=""  />
+						
+						<label for="newActorName">Played by:</label>
+						<input type="text" name="newActorName" id="newActorName" value=""  />
 						
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
@@ -111,7 +118,7 @@
 						<textarea name="newnote" id="newnote">
 						</textarea>
 						
-						<input type="submit" id="createPropButton" value="Create Prop" />
+						<input type="submit" id="createCharButton" value="Create Character" />
 					</div>
 				</p>
 				</p>
