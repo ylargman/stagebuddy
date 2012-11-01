@@ -23,10 +23,10 @@
 	<div data-role="content">	      
 		<form action="submit.php" method="post">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="props.html" data-role="button">
+     		<a href="characters_view.php" data-role="button">
      		View</a>
 
-     		<a href="props_edit.html" data-role="button" class="ui-btn-active">
+     		<a href="characters_edit.php" data-role="button" class="ui-btn-active">
      		Edit</a>
 			</fieldset>
 		</form>
