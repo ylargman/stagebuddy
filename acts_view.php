@@ -14,7 +14,7 @@
 
 <div data-role="page">
 
-	<div data-role="header">
+	<div data-role="header" data-position="fixed">
 		<a href="index.html" data-icon="grid">Home</a>
 		
 		<h1>Acts</h1>
@@ -23,10 +23,10 @@
 	<div data-role="content">	      
 		<form action="submit.php" method="post">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="acts.html" data-role="button" class="ui-btn-active">
+     		<a href="acts_view.php" data-role="button" class="ui-btn-active">
      		View</a>
 
-     		<a href="acts_edit.html" data-role="button">
+     		<a href="acts_edit.php" data-role="button">
      		Edit</a>
 			</fieldset>
 		</form>

@@ -81,7 +81,7 @@
 		<div data-role="navbar" class="nav-glyphish-example">
 		<ul>
 			<li><a href="acts_view.php" id="acts" data-icon="custom">Acts</a></li>
-			<li><a href="characters.html" id="chars" data-icon="custom">Characters/Actors</a></li>
+			<li><a href="characters_view.php" id="chars" data-icon="custom">Characters/Actors</a></li>
 			<li><a href="props_view.php" id="props" data-icon="custom">Props</a></li>
 			<li><a href="scheduler.html" id="scheduler" data-icon="custom">Scheduler</a></li>
 		</ul>

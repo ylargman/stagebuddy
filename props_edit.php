@@ -15,7 +15,7 @@
 
 <div data-role="page">
 
-	<div data-role="header">
+	<div data-role="header" data-position="fixed">
 		<a href="index.html" data-icon="grid">Home</a>
 		<h1>Props</h1>
 	</div><!-- /header -->
@@ -25,10 +25,10 @@
 		      
 		<form action="submit.php" method="post" data-ajax="false">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="props.html" data-role="button">
+     		<a href="props_view.php" data-role="button">
      		View</a>
 
-     		<a href="props_edit.html" data-role="button" class="ui-btn-active">
+     		<a href="props_edit.php" data-role="button" class="ui-btn-active">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -122,9 +122,10 @@
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
 		<div data-role="navbar" class="nav-glyphish-example">
 		<ul>
-			<li><a href="acts.html" id="acts" data-icon="custom">Acts</a></li>
-			<li><a href="characters_edit.php" id="chars" data-icon="custom">Characters/Actors</a></li>
-			<li><a href="props_edit.php" id="props" data-icon="custom">Props</a></li>
+			<li><a href="acts_view.php" id="acts" data-icon="custom">Acts</a></li>
+			<li><a href="characters_view.php" id="chars" data-icon="custom">Characters/Actors</a></li>
+			<li><a href="props_view.php" id="props" data-icon="custom">Props</a></li>
+			<li><a href="scheduler.html" id="scheduler" data-icon="custom">Scheduler</a></li>
 		</ul>
 		</div>
 	</div>
