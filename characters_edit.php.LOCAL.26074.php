@@ -25,11 +25,7 @@
 		      
 		<form action="submit.php" method="post" data-ajax="false">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-<<<<<<< HEAD
      		<a href="characters.html" data-role="button">
-=======
-     		<a href="characters_view.php" data-role="button">
->>>>>>> 0a61e4b3bb53ad81873c3762cf00a8dad7319c5e
      		View</a>
 
      		<a href="characters_edit.php" data-role="button" class="ui-btn-active">
