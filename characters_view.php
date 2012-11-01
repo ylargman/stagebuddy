@@ -29,7 +29,49 @@
      		Edit</a>
 			</fieldset>
 		</form>
-	Characters View
+	
+	<div class="ui-grid-b">
+				<div class="ui-block-a"><h3>Character<h3></div>
+				<div class="ui-block-b"><h3>Scenes<h3></div>
+				<div class="ui-block-c"><h3>Notes<h3></div>
+			</div><!-- /grid-b -->
+		
+		<?php
+			include("config.php");
+			$query="SELECT * FROM Characters";
+			$result=mysql_query($query);
+			$numrows=mysql_numrows($result);
+			
+			$i=0;
+			while($i < $numrows){
+			
+			$name=mysql_result($result, $i, "name");
+			$actor=mysql_result($result, $i, "actor");
+			$a1s1=mysql_result($result, $i, "a1s1");
+			$a1s2=mysql_result($result, $i, "a1s2");
+			$notes=mysql_result($result, $i, "notes");
+			?>
+			
+			<p> 
+			<div class="ui-grid-b">
+				<div class="ui-block-a"><img src="profile-icon.png"/><p></p><?php echo $name ?><p></p>Played by: <?php echo $actor ?></div>
+					<div class="ui-block-b">
+						<?php
+							if($a1s1){
+								echo "1.1 <br>";
+							}
+							if($a1s2)
+								echo "1.2 <br>";
+						?>
+					</div>
+					<div class="ui-block-c"><?php echo $notes ?></div>
+				</p>
+				</div><!-- /grid-b -->
+			<?php
+			$i++;
+			}
+			?>
+	
 	</div><!-- /content -->
 	
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
