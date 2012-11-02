@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 	
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="actnav.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 </head> 
 
@@ -33,16 +34,44 @@
 
 		<div data-role="navbar">
 			<ul>
-				<li><a href="a.html" class="ui-btn-active ui-state-persist">Act 1</a></li>
-				<li><a href="b.html">Act 2</a></li>
-				<li><a href="b.html">Act 3</a></li>
+				<?php
+					include("config.php");
+					$query_a="SELECT * FROM Plays";
+					$result_a=mysql_query($query_a);
+					$numrows_a=mysql_numrows($result_a);
+			
+					$a=0;
+					while($a < $numrows_a){
+			
+						$name=mysql_result($result_a, $a, "name");
+					
+						$b = 1;
+						while($b <= 10){
+							$numscenes_a=mysql_result($result_a, $a, "act{$b}");
+							if ($numscenes_a > 0){
+								?>
+								<li><a class="selectedact_edit">Act <?php echo $b?></a></li>
+						<?php
+							}
+							$b++;
+						}
+						$a++;
+					}
+					?>
 			</ul>
 		</div><!-- /navbar -->
 		
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
 			<?php
 			include("config.php");
-			$query="SELECT * FROM Scenes";
+			
+			if(isset($_POST['actnum'])){
+				$actnum=$_POST['actnum'];
+			}else{
+				$actnum=1;	
+			}
+			
+			$query="SELECT * FROM Scenes WHERE act={$actnum}";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
@@ -71,19 +100,19 @@
 						<?php
 						include("config.php");
 				
-						$query="SELECT * FROM Characters WHERE a{$act}s{$scene}=1";
-						$result=mysql_query($query);
-						$numrows=mysql_numrows($result);
+						$query_c="SELECT * FROM Characters WHERE a{$act}s{$scene}=1";
+						$result_c=mysql_query($query_c);
+						$numrows_c=mysql_numrows($result_c);
 			
-						$i=0;
-						while($i < $numrows){
-						$pname=mysql_result($result, $i, "name");
+						$n=0;
+						while($n < $numrows_c){
+						$pname=mysql_result($result_c, $n, "name");
 						$charid="a{$act}s{$scene}char{$i}";
 						?>
 						<input type="checkbox" name="character<?php echo $charid ?>" id="<?php echo $charid ?>" class="custom" />
 						<label for="<?php echo $charid ?>"><?php echo $pname ?></label>
 						<?php
-						$i++;
+						$n++;
 						}
 						?>
 					</fieldset>
@@ -109,54 +138,7 @@
 			$i++;
 			}
 			?>
-			
-	
-			<div data-role="collapsible">
-			<h3>1.2</h3>
-				<p>
-					<label for="location">Location:</label>
-    				<input type="text" name="name" id="location" value=""  />
-    				
-    				Timer: 0:30
-    				<a href="acts_edit.html" id="stopwatch" data-role="button" data-icon="custom" data-inline="true">Timer</a>
-    				
-    				<div data-role="fieldcontain">
-    					<fieldset data-role="controlgroup">
-    						<legend>Characters:</legend>
-	   						<input type="checkbox" name="character1" id="character1" class="custom" />
-	   						<label for="character1">Shag</label>
-	   						
-	   						<input type="checkbox" name="character2" id="character2" class="custom" />
-	   						<label for="character2">Judith</label>
-   					 	</fieldset>
-					</div>
-					
-    				<input type="text" name="name" id="newcharacter" value="Add a new character"  />
-					
-					<div data-role="fieldcontain">
-    					<fieldset data-role="controlgroup">
-    						<legend>Props:</legend>
-	   						<input type="checkbox" name="prop1" id="prop1" class="custom" />
-	   						<label for="prop1">feather duster</label>
-	   						
-	   						<input type="checkbox" name="prop2" id="prop2" class="custom" />
-	   						<label for="prop2">packages</label>
-   					 	</fieldset>
-   					 	
-   					 	<input type="text" name="name" id="newprop" value="Add a new prop"  /><p>
-   					 	</p>
-   					 	
-   					 	<label for="textarea-a">Notes:</label>
-						<textarea name="textarea" id="textarea-a">
-This scene comes second.  It's a good one.
-						</textarea>
-					</div>
-
-				</p>
-			</div>
-	
-		</div>
-				
+							
 	</div><!-- /content -->
 	
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">

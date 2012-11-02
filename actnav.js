@@ -23,4 +23,15 @@ $(document).live('pagechange', function(){
     		'<input type="hidden" name="actnum" value="' + actNum + '">' +
     		'</form>').submit();
 	});
+	$(".selectedact_edit").unbind("click");
+	$(".selectedact_edit").bind("click", function(){
+		actName = $(this).text();
+		nameSplit = actName.split(" ");
+		actNum = parseInt(nameSplit[1]);
+		console.info(actNum);
+		
+		$('<form action="acts_edit.php" method="POST">' + 
+    		'<input type="hidden" name="actnum" value="' + actNum + '">' +
+    		'</form>').submit();
+	});
 });
