@@ -40,11 +40,76 @@
 		</div><!-- /navbar -->
 		
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-
+			<?php
+			include("config.php");
+			$query="SELECT * FROM Scenes";
+			$result=mysql_query($query);
+			$numrows=mysql_numrows($result);
+			
+			$i=0;
+			while($i < $numrows){
+			
+			$act=mysql_result($result, $i, "act");
+			$scene=mysql_result($result, $i, "scene");
+			$location=mysql_result($result, $i, "location");
+			$time=mysql_result($result, $i, "time");
+			$notes=mysql_result($result, $i, "notes");
+			?>
+			
 			<div data-role="collapsible" data-collapsed="false">
-			<h3>1.1</h3>
-			<p>I'm the collapsible content for Act 1 Scene 1.</p>
+				<h3><?php echo $act ?>.<?php echo $scene ?></h3>
+				<label for="location">Location:</label>
+
+				<input type="text" name="name" id="location" value="<?php echo $location ?>"  />
+				
+				Timer: <?php echo $time ?>
+				<a href="acts_edit.html" id="stopwatch" data-role="button" data-icon="custom" data-inline="true">Timer</a>
+				
+				<div data-role="fieldcontain">
+					<fieldset data-role="controlgroup">
+						<legend>Characters:</legend>
+						<?php
+						include("config.php");
+				
+						$query="SELECT * FROM Characters WHERE a{$act}s{$scene}=1";
+						$result=mysql_query($query);
+						$numrows=mysql_numrows($result);
+			
+						$i=0;
+						while($i < $numrows){
+						$pname=mysql_result($result, $i, "name");
+						$charid="a{$act}s{$scene}char{$i}";
+						?>
+						<input type="checkbox" name="character<?php echo $charid ?>" id="<?php echo $charid ?>" class="custom" />
+						<label for="<?php echo $charid ?>"><?php echo $pname ?></label>
+						<?php
+						$i++;
+						}
+						?>
+					</fieldset>
+					<p></p>
+					<fieldset data-role="controlgroup">
+						<legend>Props:</legend>
+						<input type="checkbox" name="prop1" id="prop1" class="custom" />
+						<label for="prop1">feather duster</label>
+						
+						<input type="checkbox" name="prop2" id="prop2" class="custom" />
+						<label for="prop2">packages</label>
+					</fieldset>
+					
+					<p></p>
+					<label for="textarea-a">Notes:</label>
+					<textarea name="textarea" id="textarea-a">
+					<?php echo $notes ?>
+					</textarea>
+				</div>
 			</div>
+			
+			<?php
+			$i++;
+			}
+			?>
+			
 	
 			<div data-role="collapsible">
 			<h3>1.2</h3>
