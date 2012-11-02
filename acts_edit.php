@@ -107,7 +107,7 @@
 						$n=0;
 						while($n < $numrows_c){
 						$pname=mysql_result($result_c, $n, "name");
-						$charid="a{$act}s{$scene}char{$i}";
+						$charid="a{$act}s{$scene}char{$n}";
 						?>
 						<input type="checkbox" name="character<?php echo $charid ?>" id="<?php echo $charid ?>" class="custom" />
 						<label for="<?php echo $charid ?>"><?php echo $pname ?></label>
