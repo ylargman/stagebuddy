@@ -23,7 +23,6 @@
 	}
 	
 	$query="UPDATE Characters SET a1s1=$a1s1, a1s2=$a1s2, actor='$actor', notes='$note' WHERE name='$name'";
-	//$query="UPDATE Characters SET a1s1=$a1s1, a1s2=$a1s2, notes='$note' WHERE name='$name'";
 	
 	mysql_query($query);
 ?>

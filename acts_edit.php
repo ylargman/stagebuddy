@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 	
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="propedit.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 </head> 
 
@@ -56,53 +57,88 @@
 			$notes=mysql_result($result, $i, "notes");
 			?>
 			
-			<div data-role="collapsible" data-collapsed="false">
-				<h3><?php echo $act ?>.<?php echo $scene ?></h3>
-				<label for="location">Location:</label>
-
-				<input type="text" name="name" id="location" value="<?php echo $location ?>"  />
+			<div data-role="collapsible" class="sceneCollapsible" data-collapsed="false">
+				<h3><div class="sceneName"><?php echo $act ?>.<?php echo $scene ?></div></h3>
 				
-				Timer: <?php echo $time ?>
-				<a href="acts_edit.html" id="stopwatch" data-role="button" data-icon="custom" data-inline="true">Timer</a>
+				<form class="curSceneForm" data-ajax="false">
 				
-				<div data-role="fieldcontain">
-					<fieldset data-role="controlgroup">
-						<legend>Characters:</legend>
-						<?php
-						include("config.php");
-				
-						$query="SELECT * FROM Characters WHERE a{$act}s{$scene}=1";
-						$result=mysql_query($query);
-						$numrows=mysql_numrows($result);
-			
-						$i=0;
-						while($i < $numrows){
-						$pname=mysql_result($result, $i, "name");
-						$charid="a{$act}s{$scene}char{$i}";
-						?>
-						<input type="checkbox" name="character<?php echo $charid ?>" id="<?php echo $charid ?>" class="custom" />
-						<label for="<?php echo $charid ?>"><?php echo $pname ?></label>
-						<?php
-						$i++;
-						}
-						?>
-					</fieldset>
-					<p></p>
-					<fieldset data-role="controlgroup">
-						<legend>Props:</legend>
-						<input type="checkbox" name="prop1" id="prop1" class="custom" />
-						<label for="prop1">feather duster</label>
-						
-						<input type="checkbox" name="prop2" id="prop2" class="custom" />
-						<label for="prop2">packages</label>
-					</fieldset>
+					<label for="location">Location:</label>
+					<input type="text" name="location" id="location" value="<?php echo $location ?>"  />
 					
-					<p></p>
-					<label for="textarea-a">Notes:</label>
-					<textarea name="textarea" id="textarea-a">
-					<?php echo $notes ?>
-					</textarea>
-				</div>
+					Timer: <?php echo $time ?>
+					<a href="acts_edit.html" id="stopwatch" data-role="button" data-icon="custom" data-inline="true">Timer</a>
+					
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup">
+							<legend>Characters:</legend>
+							<?php
+							include("config.php");
+					
+							$cquery="SELECT * FROM Characters";
+							$cresult=mysql_query($cquery);
+							$numcrows=mysql_numrows($cresult);
+				
+							$k=0;
+							while($k < $numcrows){
+							
+							$cname=mysql_result($cresult, $k, "name");
+							$actbool=mysql_result($cresult, $k, "a{$act}s{$scene}");
+							$charid="a{$act}s{$scene}-$cname";
+							?>
+							<input type="checkbox" name="<?php echo $charid ?>" id="<?php echo $charid ?>" class="custom"
+							<?php
+								if($actbool)
+								echo 'checked="checked"'
+							?>
+							/>
+							<label for="<?php echo $charid ?>"><?php echo $cname ?></label>
+							<?php
+							$k++;
+							}
+							?>
+						</fieldset>
+						<p></p>
+						<fieldset data-role="controlgroup">
+							<legend>Props:</legend>
+							<?php
+							include("config.php");
+					
+							$pquery="SELECT * FROM Props";
+							$presult=mysql_query($pquery);
+							$numprows=mysql_numrows($presult);
+				
+							$l=0;
+							while($l < $numprows){
+							
+							$pname=mysql_result($presult, $l, "name");
+							$actboolp=mysql_result($presult, $l, "a{$act}s{$scene}");
+							$propid="a{$act}s{$scene}-$pname";
+							?>
+							<input type="checkbox" name="<?php echo $propid ?>" id="<?php echo $propid ?>" class="custom"
+							<?php
+								if($actboolp)
+								echo 'checked="checked"'
+							?>
+							/>
+							<label for="<?php echo $propid ?>"><?php echo $pname ?></label>
+							<?php
+							$l++;
+							}
+							?>
+						</fieldset>
+						
+						<p></p>
+						<label for="sceneNotes">Notes:</label>
+						<textarea name="sceneNotes" id="sceneNotes">
+						<?php echo $notes ?>
+						</textarea>
+					</div>
+				</form>
+				
+				<a data-role="button" data-inline="true"
+				class="savescene">Save</a>
+				<a data-role="button" data-inline="true"
+				class="deletescene">Delete</a>
 			</div>
 			
 			<?php
