@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 	
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="actnav.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 </head> 
 
@@ -33,89 +34,122 @@
 
 		<div data-role="navbar">
 			<ul>
-				<li><a href="a.html" class="ui-btn-active ui-state-persist">Act 1</a></li>
-				<li><a href="b.html">Act 2</a></li>
-				<li><a href="b.html">Act 3</a></li>
+				<?php
+					include("config.php");
+					$query_a="SELECT * FROM Plays";
+					$result_a=mysql_query($query_a);
+					$numrows_a=mysql_numrows($result_a);
+			
+					$a=0;
+					while($a < $numrows_a){
+			
+						$name=mysql_result($result_a, $a, "name");
+					
+						$b = 1;
+						while($b <= 10){
+							$numscenes_a=mysql_result($result_a, $a, "act{$b}");
+							if ($numscenes_a > 0){
+								?>
+								<li><a class="selectedact">Act <?php echo $b?></a></li>
+						<?php
+							}
+							$b++;
+						}
+						$a++;
+					}
+					?>
 			</ul>
 		</div><!-- /navbar -->
 		
 		<div class="ui-grid-d">
 			<div class="ui-block-a">
-				<h2>
-					Scene
-				</h2>
+				<h2>Scene</h2>
 			</div>
 			<div class="ui-block-b">
-				<h2>
-					Location
-				</h2>		
+				<h2>Location</h2>		
 			</div>
 			<div class="ui-block-c">
-				<h2>
-					Characters
-				</h2>	
+				<h2>Characters</h2>	
 			</div>
 			<div class="ui-block-d">
-				<h2>
-					Props
-				</h2>	
+				<h2>Props</h2>	
 			</div>
 			<div class="ui-block-e">
-				<h2>
-					Notes
-				</h2>	
+				<h2>Notes</h2>	
 			</div>
 		
-			<div class="ui-block-a">1.1</div>
-			<div class="ui-block-b">
-				<textarea rows=4 cols=200 readonly="readonly">
-The Abbey</textarea>
-			</div>
-			<div class="ui-block-c">
-				<textarea rows=4 cols=200 readonly="readonly">
-1. Charlie
-2. Sophie
-3. Skylar
-4. Yan</textarea>
-			</div>
-			<div class="ui-block-d">
-				<textarea rows=4 cols=200 readonly="readonly">
-1. Sword
-2. Shield
-3. Hankerchief</textarea>
-			</div>
-			<div class="ui-block-e">
-				<a href="#notesPopup" data-rel="popup" data-role="button" data-inline="true">Notes</a>
-					<div data-role="popup" id="notesPopup">
-						<p>Show Notes<p>
-					</div>
-			</div>
+		<?php
+			include("config.php");
 			
-			<div class="ui-block-a">1.2</div>
-			<div class="ui-block-b">
-				<a href="#locationPopup" data-rel="popup" data-role="button" data-inline="true">Location</a>
-					<div data-role="popup" id="locationPopup">
-						<p>Show Location<p>
-					</div>
+			if(isset($_POST['actnum'])){
+				$actnum=$_POST['actnum'];
+			}else{
+				$actnum=1;	
+			}
+			
+			$query="SELECT * FROM Scenes WHERE act={$actnum}";
+			$result=mysql_query($query);
+			$numrows=mysql_numrows($result);
+			
+			$i=0;
+			while($i < $numrows){
+			
+			$act=mysql_result($result, $i, "act");
+			$scene=mysql_result($result, $i, "scene");
+			$location=mysql_result($result, $i, "location");
+			$time=mysql_result($result, $i, "time");
+			$notes=mysql_result($result, $i, "notes");
+			?>
+		
+			<div class="ui-block-a">
+				<h1><?php echo $act?>.<?php echo $scene?></h1>
 			</div>
+			<div class="ui-block-b">STUFF
+				<?php 
+				echo $location;
+				echo $_POST['actnum'];
+				?></div>
 			<div class="ui-block-c">
-				<a href="#charactersPopup" data-rel="popup" data-role="button" data-inline="true">Characters</a>
-					<div data-role="popup" id="charactersPopup">
-						<p>Show Characters<p>
-					</div>
+				<?php
+						include("config.php");
+				
+						$query_c="SELECT * FROM Characters WHERE a{$act}s{$scene}=1";
+						$result_c=mysql_query($query_c);
+						$numrows_c=mysql_numrows($result_c);
+			
+						$n=0;
+						while($n < $numrows_c){
+							$cname=mysql_result($result_c, $n, "name");
+							echo $cname;
+							echo "<br>";
+							$n++;
+						}
+				?>			
 			</div>
 			<div class="ui-block-d">
-				<a href="#propsPopup" data-rel="popup" data-role="button" data-inline="true">Props</a>
-					<div data-role="popup" id="propsPopup">
-						<p>Show Props<p>
-					</div>
+				<?php
+						include("config.php");
+				
+						$query_p="SELECT * FROM Props WHERE a{$act}s{$scene}=1";
+						$result_p=mysql_query($query_p);
+						$numrows_p=mysql_numrows($result_p);
+			
+						$x=0;
+						while($x < $numrows_p){
+							$pname=mysql_result($result_p, $x, "name");
+							echo $pname;
+							echo "<br>";
+							$x++;
+						}
+				?>	
 			</div>
-			<div class="ui-block-e">
-				<a href="#notesPopup" data-rel="popup" data-role="button" data-inline="true">Notes</a>
-					<div data-role="popup" id="notesPopup">
-						<p>Show Notes<p>
-					</div>
-			</div>
+			<div class="ui-block-e"><?php echo $notes ?></div>
+			
+			<?php
+			$i++;
+			}
+			?>
+
 		</div><!-- /grid-d -->
 		
 	</div><!-- /content -->
