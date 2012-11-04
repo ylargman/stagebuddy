@@ -6,7 +6,6 @@
 	$scene=$_POST['scene'];
 	
 	$query="UPDATE Scenes SET location='$location', notes='$notes' WHERE act={$act} AND scene={$scene}";
-	//$query="UPDATE Scenes SET location='test', notes='test' WHERE act=2";
 	mysql_query($query);
 	
 	$cquery="SELECT * FROM Characters";

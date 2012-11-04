@@ -100,17 +100,23 @@
 						<?php
 						include("config.php");
 				
-						$query_c="SELECT * FROM Characters WHERE a{$act}s{$scene}=1";
+						$query_c="SELECT * FROM Characters";
 						$result_c=mysql_query($query_c);
 						$numrows_c=mysql_numrows($result_c);
 			
 						$n=0;
 						while($n < $numrows_c){
-						$pname=mysql_result($result_c, $n, "name");
+						$cname=mysql_result($result_c, $n, "name");
+						$cbool=mysql_result($result_c, $n, "a{$act}s${scene}");
 						$charid="a{$act}s{$scene}char{$n}";
 						?>
-						<input type="checkbox" name="character<?php echo $charid ?>" id="<?php echo $charid ?>" class="custom" />
-						<label for="<?php echo $charid ?>"><?php echo $pname ?></label>
+						<input type="checkbox" name="<?php echo $charid ?>" id="<?php echo $charid ?>" class="custom" 
+						<?php
+							if($cbool)
+							echo 'checked="checked"'
+							?>
+						/>
+						<label for="<?php echo $charid ?>"><?php echo $cname ?></label>
 						<?php
 						$n++;
 						}
@@ -119,11 +125,29 @@
 					<p></p>
 					<fieldset data-role="controlgroup">
 						<legend>Props:</legend>
-						<input type="checkbox" name="prop1" id="prop1" class="custom" />
-						<label for="prop1">feather duster</label>
-						
-						<input type="checkbox" name="prop2" id="prop2" class="custom" />
-						<label for="prop2">packages</label>
+						<?php
+						include("config.php");
+				
+						$query_p="SELECT * FROM Props WHERE a{$act}s{$scene}=1";
+						$result_p=mysql_query($query_p);
+						$numrows_p=mysql_numrows($result_p);
+			
+						$pp=0;
+						while($pp < $numrows_p){
+						$pname=mysql_result($result_p, $pp, "name");
+						$pbool=mysql_result($result_p, $pp, "a{$act}s${scene}");
+						$propid="a{$act}s{$scene}prop{$pp}";
+						?>
+						<input type="checkbox" name="<?php echo $propid ?>" id="<?php echo $propid ?>" class="custom" 
+						<?php
+							if($pbool)
+							echo 'checked="checked"'
+							?>/>
+						<label for="<?php echo $propid ?>"><?php echo $pname ?></label>
+						<?php
+						$pp++;
+						}
+						?>
 					</fieldset>
 					
 					<p></p>
@@ -131,6 +155,8 @@
 					<textarea name="textarea" id="textarea-a">
 					<?php echo $notes ?>
 					</textarea>
+					<a data-role="button" data-inline="true"
+					class="savescene">Save</a>
 				</div>
 			</div>
 			
