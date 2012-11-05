@@ -15,7 +15,7 @@ $(document).live('pagechange', function(){
 	$("#createPropButton").unbind("click");
 	$("#createPropButton").bind("click", function (event) {
 		event.preventDefault();
-		$.post("insert.php", $("#newPropForm").serialize(), function(data) {
+		$.post("insert_prop.php", $("#newPropForm").serialize(), function(data) {
 		});
 			
 		delayedRefresh();
