@@ -37,25 +37,27 @@
 
 			<?php
 			include("config.php");
-			$query="SELECT * FROM Props";
+			$query="SELECT * FROM PropsInfo WHERE playID LIKE '0'";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
 			$i=0;
 			while($i < $numrows){
 			
-			$name=mysql_result($result, $i, "Name");
-			$a1s1=mysql_result($result, $i, "a1s1");
-			$a1s2=mysql_result($result, $i, "a1s2");
-			$notes=mysql_result($result, $i, "Notes");
+			$propID=mysql_result($result, $i, "propID");
+			$name=mysql_result($result, $i, "name");
+			$notes=mysql_result($result, $i, "notes");
 			?>
+			
 			<div class="propCollapsible" data-role="collapsible" data-collapsed="false">
 			<h3><div class="propName"><?php echo $name ?></div></h3>
 			<p>    				
 				<form class="curPropForm" data-ajax="false">
     				<div data-role="fieldcontain">
     					<fieldset data-role="controlgroup">
-    						<legend>Scenes:</legend>
+    					
+       						<legend>Scenes:</legend>
+    						
 	   						<input type="checkbox" name="a1s1" id="a1s1" class="custom"
 							<?php
 							if($a1s1)
