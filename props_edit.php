@@ -58,21 +58,36 @@
     					
        						<legend>Scenes:</legend>
     						
-	   						<input type="checkbox" name="a1s1" id="a1s1" class="custom"
-							<?php
-							if($a1s1)
-							echo 'checked="checked"'
-							?>
-							/>
-	   						<label for="a1s1">1.1</label>
+    						<?php
+	   						include("config.php");
+	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '0'";
+	   						$result_acts=mysql_query($query);
 	   						
-	   						<input type="checkbox" name="a1s2" id="a1s2" class="custom"
-							<?php
-							if($a1s2)
-							echo 'checked="checked"'
-							?>
-							/>
-	   						<label for="a1s2">1.2</label>
+	   						$act=1;
+	   						while($act <= 10){
+	   							$numscenes=mysql_result($result_acts, '0', "act{$act}");
+	   							if($numscenes < 1)
+	   								break;
+	   							$scene=1;
+	   							while($scene <=$numscenes){
+	   								$query_ps = "SELECT * FROM PropsScenes WHERE playID=0 AND propID=$propID AND act=$act AND scene=$scene";
+									$results_ps = mysql_query($query_ps);
+									$numrows_ps=mysql_numrows($results_ps);
+
+									$pid="a{$act}s{$scene}prop{$propID}";
+									?>
+									<input type="checkbox" name="<?php echo $pid ?>" id="<?php echo $pid ?>" class="custom" 
+									<?php
+									if($numrows_ps > 0)
+										echo 'checked="checked"'
+									?>/>
+									<label for="<?php echo $pid ?>"><?php echo $name ?></label>
+									<?php
+									$scene++;
+	   							}
+	   							$act++;
+	   						}
+	   					?>
    					 	</fieldset>
 						<p>
 						</p>
