@@ -17,7 +17,7 @@
 <div data-role="page">
 
 	<div data-role="header" data-position="fixed">
-		<a href="index.html" data-icon="grid">Home</a>
+		<a href="index.php" data-icon="grid">Home</a>
 		
 		<h1>Acts</h1>
 	</div><!-- /header -->
