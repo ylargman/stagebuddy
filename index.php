@@ -18,6 +18,20 @@
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 </head> 
 
+<script type="text/javascript">
+$(function(){
+	$(".playbutton").click(function() {
+		localStorage.setItem('currentPlay', $(this).attr("id"));
+	});
+	
+	$(".testbutton").click(function() {
+		x = localStorage.getItem('currentPlay');
+		alert(x);
+	});
+	
+});
+</script>
+
 <body> 
 
 <div data-role="page">
@@ -38,12 +52,15 @@
 			$p=0;
 			while($p < $numrows){
 				$name=mysql_result($result, $p, "name");
+				$playid=mysql_result($result, $p, "playID");
 				?>
-				<a href="acts_view.php" data-role="button"><?php echo $name ?></a>
+				<a href="acts_view.php" data-role="button" class="playbutton" id=<?php echo $playid?>><?php echo $name ?></a>
 				<?php
 				$p++;	
 			}
 		?>
+		
+		<a data-role="button" class="testbutton">Test</a>
 	</div><!-- /content -->
 	
 </div><!-- /page -->

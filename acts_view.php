@@ -36,6 +36,7 @@
 			<ul>
 				<?php
 					include("config.php");
+				
 					$query_a="SELECT * FROM Plays";
 					$result_a=mysql_query($query_a);
 					$numrows_a=mysql_numrows($result_a);
@@ -104,10 +105,9 @@
 			<div class="ui-block-a">
 				<h1><?php echo $act?>.<?php echo $scene?></h1>
 			</div>
-			<div class="ui-block-b">STUFF
+			<div class="ui-block-b">
 				<?php 
 				echo $location;
-				echo $_POST['actnum'];
 				?></div>
 			<div class="ui-block-c">
 				<?php
@@ -124,6 +124,7 @@
 							$result_c_n=mysql_query($query_c_n);
 							
 							$cname=mysql_result($result_c_n, 0, "name");
+							echo "- ";
 							echo $cname;
 							echo "<br>";
 							$n++;
@@ -145,6 +146,7 @@
 							$result_p_n=mysql_query($query_p_n);
 							
 							$pname=mysql_result($result_p_n, 0, "name");
+							echo "- ";
 							echo $pname;
 							echo "<br>";
 							$x++;
