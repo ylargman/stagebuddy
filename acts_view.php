@@ -75,7 +75,7 @@
 				<h2>Props</h2>	
 			</div>
 			<div class="ui-block-e">
-				<h2>Notes</h2>	
+				<h2>Notes</h2>
 			</div>
 		
 		<?php
@@ -113,13 +113,17 @@
 				<?php
 						include("config.php");
 				
-						$query_c="SELECT * FROM Characters WHERE a{$act}s{$scene}=1";
+						$query_c="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene}";
 						$result_c=mysql_query($query_c);
 						$numrows_c=mysql_numrows($result_c);
 			
 						$n=0;
 						while($n < $numrows_c){
-							$cname=mysql_result($result_c, $n, "name");
+							$cid=mysql_result($result_c, $n, "characterID");
+							$query_c_n="SELECT * FROM CharactersInfo WHERE characterID={$cid}";
+							$result_c_n=mysql_query($query_c_n);
+							
+							$cname=mysql_result($result_c_n, 0, "name");
 							echo $cname;
 							echo "<br>";
 							$n++;
@@ -130,20 +134,30 @@
 				<?php
 						include("config.php");
 				
-						$query_p="SELECT * FROM Props WHERE a{$act}s{$scene}=1";
+						$query_p="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene}";
 						$result_p=mysql_query($query_p);
 						$numrows_p=mysql_numrows($result_p);
 			
 						$x=0;
 						while($x < $numrows_p){
-							$pname=mysql_result($result_p, $x, "name");
+							$pid=mysql_result($result_p, $x, "propID");
+							$query_p_n="SELECT * FROM PropsInfo WHERE propID={$pid}";
+							$result_p_n=mysql_query($query_p_n);
+							
+							$pname=mysql_result($result_p_n, 0, "name");
 							echo $pname;
 							echo "<br>";
 							$x++;
 						}
 				?>	
 			</div>
-			<div class="ui-block-e"><?php echo $notes ?></div>
+			<div class="ui-block-e">TIME: 
+				<?php 
+				echo $time;
+				echo "<br>";
+				echo $notes; 
+				?>
+			</div>
 			
 			<?php
 			$i++;
