@@ -1,6 +1,6 @@
 $(document).live('pagechange pageshow pageinit', function(){
-	$("#generate").unbind("click");
-	$("#generate").click(function(){
+	$(".generateButton").unbind("click");
+	$(".generateButton").click(function(){
 		alert("test");
 		numActs = $("#numActs").val();
 		html = '';
