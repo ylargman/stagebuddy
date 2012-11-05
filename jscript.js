@@ -1,5 +1,5 @@
-$(document).live('pageshow', function(){
-	alert("test");
+$(document).live('pagechange pageshow pageinit', function(){
+	$("#generate").unbind("click");
 	$("#generate").click(function(){
 		alert("test");
 		numActs = $("#numActs").val();
