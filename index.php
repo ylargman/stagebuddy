@@ -30,12 +30,20 @@
 		<a href="createshow.html" data-role="button">+ New Show</a>
 		
 		<?php
+			include("config.php");
+			$query="SELECT * FROM Plays";
+			$result=mysql_query($query);
+			$numrows=mysql_numrows($result);
 			
+			$p=0;
+			while($p < $numrows){
+				$name=mysql_result($result, $p, "name");
+				?>
+				<a href="acts_view.php" data-role="button"><?php echo $name ?></a>
+				<?php
+				$p++;	
+			}
 		?>
-		
-		<a href="acts_view.php" data-role="button">Hamlet</a>
-		<a href="acts_view.php" data-role="button">Peter Pan</a>
-		<a href="acts_view.php" data-role="button">Equivocation</a>
 	</div><!-- /content -->
 	
 </div><!-- /page -->
