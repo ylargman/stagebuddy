@@ -38,17 +38,16 @@
 		
 		<?php
 			include("config.php");
-			$query="SELECT * FROM Characters";
+			$query="SELECT * FROM CharactersInfo WHERE playID LIKE '0'";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
 			$i=0;
 			while($i < $numrows){
 			
+			$charID=mysql_result($result, $i, "characterID");
 			$name=mysql_result($result, $i, "name");
 			$actor=mysql_result($result, $i, "actor");
-			$a1s1=mysql_result($result, $i, "a1s1");
-			$a1s2=mysql_result($result, $i, "a1s2");
 			$notes=mysql_result($result, $i, "notes");
 			?>
 			
@@ -57,11 +56,20 @@
 				<div class="ui-block-a"><img src="profile-icon.png"/><p></p><?php echo $name ?><p></p>Played by: <?php echo $actor ?></div>
 					<div class="ui-block-b">
 						<?php
-							if($a1s1){
-								echo "1.1 <br>";
+							$query_scenes="SELECT * FROM CharactersScenes WHERE playID LIKE '0' AND characterID LIKE $charID";
+							$result_scenes=mysql_query($query_scenes);
+							$numrows_scenes=mysql_numrows($result_scenes);
+							
+							$j=0;
+							while($j < $numrows_scenes){
+								$act=mysql_result($result_scenes, $j, "act");
+								$scene=mysql_result($result_scenes, $j, "scene");
+								echo $act;
+								echo ".";
+								echo $scene;
+								echo "<br>";
+								$j++;
 							}
-							if($a1s2)
-								echo "1.2 <br>";
 						?>
 					</div>
 					<div class="ui-block-c"><?php echo $notes ?></div>

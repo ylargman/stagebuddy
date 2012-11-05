@@ -15,7 +15,7 @@
 <div data-role="page">
 
 	<div data-role="header" data-position="fixed">
-		<a href="index.html" data-icon="grid">Home</a>
+		<a href="index.php" data-icon="grid">Home</a>
 		<h1>Props</h1>
 	</div><!-- /header -->
 
@@ -41,17 +41,16 @@
 		
 		<?php
 			include("config.php");
-			$query="SELECT * FROM Props";
+			$query="SELECT * FROM PropsInfo WHERE playID LIKE '0'";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
 			$i=0;
 			while($i < $numrows){
 			
-			$name=mysql_result($result, $i, "Name");
-			$a1s1=mysql_result($result, $i, "a1s1");
-			$a1s2=mysql_result($result, $i, "a1s2");
-			$notes=mysql_result($result, $i, "Notes");
+			$propID=mysql_result($result, $i, "propID");
+			$name=mysql_result($result, $i, "name");
+			$notes=mysql_result($result, $i, "notes");
 			?>
 			
 			<p> 
@@ -59,11 +58,20 @@
 				<div class="ui-block-a"><img src="bow-and-arrow.png"/><p></p><?php echo $name ?></div>
 					<div class="ui-block-b">
 						<?php
-							if($a1s1){
-								echo "1.1 <br>";
+							$query_s_n="SELECT * FROM PropsScenes WHERE playID LIKE '0' AND propID LIKE $propID";
+							$result_s_n=mysql_query($query_s_n);
+							$numrows_s_n=mysql_numrows($result_s_n);
+							
+							$j=0;
+							while($j < $numrows_s_n){
+								$act=mysql_result($result_s_n, $j, "act");
+								$scene=mysql_result($result_s_n, $j, "scene");
+								echo $act;
+								echo ".";
+								echo $scene;
+								echo "<br>";
+								$j++;
 							}
-							if($a1s2)
-								echo "1.2 <br>";
 						?>
 					</div>
 					<div class="ui-block-c"><?php echo $notes ?></div>
@@ -73,6 +81,9 @@
 			$i++;
 			}
 			?>
+			
+			
+			
 			
 		
 	</div><!-- /content -->

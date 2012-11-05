@@ -52,7 +52,6 @@ $(document).live('pagechange', function(){
 	$(".deletechar").unbind("click");
 	$(".deletechar").bind("click", function (event, ui){
 		charToDelete = $(this).parents(".charCollapsible").find(".charName").text();
-		alert("SHIIIIIIIT!");
 		$.post("delete_char.php", {charname: charToDelete});
 		delayedRefresh();
 	});
