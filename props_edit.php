@@ -92,7 +92,7 @@
 			
 			
 			<h3>Add New Prop</h3>
-			<form action="insert.php" method="post" id="newPropForm" data-ajax="false">
+			<form action="insert_prop.php" method="post" id="newPropForm" data-ajax="false">
 				<p>    				
     				<div data-role="fieldcontain">
 						<label for="newpropname">Prop name:</label>

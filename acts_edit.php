@@ -128,21 +128,24 @@
 						<?php
 						include("config.php");
 				
-						$query_p="SELECT * FROM Props WHERE a{$act}s{$scene}=1";
+						$query_p="SELECT * FROM PropsInfo WHERE playid=1";
 						$result_p=mysql_query($query_p);
 						$numrows_p=mysql_numrows($result_p);
 			
 						$pp=0;
 						while($pp < $numrows_p){
 						$pname=mysql_result($result_p, $pp, "name");
-						$pbool=mysql_result($result_p, $pp, "a{$act}s${scene}");
+						$query_ps = "SELECT * FROM PropsScenes WHERE playid=1 AND act=$act AND scene=$scene";
+						$results_ps = mysql_query($query_ps);
+						$numrows_ps=mysql_numrows($results_ps);
+
 						$propid="a{$act}s{$scene}prop{$pp}";
 						?>
 						<input type="checkbox" name="<?php echo $propid ?>" id="<?php echo $propid ?>" class="custom" 
 						<?php
-							if($pbool)
-							echo 'checked="checked"'
-							?>/>
+							if($numrows_ps > 0)
+								echo 'checked="checked"'
+						?>/>
 						<label for="<?php echo $propid ?>"><?php echo $pname ?></label>
 						<?php
 						$pp++;
