@@ -9,7 +9,7 @@ function delayedRefresh(){
 					reloadPage              : true
 				}
 			)
-	}, 400);
+	}, 200);
 }
 $(document).live('pagechange', function(){
 	$("#createPropButton").unbind("click");
@@ -66,6 +66,22 @@ $(document).live('pagechange', function(){
 		
 		$.post("save_char.php", serArray);
 		
+		delayedRefresh();
+	});
+	
+	$(".savescene").unbind("click");
+	$(".savescene").bind("click", function (event, ui){
+		sceneName = $(this).parents(".sceneCollapsible").find(".sceneName").text();
+		nameSplit = sceneName.split(".");
+		serArray = $(this).parents(".sceneCollapsible").find(".curSceneForm").serializeArray();
+		serArray.push({"name" : "act", "value": parseInt(nameSplit[0]) });
+		serArray.push({"name" : "scene", "value": parseInt(nameSplit[1]) });
+		console.info(serArray);
+
+		var jqreq = $.post("save_scene.php", serArray);
+		//console.info(jqreq.responseText);
+		//console.log(jqreq);
+
 		delayedRefresh();
 	});
 })
