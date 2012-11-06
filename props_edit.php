@@ -61,7 +61,7 @@
     						<?php
 	   						include("config.php");
 	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '0'";
-	   						$result_acts=mysql_query($query);
+	   						$result_acts=mysql_query($query_acts);
 	   						
 	   						$act=1;
 	   						while($act <= 10){
@@ -81,7 +81,7 @@
 									if($numrows_ps > 0)
 										echo 'checked="checked"'
 									?>/>
-									<label for="<?php echo $pid ?>"><?php echo $name ?></label>
+									<label for="<?php echo $pid ?>"><?php echo "{$act}.{$scene}" ?></label>
 									<?php
 									$scene++;
 	   							}
@@ -117,11 +117,28 @@
 						
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
-	   						<input type="checkbox" name="a1s1" id="a1s1" class="custom" />
-	   						<label for="a1s1">1.1</label>
+	   						<?php
+	   						include("config.php");
+	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '0'";
+	   						$result_acts=mysql_query($query_acts);
 	   						
-	   						<input type="checkbox" name="a1s2" id="a1s2" class="custom" />
-	   						<label for="a1s2">1.2</label>
+	   						$act=1;
+	   						while($act <= 10){
+	   							$numscenes=mysql_result($result_acts, '0', "act{$act}");
+	   							if($numscenes < 1)
+	   								break;
+	   							$scene=1;
+	   							while($scene <=$numscenes){
+	   								$asid="{$act}.{$scene}";
+	   								?>
+									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
+									<label for="<?php echo $asid ?>"><?php echo $asid ?></label>
+									<?php
+									$scene++;
+	   							}
+	   							$act++;
+	   						}
+	   					?>
    					 	</fieldset>
 						
 						<label for="newnote">Notes:</label>
