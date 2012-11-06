@@ -37,17 +37,16 @@
 
 			<?php
 			include("config.php");
-			$query="SELECT * FROM Characters";
+			$query="SELECT * FROM CharactersInfo WHERE playID LIKE '0'";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
 			$i=0;
 			while($i < $numrows){
 			
+			$charID=mysql_result($result, $i, "characterID");
 			$name=mysql_result($result, $i, "name");
 			$actor=mysql_result($result, $i, "actor");
-			$a1s1=mysql_result($result, $i, "a1s1");
-			$a1s2=mysql_result($result, $i, "a1s2");
 			$notes=mysql_result($result, $i, "notes");
 			?>
 			<div class="charCollapsible" data-role="collapsible" data-collapsed="false">
@@ -60,21 +59,38 @@
 						</textarea>
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
-	   						<input type="checkbox" name="a1s1" id="a1s1" class="custom"
-							<?php
-							if($a1s1)
-							echo 'checked="checked"'
-							?>
-							/>
-	   						<label for="a1s1">1.1</label>
 	   						
-	   						<input type="checkbox" name="a1s2" id="a1s2" class="custom"
-							<?php
-							if($a1s2)
-							echo 'checked="checked"'
-							?>
-							/>
-	   						<label for="a1s2">1.2</label>
+	   						<?php
+	   						include("config.php");
+	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '0'";
+	   						$result_acts=mysql_query($query_acts);
+	   						
+	   						$act=1;
+	   						while($act <= 10){
+	   							$numscenes=mysql_result($result_acts, '0', "act{$act}");
+	   							if($numscenes < 1)
+	   								break;
+	   							$scene=1;
+	   							while($scene <=$numscenes){
+	   								$query_cs = "SELECT * FROM CharactersScenes WHERE playID=0 AND characterID=$charID AND act=$act AND scene=$scene";
+									$results_cs = mysql_query($query_cs);
+									$numrows_cs=mysql_numrows($results_cs);
+
+									$cid="a{$act}s{$scene}char{$charID}";
+									?>
+									<input type="checkbox" name="<?php echo $cid ?>" id="<?php echo $cid ?>" class="custom" 
+									<?php
+									if($numrows_cs > 0)
+										echo 'checked="checked"'
+									?>/>
+									<label for="<?php echo $cid ?>"><?php echo "{$act}.{$scene}" ?></label>
+									<?php
+									$scene++;
+	   							}
+	   							$act++;
+	   						}
+	   					?>
+
    					 	</fieldset>
 						<p>
 						</p>
@@ -107,11 +123,28 @@
 						
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
-	   						<input type="checkbox" name="a1s1" id="a1s1" class="custom" />
-	   						<label for="a1s1">1.1</label>
+	   						<?php
+	   						include("config.php");
+	   						$query_as="SELECT * FROM Plays WHERE playID LIKE '0'";
+	   						$result_as=mysql_query($query_as);
 	   						
-	   						<input type="checkbox" name="a1s2" id="a1s2" class="custom" />
-	   						<label for="a1s2">1.2</label>
+	   						$a=1;
+	   						while($a <= 10){
+	   							$numscenes_as=mysql_result($result_as, '0', "act{$a}");
+	   							if($numscenes_as < 1)
+	   								break;
+	   							$sc=1;
+	   							while($sc <=$numscenes_as){
+	   								$asid="{$a}.{$sc}";
+	   								?>
+									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
+									<label for="<?php echo $asid ?>"><?php echo $asid ?></label>
+									<?php
+									$sc++;
+	   							}
+	   							$a++;
+	   						}
+	   					?>
    					 	</fieldset>
 						
 						<label for="newnote">Notes:</label>

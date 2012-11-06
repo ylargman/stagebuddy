@@ -119,24 +119,24 @@
     						<legend>Scenes:</legend>
 	   						<?php
 	   						include("config.php");
-	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '0'";
-	   						$result_acts=mysql_query($query_acts);
+	   						$query_as="SELECT * FROM Plays WHERE playID LIKE '0'";
+	   						$result_as=mysql_query($query_as);
 	   						
-	   						$act=1;
-	   						while($act <= 10){
-	   							$numscenes=mysql_result($result_acts, '0', "act{$act}");
-	   							if($numscenes < 1)
+	   						$a=1;
+	   						while($a <= 10){
+	   							$numscenes_as=mysql_result($result_as, '0', "act{$a}");
+	   							if($numscenes_as < 1)
 	   								break;
-	   							$scene=1;
-	   							while($scene <=$numscenes){
-	   								$asid="{$act}.{$scene}";
+	   							$sc=1;
+	   							while($sc <=$numscenes_as){
+	   								$asid="{$a}.{$sc}";
 	   								?>
 									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
 									<label for="<?php echo $asid ?>"><?php echo $asid ?></label>
 									<?php
-									$scene++;
+									$sc++;
 	   							}
-	   							$act++;
+	   							$a++;
 	   						}
 	   					?>
    					 	</fieldset>
