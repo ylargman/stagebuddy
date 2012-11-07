@@ -17,7 +17,7 @@
 
 	<div data-role="header" data-position="fixed">
 		<a href="index.php" data-icon="grid">Home</a>
-		<h1>Characters</h1>
+		<h1>Set Elements</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">
@@ -25,10 +25,10 @@
 		      
 		<form action="submit.php" method="post" data-ajax="false">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="characters_view.php" data-role="button">
+     		<a href="elements_view.php" data-role="button">
      		View</a>
 
-     		<a href="characters_edit.php" data-role="button" class="ui-btn-active">
+     		<a href="elements_edit.php" data-role="button" class="ui-btn-active">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -37,30 +37,28 @@
 
 			<?php
 			include("config.php");
-			$query="SELECT * FROM CharactersInfo WHERE playID LIKE '0'";
+			$query="SELECT * FROM ElementsInfo WHERE playID LIKE '0'";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
 			$i=0;
 			while($i < $numrows){
 			
-			$charID=mysql_result($result, $i, "characterID");
+			$elementID=mysql_result($result, $i, "elementID");
 			$name=mysql_result($result, $i, "name");
-			$actor=mysql_result($result, $i, "actor");
 			$notes=mysql_result($result, $i, "notes");
 			?>
-			<div class="charCollapsible" data-role="collapsible" data-collapsed="false">
-			<h3><div class="charName"><?php echo $name ?></div></h3>
+			
+			<div class="propCollapsible" data-role="collapsible" data-collapsed="false">
+			<h3><div class="elementName"><?php echo $name ?></div></h3>
 			<p>    				
-				<form class="curCharForm" data-ajax="false">
+				<form class="curElemForm" data-ajax="false">
     				<div data-role="fieldcontain">
-						<label for="actorname">Actor:</label>
-						<textarea name="actorname" id="actorname"><?php echo $actor ?>
-						</textarea>
     					<fieldset data-role="controlgroup">
-    						<legend>Scenes:</legend>
-	   						
-	   						<?php
+    					
+       						<legend>Scenes:</legend>
+    						
+    						<?php
 	   						include("config.php");
 	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '0'";
 	   						$result_acts=mysql_query($query_acts);
@@ -72,37 +70,40 @@
 	   								break;
 	   							$scene=1;
 	   							while($scene <=$numscenes){
-	   								$query_cs = "SELECT * FROM CharactersScenes WHERE playID=0 AND characterID=$charID AND act=$act AND scene=$scene";
-									$results_cs = mysql_query($query_cs);
-									$numrows_cs=mysql_numrows($results_cs);
+	   								$query_ps="SELECT * FROM ElementsScenes WHERE playID=0 AND elementID=$elementID AND act=$act AND scene=$scene";
+									$results_ps=mysql_query($query_ps);
+									$numrows_ps=mysql_numrows($results_ps);
+									
+									$query_locs="SELECT * FROM Scenes WHERE playID LIKE '0' AND act=$act AND scene=$scene";
+									$results_locs=mysql_query($query_locs);
+									$loc=mysql_result($results_locs, 0, "location");
 
-									$cid="a{$act}s{$scene}char{$charID}";
+									$eid="a{$act}s{$scene}element{$elementID}";
 									?>
-									<input type="checkbox" name="<?php echo $cid ?>" id="<?php echo $cid ?>" class="custom" 
+									<input type="checkbox" name="<?php echo $eid ?>" id="<?php echo $eid ?>" class="custom" 
 									<?php
-									if($numrows_cs > 0)
+									if($numrows_ps > 0)
 										echo 'checked="checked"'
 									?>/>
-									<label for="<?php echo $cid ?>"><?php echo "{$act}.{$scene}" ?></label>
+									<label for="<?php echo $eid ?>"><?php echo "{$act}.{$scene} {$loc}" ?></label>
 									<?php
 									$scene++;
 	   							}
 	   							$act++;
 	   						}
 	   					?>
-
    					 	</fieldset>
 						<p>
 						</p>
-						<label for="charnotes">Notes:</label>
-						<textarea name="charnotes" id="charnotes"><?php echo $notes ?>
+						<label for="elemnotes">Notes:</label>
+						<textarea name="elemnotes" id="elemnotes"><?php echo $notes ?>
 						</textarea>
 					</div>
 				</form>
 				<a data-role="button" data-inline="true"
-				class="savechar">Save</a>
+				class="saveelem">Save</a>
 				<a data-role="button" data-inline="true"
-				class="deletechar">Delete</a>
+				class="deleteelem">Delete</a>
 			</p>
 			</div>
 			<?php
@@ -111,15 +112,12 @@
 			?>
 			
 			
-			<h3>Add New Character</h3>
-			<form action="insert_char.php" method="post" id="newCharForm" data-ajax="false">
+			<h3>Add New Set Element</h3>
+			<form action="insert_elem.php" method="post" id="newElemForm" data-ajax="false">
 				<p>    				
     				<div data-role="fieldcontain">
-						<label for="newcharname">Character name:</label>
-						<input type="text" name="newcharname" id="newcharname" value=""  />
-						
-						<label for="newActorName">Played by:</label>
-						<input type="text" name="newActorName" id="newActorName" value=""  />
+						<label for="newelemname">Set element name:</label>
+						<input type="text" name="newelemname" id="newelemname" value=""  />
 						
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
@@ -135,10 +133,14 @@
 	   								break;
 	   							$sc=1;
 	   							while($sc <=$numscenes_as){
+	   								$query_locs="SELECT * FROM Scenes WHERE playID LIKE '0' AND act=$a AND scene=$sc";
+									$results_locs=mysql_query($query_locs);
+									$loc=mysql_result($results_locs, 0, "location");
+
 	   								$asid="{$a}.{$sc}";
 	   								?>
 									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
-									<label for="<?php echo $asid ?>"><?php echo $asid ?></label>
+									<label for="<?php echo $asid ?>"><?php echo "{$asid} {$loc}" ?></label>
 									<?php
 									$sc++;
 	   							}
@@ -151,7 +153,7 @@
 						<textarea name="newnote" id="newnote">
 						</textarea>
 						
-						<input type="submit" id="createCharButton" value="Create Character" />
+						<input type="submit" id="createElemButton" value="Create Set Element" />
 					</div>
 				</p>
 				</p>
