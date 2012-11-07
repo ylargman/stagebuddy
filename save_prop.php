@@ -21,7 +21,7 @@
 		$a1s2=0;
 	}
 	
-	$query="UPDATE Props SET a1s1=$a1s1, a1s2=$a1s2, notes='$note' WHERE name='$name'";
+	$query="UPDATE PropsInfo SET a1s1=$a1s1, a1s2=$a1s2, notes='$note' WHERE name='$name'";
 	
 	mysql_query($query);
 ?>

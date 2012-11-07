@@ -1,32 +1,36 @@
 <?
 	include("config.php");
+	$propID=uniqid();
 	$name=$_POST['newpropname'];
 	$note=$_POST['newnote'];
-	$a1s1 = 1;
-	$a1s2 = 1;
-	if(isset($_POST['a1s1']) )
-	{
-		$a1s1=1;
-	}
-	else
-	{
-		$a1s1=0;
-	}
 	
-	if(isset($_POST['a1s2']) )
-	{
-		$a1s2=1;
-	}
-	else
-	{
-		$a1s2=0;
-	}
+	$query_info = "INSERT INTO PropsInfo VALUES ('0', '$propID','$name', '$note')";
+	mysql_query($query_info);
 	
-	$query = "INSERT INTO Props VALUES ('$name', '$a1s1', '$a1s2', '$note')";
-	mysql_query($query);
+	
+	include("config.php");
+	$query_as="SELECT * FROM Plays WHERE playID LIKE '0'";
+	$result_as=mysql_query($query_as);
+	   						
+	$a=1;
+	while($a <= 10){
+		$numscenes_as=mysql_result($result_as, '0', "act{$a}");
+	   	if($numscenes_as < 1)
+	   		break;
+	   	$sc=1;
+	   	while($sc <=$numscenes_as){
+	   		$asid="{$a}.{$sc}";
+			if(isset($_POST['$asid'])){
+				$query_scenes="INSERT INTO PropsScenes VALUES ('0', '$propID', '$a', '$sc')";
+				mysql_query($query_scenes);
+			}
+								
+			$sc++;
+	   	}
+	   	$a++;
+	}	
+	
 	
 	print_r($_POST);
 	print_r($_GET);
-	
-	print "Hello";
 ?>
