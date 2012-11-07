@@ -15,14 +15,16 @@
 	$a=1;
 	while($a <= 10){
 		$numscenes_as=mysql_result($result_as, '0', "act{$a}");
-	   	if($numscenes_as < 1)
+	   	//print_r($numscenes_as);
+		if($numscenes_as < 1)
 	   		break;
 	   	$sc=1;
 	   	while($sc <=$numscenes_as){
-	   		$asid="{$a}.{$sc}";
-			if(isset($_POST['$asid'])){
+	   		$asid="a{$a}s{$sc}";
+			if(isset($_POST[$asid])){
 				$query_scenes="INSERT INTO PropsScenes VALUES ('0', '$propID', '$a', '$sc')";
 				mysql_query($query_scenes);
+				print_r("Insert attempt");
 			}
 								
 			$sc++;

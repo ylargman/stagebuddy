@@ -70,9 +70,15 @@
 	   								break;
 	   							$scene=1;
 	   							while($scene <=$numscenes){
-	   								$query_ps = "SELECT * FROM PropsScenes WHERE playID=0 AND propID=$propID AND act=$act AND scene=$scene";
+	   								$query_ps = "SELECT * FROM PropsScenes WHERE playID LIKE '0' AND propID LIKE '{$propID}' AND act=$act AND scene=$scene";
 									$results_ps = mysql_query($query_ps);
-									$numrows_ps=mysql_numrows($results_ps);
+									if($results_ps){
+										$numrows_ps=mysql_numrows($results_ps);
+									}
+									else{
+										$numrows_ps=0;
+									}
+									
 
 									$pid="a{$act}s{$scene}prop{$propID}";
 									?>
@@ -129,10 +135,10 @@
 	   								break;
 	   							$sc=1;
 	   							while($sc <=$numscenes_as){
-	   								$asid="{$a}.{$sc}";
+	   								$asid="a{$a}s{$sc}";
 	   								?>
 									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
-									<label for="<?php echo $asid ?>"><?php echo $asid ?></label>
+									<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
 									<?php
 									$sc++;
 	   							}
