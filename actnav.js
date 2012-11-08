@@ -11,26 +11,15 @@ function delayedRefresh(){
 			)
 	}, 400);
 }
-$(document).live('pagechange', function(){
-	$(".selectedact").unbind("click");
-	$(".selectedact").bind("click", function(){
-		actName = $(this).text();
-		nameSplit = actName.split(" ");
-		actNum = parseInt(nameSplit[1]);
-		console.info(actNum);
-		
-		$('<form action="acts_view.php" method="POST">' + 
-    		'<input type="hidden" name="actnum" value="' + actNum + '">' +
-    		'</form>').submit();
-	});
+$(document).live('pageinit', function(){
 	$(".selectedact_edit").unbind("click");
 	$(".selectedact_edit").bind("click", function(){
 		actName = $(this).text();
 		nameSplit = actName.split(" ");
 		actNum = parseInt(nameSplit[1]);
-		console.info(actNum);
+		playID = $(".playID_c").html();
 		
-		$('<form action="acts_edit.php" method="POST">' + 
+		$('<form action="acts_edit.php?playID=' + playID + '" method="POST">' + 
     		'<input type="hidden" name="actnum" value="' + actNum + '">' +
     		'</form>').submit();
 	});
