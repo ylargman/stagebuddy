@@ -54,9 +54,10 @@
 			
 			<div class="propCollapsible" data-role="collapsible" data-collapsed="false">
 			<h3><div class="propName"><?php echo $name ?></div></h3>
-			<input type="hidden" class="currPropID" value=<?php echo $propID ?>>
 			<p>    				
 				<form class="curPropForm" data-ajax="false">
+					<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
+					<input type="hidden" class="currPropID" value=<?php echo $propID ?>>
     				<div data-role="fieldcontain">
     					<fieldset data-role="controlgroup">
     					
@@ -120,10 +121,13 @@
 			
 			<h3>Add New Prop</h3>
 			<form action="insert_prop.php?playID=<?php echo $playID?>" method="post" id="newPropForm" data-ajax="false">
+				<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
+
 				<p>    				
     				<div data-role="fieldcontain">
 						<label for="newpropname">Prop name:</label>
 						<input type="text" name="newpropname" id="newpropname" value=""  />
+						
 						
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>

@@ -1,27 +1,13 @@
 <?
 	include("config.php");
+	
+	$playID = $_POST['currPlayID'];
+	$propIDToSave=$_POST['propid'];
+	
 	$note=$_POST['propnotes'];
 	$name=$_POST['propname'];
-
-	if(isset($_POST['a1s1']) )
-	{
-		$a1s1=1;
-	}
-	else
-	{
-		$a1s1=0;
-	}
 	
-	if(isset($_POST['a1s2']) )
-	{
-		$a1s2=1;
-	}
-	else
-	{
-		$a1s2=0;
-	}
-	
-	$query="UPDATE PropsInfo SET a1s1=$a1s1, a1s2=$a1s2, notes='$note' WHERE name='$name'";
+	$query="UPDATE PropsInfo SET name='$name', notes='$note' WHERE propID='$propIDToSave'";
 	
 	mysql_query($query);
 ?>

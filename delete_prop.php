@@ -1,7 +1,10 @@
 <?
 	include("config.php");
-	$name=$_POST['propname'];
+	$propIDToDel=$_POST['propid'];
 	
-	$query = "DELETE FROM Props WHERE name='$name'";
-	mysql_query($query);
+	$query_s = "DELETE FROM PropsScenes WHERE propID='$propIDToDel'";
+	mysql_query($query_s);
+	
+	$query_i = "DELETE FROM PropsInfo WHERE propID='$propIDToDel'";
+	mysql_query($query_i);
 ?>

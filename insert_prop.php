@@ -4,7 +4,7 @@
 	$name=$_POST['newpropname'];
 	$note=$_POST['newnote'];
 	
-	$playID = $_GET['playID'];
+	$playID = $_POST['currPlayID'];
 	
 	$query_info = "INSERT INTO PropsInfo VALUES ('$playID', '$propID','$name', '$note')";
 	mysql_query($query_info);

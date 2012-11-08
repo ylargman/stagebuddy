@@ -23,15 +23,15 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteprop").unbind("click");
 	$(".deleteprop").bind("click", function (event, ui){
-		propToDelete = $(this).parents(".propCollapsible").find(".propName").text();
-		$.post("delete_prop.php", {propname: propToDelete});
-		
+		propToDelete = $(this).parents(".propCollapsible").find(".currPropID").val();
+		$.post("delete_prop.php", {propid: propToDelete});
+				
 		delayedRefresh();
 	});
 	
 	$(".saveprop").unbind("click");
 	$(".saveprop").bind("click", function (event, ui){
-		propToUpdate = $(this).parents(".propCollapsible").find(".propName").text();
+		propToUpdate = $(this).parents(".propCollapsible").find(".currPropID").val();
 		serArray = $(this).parents(".propCollapsible").find(".curPropForm").serializeArray();
 		serArray.push({"name": "propname", "value": propToUpdate});
 		console.info(serArray);
