@@ -123,7 +123,7 @@
 						$n=0;
 						while($n < $numrows_c){
 							$cid=mysql_result($result_c, $n, "characterID");
-							$query_c_n="SELECT * FROM CharactersInfo WHERE characterID={$cid} AND playID=".$_GET['playID'];
+							$query_c_n="SELECT * FROM CharactersInfo WHERE characterID LIKE '{$cid}' AND playID=".$_GET['playID'];
 							$result_c_n=mysql_query($query_c_n);
 							
 							$cname=mysql_result($result_c_n, 0, "name");
@@ -145,10 +145,10 @@
 						$x=0;
 						while($x < $numrows_p){
 							$pid=mysql_result($result_p, $x, "propID");
-							$query_p_n="SELECT * FROM PropsInfo WHERE propID={$pid} AND playID=".$_GET['playID'];
+							$query_p_n="SELECT * FROM PropsInfo WHERE propID LIKE '{$pid}' AND playID=".$_GET['playID'];
 							$result_p_n=mysql_query($query_p_n);
 							
-							$pname=mysql_result($result_p_n, 0, "name");
+							$pname=mysql_result($result_p_n, '0', "name");
 							echo "- ";
 							echo $pname;
 							echo "<br>";
@@ -162,7 +162,6 @@
 				echo "<br>";
 				echo $notes;
 				echo "<br>";
-				echo $_GET['playID'];
 				?>
 			</div>
 			

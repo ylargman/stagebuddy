@@ -4,12 +4,14 @@
 	$name=$_POST['newpropname'];
 	$note=$_POST['newnote'];
 	
-	$query_info = "INSERT INTO PropsInfo VALUES ('0', '$propID','$name', '$note')";
+	$playID = $_GET['playID'];
+	
+	$query_info = "INSERT INTO PropsInfo VALUES ('$playID', '$propID','$name', '$note')";
 	mysql_query($query_info);
 	
 	
 	include("config.php");
-	$query_as="SELECT * FROM Plays WHERE playID LIKE '0'";
+	$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
 	$result_as=mysql_query($query_as);
 	   						
 	$a=1;
@@ -22,17 +24,12 @@
 	   	while($sc <=$numscenes_as){
 	   		$asid="a{$a}s{$sc}";
 			if(isset($_POST[$asid])){
-				$query_scenes="INSERT INTO PropsScenes VALUES ('0', '$propID', '$a', '$sc')";
+				$query_scenes="INSERT INTO PropsScenes VALUES ('$playID', '$propID', '$a', '$sc')";
 				mysql_query($query_scenes);
-				print_r("Insert attempt");
 			}
 								
 			$sc++;
 	   	}
 	   	$a++;
 	}	
-	
-	
-	print_r($_POST);
-	print_r($_GET);
 ?>
