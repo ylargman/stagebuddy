@@ -51,6 +51,7 @@
 			
 			<div class="propCollapsible" data-role="collapsible" data-collapsed="false">
 			<h3><div class="propName"><?php echo $name ?></div></h3>
+			<input type="hidden" class="currPropID" value=<?php echo $propID ?>>
 			<p>    				
 				<form class="curPropForm" data-ajax="false">
     				<div data-role="fieldcontain">
