@@ -24,20 +24,24 @@
 	<div data-role="content">	      
 		<form action="submit.php" method="post">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="acts_view.php" data-role="button" class="ui-btn-active">
+     		<a href="acts_view.php?playID=<?php echo $_GET['playID']?>" data-role="button" class="ui-btn-active">
      		View</a>
 
-     		<a href="acts_edit.php" data-role="button">
+     		<a href="acts_edit.php?playID=<?php echo $_GET['playID']?>" data-role="button">
      		Edit</a>
 			</fieldset>
 		</form>
+
+		<div style="display:none" class="playID_c">
+			<?php echo $_GET['playID']?>
+		</div>
 
 		<div data-role="navbar">
 			<ul>
 				<?php
 					include("config.php");
 				
-					$query_a="SELECT * FROM Plays";
+					$query_a="SELECT * FROM Plays WHERE playID=".$_GET['playID'];
 					$result_a=mysql_query($query_a);
 					$numrows_a=mysql_numrows($result_a);
 			
@@ -51,7 +55,7 @@
 							$numscenes_a=mysql_result($result_a, $a, "act{$b}");
 							if ($numscenes_a > 0){
 								?>
-								<li><a class="selectedact">Act <?php echo $b?></a></li>
+								<li><a href="acts_view.php?playID=<?php echo $_GET['playID']?>&actnum=<?php echo $b?>">Act <?php echo $b?></a></li>
 						<?php
 							}
 							$b++;
@@ -82,13 +86,13 @@
 		<?php
 			include("config.php");
 			
-			if(isset($_POST['actnum'])){
-				$actnum=$_POST['actnum'];
+			if(isset($_GET['actnum'])){
+				$actnum=$_GET['actnum'];
 			}else{
 				$actnum=1;	
 			}
 			
-			$query="SELECT * FROM Scenes WHERE act={$actnum}";
+			$query="SELECT * FROM Scenes WHERE act={$actnum} AND playID=".$_GET['playID'];
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
@@ -113,14 +117,14 @@
 				<?php
 						include("config.php");
 				
-						$query_c="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene}";
+						$query_c="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID=".$_GET['playID'];
 						$result_c=mysql_query($query_c);
 						$numrows_c=mysql_numrows($result_c);
 			
 						$n=0;
 						while($n < $numrows_c){
 							$cid=mysql_result($result_c, $n, "characterID");
-							$query_c_n="SELECT * FROM CharactersInfo WHERE characterID={$cid}";
+							$query_c_n="SELECT * FROM CharactersInfo WHERE characterID={$cid} AND playID=".$_GET['playID'];
 							$result_c_n=mysql_query($query_c_n);
 							
 							$cname=mysql_result($result_c_n, 0, "name");
@@ -135,14 +139,14 @@
 				<?php
 						include("config.php");
 				
-						$query_p="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene}";
+						$query_p="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene} AND playID=".$_GET['playID'];
 						$result_p=mysql_query($query_p);
 						$numrows_p=mysql_numrows($result_p);
 			
 						$x=0;
 						while($x < $numrows_p){
 							$pid=mysql_result($result_p, $x, "propID");
-							$query_p_n="SELECT * FROM PropsInfo WHERE propID={$pid}";
+							$query_p_n="SELECT * FROM PropsInfo WHERE propID={$pid} AND playID=".$_GET['playID'];
 							$result_p_n=mysql_query($query_p_n);
 							
 							$pname=mysql_result($result_p_n, 0, "name");
@@ -157,7 +161,9 @@
 				<?php 
 				echo $time;
 				echo "<br>";
-				echo $notes; 
+				echo $notes;
+				echo "<br>";
+				echo $_GET['playID'];
 				?>
 			</div>
 			
@@ -173,10 +179,11 @@
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
 		<div data-role="navbar" class="nav-glyphish-example">
 		<ul>
-			<li><a href="acts_view.php" id="acts" data-icon="custom">Acts</a></li>
-			<li><a href="characters_view.php" id="chars" data-icon="custom">Characters/Actors</a></li>
-			<li><a href="props_view.php" id="props" data-icon="custom">Props</a></li>
-			<li><a href="scheduler.html" id="scheduler" data-icon="custom">Scheduler</a></li>
+			<li><a href="acts_view.php?playID=<?php echo $_GET['playID']?>" id="acts" data-icon="custom">Acts</a></li>
+			<li><a href="characters_view.php?playID=<?php echo $_GET['playID']?>" id="chars" data-icon="custom">Characters/Actors</a></li>
+			<li><a href="props_view.php?playID=<?php echo $_GET['playID']?>" id="props" data-icon="custom">Props</a></li>
+			<li><a href="elements_view.php?playID=<?php echo $_GET['playID']?>" id="elements" data-icon="custom">Set Elements</a></li>
+			<li><a href="scheduler.html?playID=<?php echo $_GET['playID']?>" id="scheduler" data-icon="custom">Scheduler</a></li>
 		</ul>
 		</div>
 	</div>

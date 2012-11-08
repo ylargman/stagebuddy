@@ -22,10 +22,10 @@
 	<div data-role="content">	      
 		<form action="submit.php" method="post">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="elements__view.php" data-role="button" class="ui-btn-active">
+     		<a href="elements__view.php?playID=<?php echo $_GET['playID']?>" data-role="button" class="ui-btn-active">
      		View</a>
 
-     		<a href="elements_edit.php" data-role="button">
+     		<a href="elements_edit.php?playID=<?php echo $_GET['playID']?>" data-role="button">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -41,7 +41,7 @@
 		
 		<?php
 			include("config.php");
-			$query="SELECT * FROM ElementsInfo WHERE playID LIKE '0'";
+			$query="SELECT * FROM ElementsInfo WHERE playID=".$_GET['playID'];
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
@@ -58,7 +58,7 @@
 				<div class="ui-block-a"><img src="bow-and-arrow.png"/><p></p><?php echo $name ?></div>
 					<div class="ui-block-b">
 						<?php
-							$query_s_n="SELECT * FROM ElementsScenes WHERE playID LIKE '0' AND elementID LIKE $elementID";
+							$query_s_n="SELECT * FROM ElementsScenes WHERE elementID LIKE $elementID AND playID=".$_GET['playID'];
 							$result_s_n=mysql_query($query_s_n);
 							$numrows_s_n=mysql_numrows($result_s_n);
 							
@@ -91,11 +91,11 @@
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
 		<div data-role="navbar" class="nav-glyphish-example">
 		<ul>
-			<li><a href="acts_view.php" id="acts" data-icon="custom">Acts</a></li>
-			<li><a href="characters_view.php" id="chars" data-icon="custom">Characters/Actors</a></li>
-			<li><a href="props_view.php" id="props" data-icon="custom">Props</a></li>
-			<li><a href="elements_view.php" id="elements" data-icon="custom">Set Elements</a></li>
-			<li><a href="scheduler.html" id="scheduler" data-icon="custom">Scheduler</a></li>
+			<li><a href="acts_view.php?playID=<?php echo $_GET['playID']?>" id="acts" data-icon="custom">Acts</a></li>
+			<li><a href="characters_view.php?playID=<?php echo $_GET['playID']?>" id="chars" data-icon="custom">Characters/Actors</a></li>
+			<li><a href="props_view.php?playID=<?php echo $_GET['playID']?>" id="props" data-icon="custom">Props</a></li>
+			<li><a href="elements_view.php?playID=<?php echo $_GET['playID']?>" id="elements" data-icon="custom">Set Elements</a></li>
+			<li><a href="scheduler.html?playID=<?php echo $_GET['playID']?>" id="scheduler" data-icon="custom">Scheduler</a></li>
 		</ul>
 		</div>
 	</div>

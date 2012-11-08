@@ -8,6 +8,7 @@
 	<meta name="viewport" content="height=device-height, initial-scale=1"> 
 
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="themes/stagebuddytheme.min.css" />
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 	
 	<link rel="apple-touch-icon" href="StageBuddyHighResIcon.png" />
@@ -54,7 +55,7 @@ $(function(){
 				$name=mysql_result($result, $p, "name");
 				$playid=mysql_result($result, $p, "playID");
 				?>
-				<a href="acts_view.php" data-role="button" class="playbutton" id=<?php echo $playid?>><?php echo $name ?></a>
+				<a href="acts_view.php?playID=<?php echo $playid ?>" data-role="button" class="playbutton" id=<?php echo $playid?>><?php echo $name ?></a>
 				<?php
 				$p++;	
 			}
