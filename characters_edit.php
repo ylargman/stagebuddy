@@ -37,6 +37,9 @@
 
 			<?php
 			include("config.php");
+			
+			$playID = $_GET['playID'];
+			
 			$query="SELECT * FROM CharactersInfo WHERE playID=".$_GET['playID'];
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
@@ -53,6 +56,9 @@
 			<h3><div class="charName"><?php echo $name ?></div></h3>
 			<p>    				
 				<form class="curCharForm" data-ajax="false">
+					<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
+					<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
+
     				<div data-role="fieldcontain">
 						<label for="actorname">Actor:</label>
 						<textarea name="actorname" id="actorname"><?php echo $actor ?>
@@ -72,7 +78,7 @@
 	   								break;
 	   							$scene=1;
 	   							while($scene <=$numscenes){
-	   								$query_cs = "SELECT * FROM CharactersScenes WHERE characterID=$charID AND act=$act AND scene=$scene AND playID=".$_GET['playID'];
+	   								$query_cs = "SELECT * FROM CharactersScenes WHERE characterID LIKE '{$charID}' AND act=$act AND scene=$scene AND playID=".$_GET['playID'];
 									$results_cs = mysql_query($query_cs);
 									$numrows_cs=mysql_numrows($results_cs);
 
@@ -113,6 +119,7 @@
 			
 			<h3>Add New Character</h3>
 			<form action="insert_char.php" method="post" id="newCharForm" data-ajax="false">
+				<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
 				<p>    				
     				<div data-role="fieldcontain">
 						<label for="newcharname">Character name:</label>
@@ -135,10 +142,10 @@
 	   								break;
 	   							$sc=1;
 	   							while($sc <=$numscenes_as){
-	   								$asid="{$a}.{$sc}";
+	   								$asid="a{$a}s{$sc}";
 	   								?>
 									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
-									<label for="<?php echo $asid ?>"><?php echo $asid ?></label>
+									<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
 									<?php
 									$sc++;
 	   							}

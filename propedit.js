@@ -51,14 +51,14 @@ $(document).live('pagechange', function(){
 	
 	$(".deletechar").unbind("click");
 	$(".deletechar").bind("click", function (event, ui){
-		charToDelete = $(this).parents(".charCollapsible").find(".charName").text();
-		$.post("delete_char.php", {charname: charToDelete});
+		charToDelete = $(this).parents(".charCollapsible").find(".currCharID").val();
+		$.post("delete_char.php", {charid: charToDelete});
 		delayedRefresh();
 	});
 	
 	$(".savechar").unbind("click");
 	$(".savechar").bind("click", function (event, ui){
-		charToUpdate = $(this).parents(".charCollapsible").find(".charName").text();
+		charToUpdate = $(this).parents(".charCollapsible").find(".charName").val();
 		serArray = $(this).parents(".charCollapsible").find(".curCharForm").serializeArray();
 		serArray.push({"name": "charname", "value": charToUpdate});
 		console.info(serArray);

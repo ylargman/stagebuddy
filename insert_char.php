@@ -1,28 +1,36 @@
 <?
 	include("config.php");
+	$charID=uniqid();
 	$name=$_POST['newcharname'];
 	$actor=$_POST['newActorName'];
 	$note=$_POST['newnote'];
-	$a1s1 = 1;
-	$a1s2 = 1;
-	if(isset($_POST['a1s1']) )
-	{
-		$a1s1=1;
-	}
-	else
-	{
-		$a1s1=0;
-	}
 	
-	if(isset($_POST['a1s2']) )
-	{
-		$a1s2=1;
-	}
-	else
-	{
-		$a1s2=0;
-	}
+	$playID = $_POST['currPlayID'];
 	
-	$query = "INSERT INTO Characters VALUES ('$name', '$a1s1', '$a1s2', '$actor', '$note')";
-	mysql_query($query);
+	$query_info = "INSERT INTO CharactersInfo VALUES ('$playID', '$charID','$name', '$actor', '$note')";
+	mysql_query($query_info);
+	
+	
+	include("config.php");
+	$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
+	$result_as=mysql_query($query_as);
+	   						
+	$a=1;
+	while($a <= 10){
+		$numscenes_as=mysql_result($result_as, '0', "act{$a}");
+	   	//print_r($numscenes_as);
+		if($numscenes_as < 1)
+	   		break;
+	   	$sc=1;
+	   	while($sc <=$numscenes_as){
+	   		$asid="a{$a}s{$sc}";
+			if(isset($_POST[$asid])){
+				$query_scenes="INSERT INTO CharactersScenes VALUES ('$playID', '$charID', '$a', '$sc')";
+				mysql_query($query_scenes);
+			}
+								
+			$sc++;
+	   	}
+	   	$a++;
+	}	
 ?>
