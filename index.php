@@ -19,30 +19,22 @@
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 </head> 
 
-<script type="text/javascript">
-$(function(){
-	$(".playbutton").click(function() {
-		localStorage.setItem('currentPlay', $(this).attr("id"));
-	});
-	
-	$(".testbutton").click(function() {
-		x = localStorage.getItem('currentPlay');
-		alert(x);
-	});
-	
-});
-</script>
-
 <body> 
 
-<div data-role="page">
+<div data-role="page" data-theme="a" data-content-theme="a">
 
-	<div data-role="header">
-		<h1>Stage Buddy</h1>
-	</div><!-- /header -->
-
-	<div data-role="content">	      
-		<a href="createshow.html" data-role="button">+ New Show</a>
+	<div data-role="content">	 
+	
+		<div class="ui-grid-b">
+			<div class="ui-block-a">
+				<h1>Stage Buddy</h1>
+			</div>
+			<div class="ui-block-b"></div>
+			<div class="ui-block-c"></div>
+			
+			<div class="ui-block-a">
+				<a href="createshow.html" data-role="button"><img src="Plus-sign.png"/><br>+ New Show <br></a>
+			</div>
 		
 		<?php
 			include("config.php");
@@ -55,13 +47,14 @@ $(function(){
 				$name=mysql_result($result, $p, "name");
 				$playid=mysql_result($result, $p, "playID");
 				?>
-				<a href="acts_view.php?playID=<?php echo $playid ?>" data-role="button" class="playbutton" id=<?php echo $playid?>><?php echo $name ?></a>
+				<div class="ui-block-b">
+					<a href="acts_view.php?playID=<?php echo $playid ?>" data-role="button" class="playbutton" id=<?php echo $playid?>><img src="blank.png"/><br><?php echo $name ?><br></a>
+				</div>
 				<?php
 				$p++;	
 			}
 		?>
-		
-		<a data-role="button" class="testbutton">Test</a>
+		</div>
 	</div><!-- /content -->
 	
 </div><!-- /page -->

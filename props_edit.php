@@ -25,10 +25,10 @@
 		      
 		<form action="submit.php" method="post" data-ajax="false">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="props_view.php" data-role="button">
+     		<a href="props_view.php?playID=<?php echo $_GET['playID']?>" data-role="button">
      		View</a>
 
-     		<a href="props_edit.php" data-role="button" class="ui-btn-active">
+     		<a href="props_edit.php?playID=<?php echo $_GET['playID']?>" data-role="button" class="ui-btn-active">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -37,7 +37,7 @@
 
 			<?php
 			include("config.php");
-			$query="SELECT * FROM PropsInfo WHERE playID LIKE '0'";
+			$query="SELECT * FROM PropsInfo WHERE playID=".$_GET['playID'];
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
@@ -61,7 +61,7 @@
     						
     						<?php
 	   						include("config.php");
-	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '0'";
+	   						$query_acts="SELECT * FROM Plays WHERE playID=".$_GET['playID'];
 	   						$result_acts=mysql_query($query_acts);
 	   						
 	   						$act=1;
@@ -71,7 +71,7 @@
 	   								break;
 	   							$scene=1;
 	   							while($scene <=$numscenes){
-	   								$query_ps = "SELECT * FROM PropsScenes WHERE playID LIKE '0' AND propID LIKE '{$propID}' AND act=$act AND scene=$scene";
+	   								$query_ps = "SELECT * FROM PropsScenes WHERE propID LIKE '{$propID}' AND act=$act AND scene=$scene AND playID=".$_GET['playID'];
 									$results_ps = mysql_query($query_ps);
 									if($results_ps){
 										$numrows_ps=mysql_numrows($results_ps);
@@ -126,7 +126,7 @@
     						<legend>Scenes:</legend>
 	   						<?php
 	   						include("config.php");
-	   						$query_as="SELECT * FROM Plays WHERE playID LIKE '0'";
+	   						$query_as="SELECT * FROM Plays WHERE playID=".$_GET['playID'];
 	   						$result_as=mysql_query($query_as);
 	   						
 	   						$a=1;
@@ -163,11 +163,11 @@
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
 		<div data-role="navbar" class="nav-glyphish-example">
 		<ul>
-			<li><a href="acts_view.php" id="acts" data-icon="custom">Acts</a></li>
-			<li><a href="characters_view.php" id="chars" data-icon="custom">Characters/Actors</a></li>
-			<li><a href="props_view.php" id="props" data-icon="custom">Props</a></li>
-			<li><a href="elements_view.php" id="elements" data-icon="custom">Set Elements</a></li>
-			<li><a href="scheduler.html" id="scheduler" data-icon="custom">Scheduler</a></li>
+			<li><a href="acts_view.php?playID=<?php echo $_GET['playID']?>" id="acts" data-icon="custom">Acts</a></li>
+			<li><a href="characters_view.php?playID=<?php echo $_GET['playID']?>" id="chars" data-icon="custom">Characters/Actors</a></li>
+			<li><a href="props_view.php?playID=<?php echo $_GET['playID']?>" id="props" data-icon="custom">Props</a></li>
+			<li><a href="elements_view.php?playID=<?php echo $_GET['playID']?>" id="elements" data-icon="custom">Set Elements</a></li>
+			<li><a href="scheduler.html?playID=<?php echo $_GET['playID']?>" id="scheduler" data-icon="custom">Scheduler</a></li>
 		</ul>
 		</div>
 	</div>
