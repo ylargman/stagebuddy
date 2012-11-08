@@ -39,6 +39,8 @@
 			<ul>
 				<?php
 					include("config.php");
+					
+					$playID = $_GET['playID'];
 				
 					$query_a="SELECT * FROM Plays WHERE playID=".$_GET['playID'];
 					$result_a=mysql_query($query_a);
