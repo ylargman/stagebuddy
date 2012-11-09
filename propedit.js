@@ -120,4 +120,23 @@ $(document).live('pagechange', function(){
 		$.post("deleteshow.php", {playid: showToDelete});
 		delayedRefresh();
 	});
+	
+	//find the headings we want to watch
+	//$(this).find('#outer-ul').find('.ui-collapsible-heading').unbind("click");
+    $(this).find('#outer-ul').find('.ui-collapsible-heading').on('click', function () {
+
+        //cache the parent collapsible widget
+        var that = $(this).closest('.ui-collapsible')[0];
+
+        //collapse all other collapsible widgets
+        $(this).closest('ul').find('.ui-collapsible').filter(function () {
+
+            //filter-out the collapsible widget that got clicked, so it functions
+            return this !== that;
+        }).trigger('collapse');
+
+        //since we are messing around with the listview widget, let's refresh it
+        $(this).closest('ul').trigger('refresh');
+    });
+
 })

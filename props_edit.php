@@ -45,8 +45,9 @@
 			</fieldset>
 		</form>
 		
+		<p></p>
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-
+			<ul data-role="listview" data-filter="true" id="outer-ul">
 			<?php
 			include("config.php");
 
@@ -61,8 +62,8 @@
 			$name=mysql_result($result, $i, "name");
 			$notes=mysql_result($result, $i, "notes");
 			?>
-			
-			<div class="propCollapsible" data-role="collapsible" data-collapsed="false">
+			<li>
+			<div class="propCollapsible" data-role="collapsible" data-collapsed="true">
 			<h3><div class="propName"><?php echo $name ?></div></h3>
 			<p>    				
 				<form class="curPropForm" data-ajax="false">
@@ -123,11 +124,12 @@
 				class="deleteprop">Delete</a>
 			</p>
 			</div>
+			</li>
 			<?php
 			$i++;
 			}
 			?>
-			
+			</ul>
 			
 			<h3>Add New Prop</h3>
 			<form action="insert_prop.php?playID=<?php echo $playID?>" method="post" id="newPropForm" data-ajax="false">

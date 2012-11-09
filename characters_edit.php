@@ -45,8 +45,9 @@
 			</fieldset>
 		</form>
 		
+		<p></p>
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-
+			<ul data-role="listview" data-filter="true" id="outer-ul">
 			<?php
 			include("config.php");
 			
@@ -62,7 +63,8 @@
 			$actor=mysql_result($result, $i, "actor");
 			$notes=mysql_result($result, $i, "notes");
 			?>
-			<div class="charCollapsible" data-role="collapsible" data-collapsed="false">
+			<li>
+			<div class="charCollapsible" data-role="collapsible" data-collapsed="true">
 			<h3><div class="charName"><?php echo $name ?></div></h3>
 			<p>    				
 				<form class="curCharForm" data-ajax="false">
@@ -121,11 +123,12 @@
 				class="deletechar">Delete</a>
 			</p>
 			</div>
+			</li>
 			<?php
 			$i++;
 			}
 			?>
-			
+			</ul>
 			
 			<h3>Add New Character</h3>
 			<form action="insert_char.php" method="post" id="newCharForm" data-ajax="false">

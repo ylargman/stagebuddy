@@ -45,8 +45,9 @@
 			</fieldset>
 		</form>
 		
+		<p></p>
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-
+			<ul data-role="listview" data-filter="true" id="outer-ul">
 			<?php
 			include("config.php");
 
@@ -62,7 +63,8 @@
 			$notes=mysql_result($result, $i, "notes");
 			?>
 			
-			<div class="elemCollapsible" data-role="collapsible" data-collapsed="false">
+			<li>
+			<div class="elemCollapsible" data-role="collapsible" data-collapsed="true">
 			<h3><div class="elemName"><?php echo $name ?></div></h3>
 			<p>    				
 				<form class="curElemForm" data-ajax="false">
@@ -123,11 +125,12 @@
 				class="deleteelem">Delete</a>
 			</p>
 			</div>
+			</li>
 			<?php
 			$i++;
 			}
 			?>
-			
+			</ul>
 			
 			<h3>Add New Set Element</h3>
 			<form action="insert_elem.php?playID=<?php echo $playID?>" method="post" id="newElemForm" data-ajax="false">
