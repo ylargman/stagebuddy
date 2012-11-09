@@ -79,7 +79,7 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteelem").unbind("click");
 	$(".deleteelem").bind("click", function (event, ui){
-		elemToDelete = $(this).parents(".elemCollapsible").find(".currELemID").val();
+		elemToDelete = $(this).parents(".elemCollapsible").find(".currElemID").val();
 		$.post("delete_elem.php", {elemid: elemToDelete});
 				
 		delayedRefresh();
@@ -115,7 +115,7 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteshow").unbind("click");
 	$(".deleteshow").bind("click", function (event, ui){
-		showToDelete = $(this).find(".currPlayID").val();
+		showToDelete = $(this).id();
 		alert(showToDelete);
 		$.post("deleteshow.php", {playid: showToDelete});
 		delayedRefresh();
