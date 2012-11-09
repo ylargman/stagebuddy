@@ -21,7 +21,7 @@
 
 <body> 
 
-<div data-role="page" data-theme="a" data-content-theme="a">
+<div data-role="page" data-theme="b" data-content-theme="b">
 
 	<div data-role="content">	 
 	
