@@ -57,7 +57,7 @@
 				$playid=mysql_result($result, $p, "playID");
 				?>
 				<div class="ui-block-b">
-					<a href="acts_view.php?playID=<?php echo $playid ?>" data-role="button" class="playbutton" id=<?php echo $playid?>><img src="blank.png"/><br><?php echo $name ?><br></a>
+					<a href="acts_view.php?playID=<?php echo $playid ?>" data-role="button" class="playbutton" id=<?php echo $playid?>><img src="playcover.png"/><br><?php echo $name ?><br></a>
 				</div>
 				<?php
 				$p++;	
