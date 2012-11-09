@@ -56,21 +56,21 @@
 				while($p < $numrows){
 					$name=mysql_result($result, $p, "name");
 					$playid=mysql_result($result, $p, "playID");
-					?>
+				?>
 					<div class="ui-block-b">
 						<div class="showButton">
 						<form class="deleteShowForm" data-ajax="false">
-						<a data-role="button" class="deleteshow" id=<?php echo $playid?>>
-						<input type="hidden" name="currPlayID" value=<?php echo $playid ?>>
-						<img src="playcover.png"/><br><?php echo $name ?><br>
-						</a>
+							<a data-role="button" class="deleteshow" id=<?php echo $playid?>>
+							<input type="hidden" name="currPlayID" value=<?php echo $playid ?>>
+							<img src="playcover.png"/><br><?php echo $name ?><br>
+							</a>
 						</form>
 						</div>
 					</div>
-					<?php
+				<?php
 					$p++;	
 				}
-			?>
+				?>
 		
 		</div>
 	</div><!-- /content -->

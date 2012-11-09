@@ -68,8 +68,8 @@ $(document).live('pagechange', function(){
 		delayedRefresh();
 	});
 	
-		$("#createElemButton").unbind("click");
-		$("#createElemButton").bind("click", function (event) {
+	$("#createElemButton").unbind("click");
+	$("#createElemButton").bind("click", function (event) {
 		event.preventDefault();
 		$.post("insert_elem.php", $("#newElemForm").serialize(), function(data) {
 		});
@@ -115,9 +115,10 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteshow").unbind("click");
 	$(".deleteshow").bind("click", function (event, ui){
-		showToDelete = $(this).val();
-		alert(showToDelete);
-		$.post("deleteshow.php", {playid: showToDelete});
+		//showToDelete = $(this).val();
+		//alert(showToDelete);
+		serArray = $(this).parents(".deleteShowForm").serializeArray();
+		$.post("deleteshow.php", serArray);
 		delayedRefresh();
 	});
 	

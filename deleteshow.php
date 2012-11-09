@@ -1,6 +1,6 @@
 <?
 	include("config.php");
-	$playID=$_POST['playid'];
+	$playID=$_POST['currPlayID'];
 	
 	$query_ci = "DELETE FROM CharactersInfo WHERE playID LIKE '{$playID}'";
 	mysql_query($query_ci);
