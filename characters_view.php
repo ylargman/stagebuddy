@@ -68,7 +68,7 @@
 				<div class="ui-block-a"><img src="profile-icon.png"/><p></p><?php echo $name ?><p></p>Played by: <?php echo $actor ?></div>
 					<div class="ui-block-b">
 						<?php
-							$query_scenes="SELECT * FROM CharactersScenes WHERE characterID LIKE $charID AND playID LIKE '{$playID}'";
+							$query_scenes="SELECT * FROM CharactersScenes WHERE characterID LIKE '{$charID}' AND playID LIKE '{$playID}'";
 							$result_scenes=mysql_query($query_scenes);
 							$numrows_scenes=mysql_numrows($result_scenes);
 							
