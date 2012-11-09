@@ -46,6 +46,12 @@
 			<ul>
 				<?php
 					include("config.php");
+					
+					if(isset($_GET['actnum'])){
+						$actnum=$_GET['actnum'];
+					}else{
+						$actnum=1;	
+					}
 				
 					$query_a="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
 					$result_a=mysql_query($query_a);
@@ -60,9 +66,15 @@
 						while($b <= 10){
 							$numscenes_a=mysql_result($result_a, $a, "act{$b}");
 							if ($numscenes_a > 0){
+								if ($b == $actnum) {
 								?>
-								<li><a href="acts_view.php?playID=<?php echo $playID?>&actnum=<?php echo $b?>">Act <?php echo $b?></a></li>
+									<li><a href="acts_view.php?playID=<?php echo $playID?>&actnum=<?php echo $b?>" class="ui-btn-active">Act <?php echo $b?></a></li>
+								<?php
+								} else {
+								?>
+									<li><a href="acts_view.php?playID=<?php echo $playID?>&actnum=<?php echo $b?>">Act <?php echo $b?></a></li>
 						<?php
+								}
 							}
 							$b++;
 						}
@@ -91,12 +103,6 @@
 		
 		<?php
 			include("config.php");
-			
-			if(isset($_GET['actnum'])){
-				$actnum=$_GET['actnum'];
-			}else{
-				$actnum=1;	
-			}
 			
 			$query="SELECT * FROM Scenes WHERE act={$actnum} AND playID LIKE '{$playID}'";
 			$result=mysql_query($query);
