@@ -6,7 +6,8 @@
 	$scene=$_POST['scene'];
 	$playID=$_POST['currPlayID'];;
 	
-	$query="UPDATE Scenes SET location='$location', notes='$notes' WHERE act={$act} AND scene={$scene} AND playID LIKE '[$playID}'";
+	$query="UPDATE Scenes SET location='$location', notes='$notes' WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
+	print_r($query);
 	mysql_query($query);
 	
 	$cquery="SELECT * FROM CharactersInfo";
@@ -60,5 +61,5 @@
 		
 		$p++;
 	}
-	echo "finished save_scene"
+	//echo "finished save_scene"
 ?>
