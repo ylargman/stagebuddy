@@ -58,9 +58,9 @@ $(document).live('pagechange', function(){
 	
 	$(".savechar").unbind("click");
 	$(".savechar").bind("click", function (event, ui){
-		charToUpdate = $(this).parents(".charCollapsible").find(".charName").val();
+		charToUpdate = $(this).parents(".charCollapsible").find(".currCharID").val();
 		serArray = $(this).parents(".charCollapsible").find(".curCharForm").serializeArray();
-		serArray.push({"name": "charname", "value": charToUpdate});
+		serArray.push({"name": "charid", "value": charToUpdate});
 		console.info(serArray);
 		
 		$.post("save_char.php", serArray);
