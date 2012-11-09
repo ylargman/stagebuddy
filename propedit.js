@@ -11,7 +11,8 @@ function delayedRefresh(){
 			)
 	}, 200);
 }
-$(document).live('pagechange', function(){	
+$(document).live('pagechange', function(){
+	
 	$("#createPropButton").unbind("click");
 	$("#createPropButton").bind("click", function (event) {
 		event.preventDefault();
