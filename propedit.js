@@ -87,7 +87,7 @@ $(document).live('pagechange', function(){
 	
 	$(".saveelem").unbind("click");
 	$(".saveelem").bind("click", function (event, ui){
-		elemToUpdate = $(this).parents(".propCollapsible").find(".currElemID").val();
+		elemToUpdate = $(this).parents(".elemCollapsible").find(".currElemID").val();
 		serArray = $(this).parents(".elemCollapsible").find(".curElemForm").serializeArray();
 		serArray.push({"name": "elemid", "value": elemToUpdate});
 		console.info(serArray);

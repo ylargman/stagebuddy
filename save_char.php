@@ -7,7 +7,7 @@
 	$note=$_POST['charnotes'];
 	$actor=$_POST['actorname'];
 	
-	$query="UPDATE CharactersInfo SET actor='$actor', notes='$note' WHERE charID='$charIDToSave'";
+	$query="UPDATE CharactersInfo SET actor='$actor', notes='$note' WHERE characterID='$charIDToSave'";
 
 
 	$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
@@ -21,7 +21,7 @@
 	   	$sc=1;
 	   	while($sc <=$numscenes_as){
 	   		$asid="a{$a}s{$sc}char{$charIDToSave}";
-	   		$query_find="SELECT * FROM CharactersScenes WHERE charID LIKE '{$charIDToSave}' AND act='$a' AND scene='$sc'";
+	   		$query_find="SELECT * FROM CharactersScenes WHERE characterID LIKE '{$charIDToSave}' AND act='$a' AND scene='$sc'";
 	   		$result_find=mysql_query($query_find);
 	   		$numrows_find=mysql_numrows($result_find);
 	   		
@@ -30,7 +30,7 @@
 				mysql_query($query_scenes);
 			}
 			else if(!(isset($_POST[$asid])) && $numrows_find > 0){
-				$query_scenes="DELETE FROM PropsScenes WHERE characterID LIKE '{$charIDToSave}' AND act='$a' AND scene='$sc'";
+				$query_scenes="DELETE FROM CharactersScenes WHERE characterID LIKE '{$charIDToSave}' AND act='$a' AND scene='$sc'";
 				mysql_query($query_scenes);
 			}
 								
