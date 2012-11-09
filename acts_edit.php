@@ -108,6 +108,7 @@
 				<h3><div class="sceneName"><?php echo $act ?>.<?php echo $scene ?></div></h3>
 				
 				<form class="curSceneForm">
+				<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
 				<label for="location">Location:</label>
 
 				<input type="text" name="location" id="location" value="<?php echo $location ?>"  />

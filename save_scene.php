@@ -4,9 +4,9 @@
 	$location=$_POST['location'];
 	$act=$_POST['act'];
 	$scene=$_POST['scene'];
-	$playID=1;
+	$playID=$_POST['currPlayID'];;
 	
-	$query="UPDATE Scenes SET location='$location', notes='$notes' WHERE act={$act} AND scene={$scene}";
+	$query="UPDATE Scenes SET location='$location', notes='$notes' WHERE act={$act} AND scene={$scene} AND playID LIKE '[$playID}'";
 	mysql_query($query);
 	
 	$cquery="SELECT * FROM CharactersInfo";
@@ -30,7 +30,8 @@
 			$upquery_c="DELETE FROM CharactersScenes WHERE playID LIKE '{$playID}' AND characterID LIKE '{$cID}' AND act=$act AND scene=$scene" ;
 			mysql_query($upquery_c);
 			//$upquery="UPDATE Props SET a{$act}s{$scene}=0 WHERE name='$pname'";
-		}
+		}		
+		
 		$c++;
 	}
 	
@@ -43,20 +44,20 @@
 		$pID=mysql_result($presult, $p, "propID");
 		$upquery ="";
 		
-		$query_ps = "SELECT * FROM PropsScenes WHERE playID LIKE '{$playID}' AND act=$act AND scene=$scene AND propID LIKE '{$pID}'";
-		$results_ps = mysql_query($query_ps);
-		$numrows_ps=mysql_numrows($results_ps);
+		$pasid="a{$act}s{$scene}prop{$pID}";
+		$query_ps="SELECT * FROM PropsScenes WHERE propID LIKE '{$pID}' AND act='$act' AND scene='$scene'";
+	   		$result_ps=mysql_query($query_ps);
+	   		$numrows_ps=mysql_numrows($result_ps);
+	   		
+			if(isset($_POST[$pasid]) && $numrows_ps < 1){
+				$upquery_p="INSERT INTO PropsScenes VALUES ('$playID', '$pID', '$act', '$scene')";
+				mysql_query($upquery_p);
+			}
+			else if(!(isset($_POST[$pasid])) && $numrows_ps > 0){
+				$upquery_p="DELETE FROM PropsScenes WHERE propID LIKE '{$pID}' AND act='$act' AND scene='$scene'";
+				mysql_query($upquery_p);
+			}		
 		
-		if($numrows_ps ==0 && isset($_POST["a{$act}s{$scene}prop{$pID}"]) ){
-			$upquery_p="INSERT INTO PropsScenes VALUES ('$playID', '$pID', $act, $scene)";
-			mysql_query($upquery_p);
-			//$upquery="UPDATE Props SET a{$act}s{$scene}=1 WHERE name='$pname'";
-		}
-		else if($numrows_ps > 0 && (!isset($_POST["a{$act}s{$scene}prop{$pID}"] )) ){
-			$upquery_p="DELETE FROM PropsScenes WHERE playID LIKE '{$playID}' AND propID LIKE '{$pID}' AND act=$act AND scene=$scene" ;
-			mysql_query($upquery_p);
-			//$upquery="UPDATE Props SET a{$act}s{$scene}=0 WHERE name='$pname'";
-		}
 		$p++;
 	}
 	echo "finished save_scene"
