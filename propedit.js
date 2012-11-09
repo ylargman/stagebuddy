@@ -33,7 +33,7 @@ $(document).live('pagechange', function(){
 	$(".saveprop").bind("click", function (event, ui){
 		propToUpdate = $(this).parents(".propCollapsible").find(".currPropID").val();
 		serArray = $(this).parents(".propCollapsible").find(".curPropForm").serializeArray();
-		serArray.push({"name": "propname", "value": propToUpdate});
+		serArray.push({"name": "propid", "value": propToUpdate});
 		console.info(serArray);
 		
 		$.post("save_prop.php", serArray);
@@ -64,6 +64,35 @@ $(document).live('pagechange', function(){
 		console.info(serArray);
 		
 		$.post("save_char.php", serArray);
+		
+		delayedRefresh();
+	});
+	
+		$("#createElemButton").unbind("click");
+		$("#createElemButton").bind("click", function (event) {
+		event.preventDefault();
+		$.post("insert_elem.php", $("#newElemForm").serialize(), function(data) {
+		});
+			
+		delayedRefresh();
+	});
+	
+	$(".deleteelem").unbind("click");
+	$(".deleteelem").bind("click", function (event, ui){
+		elemToDelete = $(this).parents(".elemCollapsible").find(".currELemID").val();
+		$.post("delete_elem.php", {elemid: elemToDelete});
+				
+		delayedRefresh();
+	});
+	
+	$(".saveelem").unbind("click");
+	$(".saveelem").bind("click", function (event, ui){
+		elemToUpdate = $(this).parents(".propCollapsible").find(".currElemID").val();
+		serArray = $(this).parents(".elemCollapsible").find(".curElemForm").serializeArray();
+		serArray.push({"name": "elemid", "value": elemToUpdate});
+		console.info(serArray);
+		
+		$.post("save_elem.php", serArray);
 		
 		delayedRefresh();
 	});
