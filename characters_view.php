@@ -88,6 +88,9 @@
 					<?php 
 					echo $notes;
 					?></div>
+					<div class="ui-block-a"><br></div>
+					<div class="ui-block-b"><br></div>
+					<div class="ui-block-c"><br></div>
 				</p>
 				</div><!-- /grid-b -->
 			<?php

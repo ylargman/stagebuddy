@@ -115,7 +115,7 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteshow").unbind("click");
 	$(".deleteshow").bind("click", function (event, ui){
-		showToDelete = $(this).id();
+		showToDelete = $(this).val();
 		alert(showToDelete);
 		$.post("deleteshow.php", {playid: showToDelete});
 		delayedRefresh();

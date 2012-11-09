@@ -34,7 +34,7 @@
 	<div data-role="content">	      
 		<form action="submit.php" method="post">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="elements__view.php?playID=<?php echo $playID?>" data-role="button" class="ui-btn-active">
+     		<a href="elements_view.php?playID=<?php echo $playID?>" data-role="button" class="ui-btn-active">
      		View</a>
 
      		<a href="elements_edit.php?playID=<?php echo $playID?>" data-role="button">
@@ -67,7 +67,7 @@
 			
 			<p> 
 			<div class="ui-grid-b">
-				<div class="ui-block-a"><img src="bow-and-arrow.png"/><p></p><?php echo $name ?></div>
+				<div class="ui-block-a"><img src="buildings.png"/><p></p><?php echo $name ?></div>
 					<div class="ui-block-b">
 						<?php
 							$query_s_n="SELECT * FROM ElementsScenes WHERE elementID LIKE '{$elementID}' AND playID LIKE '{$playID}'";
@@ -87,6 +87,9 @@
 						?>
 					</div>
 					<div class="ui-block-c"><?php echo $notes ?></div>
+					<div class="ui-block-a"><br></div>
+					<div class="ui-block-b"><br></div>
+					<div class="ui-block-c"><br></div>
 				</p>
 				</div><!-- /grid-b -->
 			<?php

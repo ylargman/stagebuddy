@@ -13,23 +13,23 @@
 	border-radius: 0 !important;
 }
 #acts .ui-icon {
-	background:  url(PNGicons/152-rolodex.png) 50% 50% no-repeat; background-size: 24px 22px;
+	background:  url(PNGicons/152-rolodex.png) 50% 50% no-repeat; background-size: 26px 18px;
 }
 
 #chars .ui-icon {
-	background:  url(PNGicons/112-group.png) 50% 50% no-repeat; background-size: 24px 22px;
+	background:  url(PNGicons/112-group.png) 50% 50% no-repeat; background-size: 32px 21px;
 }
 
 #props .ui-icon {
-	background:  url(PNGicons/115-bow-and-arrow.png) 50% 50% no-repeat; background-size: 24px 22px;
+	background:  url(PNGicons/115-bow-and-arrow.png) 50% 50% no-repeat; background-size: 23px 29px;
 }
 
 #elements .ui-icon {
-	background:  url(PNGicons/178-city.png) 50% 50% no-repeat; background-size: 24px 22px;
+	background:  url(PNGicons/178-city.png) 50% 50% no-repeat; background-size: 23px 27px;
 }
 
 #scheduler .ui-icon {
-	background:  url(PNGicons/83-calendar.png) 50% 50% no-repeat; background-size: 24px 22px;
+	background:  url(PNGicons/83-calendar.png) 50% 50% no-repeat; background-size: 23px 25px;
 }
 
 #back .ui-icon {
@@ -37,5 +37,5 @@
 }
 
 #stopwatch .ui-icon {
-	background:  url(PNGicons/78-stopwatch.png) 50% 50% no-repeat; background-size: 24px 22px;
+	background:  url(PNGicons/78-stopwatch.png) 50% 50% no-repeat; background-size: 22px 26px;
 }
