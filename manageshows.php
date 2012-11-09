@@ -16,6 +16,7 @@
 	
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script src="jscript.js"></script>
+	<script src="propedit.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 </head> 
 
@@ -33,36 +34,40 @@
 			<div class="ui-block-c">
 				<form action="submit.php" method="post">
 					<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     				<a href="index.php" data-role="button" class="ui-btn-active">
+     				<a href="index.php" data-role="button">
      				Access</a>
-					<a href="manageshows.php" data-role="button">
+					<a href="manageshows.php" data-role="button" class="ui-btn-active">
      				Manage</a>
 					</fieldset>
 				</form>
 			</div>
 			
-			<div class="ui-block-a">
-				<a href="createshow.html" data-role="button"><img src="Plus-sign.png"/><br>+ New Show <br></a>
+			<div class="ui-block-a"><br><br><br>
+				<h2>Click on a show to erase it and all its content.</h2>
 			</div>
-		
-		<?php
-			include("config.php");
-			$query="SELECT * FROM Plays";
-			$result=mysql_query($query);
-			$numrows=mysql_numrows($result);
 			
-			$p=0;
-			while($p < $numrows){
-				$name=mysql_result($result, $p, "name");
-				$playid=mysql_result($result, $p, "playID");
-				?>
-				<div class="ui-block-b">
-					<a href="acts_view.php?playID=<?php echo $playid ?>" data-role="button" class="playbutton" id=<?php echo $playid?>><img src="blank.png"/><br><?php echo $name ?><br></a>
-				</div>
-				<?php
-				$p++;	
-			}
-		?>
+			<?php
+				include("config.php");
+				$query="SELECT * FROM Plays";
+				$result=mysql_query($query);
+				$numrows=mysql_numrows($result);
+				
+				$p=0;
+				while($p < $numrows){
+					$name=mysql_result($result, $p, "name");
+					$playid=mysql_result($result, $p, "playID");
+					?>
+					<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
+					<div class="ui-block-b">
+						<form class="deleteShowForm" data-ajax="false">
+						<a data-role="button" class="deleteshow" id=<?php echo $playid?>><img src="blank.png"/><br><?php echo $name ?><br></a>
+						</form>
+					</div>
+					<?php
+					$p++;	
+				}
+			?>
+		
 		</div>
 	</div><!-- /content -->
 	

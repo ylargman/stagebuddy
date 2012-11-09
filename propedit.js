@@ -112,4 +112,12 @@ $(document).live('pagechange', function(){
 
 		delayedRefresh();
 	});
+	
+	$(".deleteshow").unbind("click");
+	$(".deleteshow").bind("click", function (event, ui){
+		showToDelete = $(this).find(".currPlayID").val();
+		alert(showToDelete);
+		$.post("deleteshow.php", {playid: showToDelete});
+		delayedRefresh();
+	});
 })

@@ -34,11 +34,8 @@ $(document).live('pagechange pageshow pageinit', function(){
 				console.info(serArray);
 				$.post("gen_show.php", serArray, function(data, textStatus, jqxhrob){
 					page = "acts_view.php?playID=" + jqxhrob.responseText;
-				alert(page);
 					$.mobile.changePage(page);
 				});
-				
-				//$.mobile.changePage( "acts_view.php"
 			});
 		}
 	});
