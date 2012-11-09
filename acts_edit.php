@@ -13,7 +13,7 @@
 
 <body> 
 
-<div data-role="page">
+<div data-role="page" data-theme="b" data-content-theme="b">
 
 	<div data-role="header" data-position="fixed">
 		<a href="index.php" data-icon="grid">Home</a>
