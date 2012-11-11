@@ -89,7 +89,7 @@
 			<?php
 			include("config.php");
 			
-			$query="SELECT * FROM Scenes WHERE act={$actnum} AND playID LIKE '{$playID}'";
+			$query="SELECT * FROM Scenes WHERE act={$actnum} AND playID LIKE '{$playID}' ORDER BY scene";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
@@ -131,7 +131,7 @@
 						while($cc < $numrows_c){
 						$cname=mysql_result($result_c, $cc, "name");
 						$cid=mysql_result($result_c, $cc, "characterID");
-						$query_cs = "SELECT * FROM CharactersScenes WHERE characterID LIKE '{$cid}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}'";
+						$query_cs = "SELECT * FROM CharactersScenes WHERE characterID LIKE '{$cid}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}' ORDER BY scene";
 						$results_cs = mysql_query($query_cs);
 						$numrows_cs=mysql_numrows($results_cs);
 
@@ -162,7 +162,7 @@
 						while($pp < $numrows_p){
 						$pname=mysql_result($result_p, $pp, "name");
 						$pid=mysql_result($result_p, $pp, "propID");
-						$query_ps = "SELECT * FROM PropsScenes WHERE propID LIKE '{$pid}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}'";
+						$query_ps = "SELECT * FROM PropsScenes WHERE propID LIKE '{$pid}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}' ORDER BY scene";
 						$results_ps = mysql_query($query_ps);
 						$numrows_ps=mysql_numrows($results_ps);
 

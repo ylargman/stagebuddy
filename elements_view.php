@@ -71,7 +71,7 @@
 				<div class="ui-block-a"><img src="buildings.png"/><p></p><?php echo $name ?></div>
 					<div class="ui-block-b">
 						<?php
-							$query_s_n="SELECT * FROM ElementsScenes WHERE elementID LIKE '{$elementID}' AND playID LIKE '{$playID}'";
+							$query_s_n="SELECT * FROM ElementsScenes WHERE elementID LIKE '{$elementID}' AND playID LIKE '{$playID}' ORDER BY act, scene";
 							$result_s_n=mysql_query($query_s_n);
 							$numrows_s_n=mysql_numrows($result_s_n);
 							

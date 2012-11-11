@@ -105,7 +105,7 @@
 		<?php
 			include("config.php");
 			
-			$query="SELECT * FROM Scenes WHERE act={$actnum} AND playID LIKE '{$playID}'";
+			$query="SELECT * FROM Scenes WHERE act={$actnum} AND playID LIKE '{$playID}' ORDER BY scene";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
@@ -130,7 +130,7 @@
 				<?php
 						include("config.php");
 				
-						$query_c="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
+						$query_c="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
 						$result_c=mysql_query($query_c);
 						$numrows_c=mysql_numrows($result_c);
 			
@@ -152,7 +152,7 @@
 				<?php
 						include("config.php");
 				
-						$query_p="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
+						$query_p="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
 						$result_p=mysql_query($query_p);
 						$numrows_p=mysql_numrows($result_p);
 			
