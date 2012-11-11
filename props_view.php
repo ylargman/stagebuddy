@@ -68,7 +68,7 @@
 			
 			<p> 
 			<div class="ui-grid-b">
-				<div class="ui-block-a"><img src="bow-and-arrow.png"/><p></p><?php echo $name ?></div>
+				<div class="ui-block-a"><?php echo $name ?></div>
 					<div class="ui-block-b">
 						<?php
 							$query_s_n="SELECT * FROM PropsScenes WHERE propID LIKE '{$propID}' AND playID LIKE '{$playID}' ORDER BY act, scene";
