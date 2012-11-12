@@ -85,24 +85,25 @@
 			</ul>
 		</div><!-- /navbar -->
 		
-		<div class="ui-grid-d">
-			<div class="ui-block-a">
-				<h2>Scene</h2>
-			</div>
-			<div class="ui-block-b">
-				<h2>Location</h2>		
-			</div>
-			<div class="ui-block-c">
-				<h2>Characters</h2>	
-			</div>
-			<div class="ui-block-d">
-				<h2>Props</h2>	
-			</div>
-			<div class="ui-block-e">
-				<h2>Notes</h2>
-			</div>
-		
-		<?php
+ 		<div class="ui-grid-a">
+	    	<div class="ui-block-a">
+            	<div class="ui-grid-b">
+	            	<div class="ui-block-a"><h2>Scene</h2></div>
+	            	<div class="ui-block-b"><h2>Location</h2></div>
+	            	<div class="ui-block-c"><h2>Characters</h2></div>
+           		</div><!-- /grid-a -->
+        	</div>
+	    	<div class="ui-block-b">
+            	<div class="ui-grid-b">
+	            	<div class="ui-block-a"><h2>Props</h2></div>
+	            	<div class="ui-block-b"><h2>Set Elements</h2></div>
+	            	<div class="ui-block-c"><h2>Notes</h2></div>
+            	</div><!-- /grid-a -->
+        	</div>
+    	</div><!-- /grid-a -->
+    	
+    	
+    	<?php
 			include("config.php");
 			
 			$query="SELECT * FROM Scenes WHERE act={$actnum} AND playID LIKE '{$playID}' ORDER BY scene";
@@ -111,84 +112,110 @@
 			
 			$i=0;
 			while($i < $numrows){
-			
-			$act=mysql_result($result, $i, "act");
-			$scene=mysql_result($result, $i, "scene");
-			$location=mysql_result($result, $i, "location");
-			$time=mysql_result($result, $i, "time");
-			$notes=mysql_result($result, $i, "notes");
-			?>
-		
-			<div class="ui-block-a">
-				<h1><?php echo $act?>.<?php echo $scene?></h1>
-			</div>
-			<div class="ui-block-b">
-				<?php 
-				echo $location;
-				?></div>
-			<div class="ui-block-c">
-				<?php
-						include("config.php");
-				
-						$query_c="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
-						$result_c=mysql_query($query_c);
-						$numrows_c=mysql_numrows($result_c);
-			
-						$n=0;
-						while($n < $numrows_c){
-							$cid=mysql_result($result_c, $n, "characterID");
-							$query_c_n="SELECT * FROM CharactersInfo WHERE characterID LIKE '{$cid}' AND playID LIKE '{$playID}'";
-							$result_c_n=mysql_query($query_c_n);
-							
-							$cname=mysql_result($result_c_n, 0, "name");
-							echo "- ";
-							echo $cname;
-							echo "<br>";
-							$n++;
-						}
-				?>			
-			</div>
-			<div class="ui-block-d">
-				<?php
-						include("config.php");
-				
-						$query_p="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
-						$result_p=mysql_query($query_p);
-						$numrows_p=mysql_numrows($result_p);
-			
-						$x=0;
-						while($x < $numrows_p){
-							$pid=mysql_result($result_p, $x, "propID");
-							$query_p_n="SELECT * FROM PropsInfo WHERE propID LIKE '{$pid}' AND playID LIKE '{$playID}'";
-							$result_p_n=mysql_query($query_p_n);
-							
-							$pname=mysql_result($result_p_n, '0', "name");
-							echo "- ";
-							echo $pname;
-							echo "<br>";
-							$x++;
-						}
-				?>	
-			</div>
-			<div class="ui-block-e">TIME: 
-				<?php 
-				echo $time;
-				echo "<br>";
-				echo $notes;
-				?>
-			</div>
-			<div class="ui-block-a"><br></div>
-			<div class="ui-block-b"><br></div>
-			<div class="ui-block-c"><br></div>
-			<div class="ui-block-d"><br></div>
-			<div class="ui-block-e"><br></div>
-			
-			<?php
-			$i++;
-			}
-			?>
+				$act=mysql_result($result, $i, "act");
+				$scene=mysql_result($result, $i, "scene");
+				$location=mysql_result($result, $i, "location");
+				$time=mysql_result($result, $i, "time");
+				$notes=mysql_result($result, $i, "notes");
+		?>
 
-		</div><!-- /grid-d -->
+    	
+    	<div class="ui-grid-a">
+	    	<div class="ui-block-a">
+            	<div class="ui-grid-b">	            			
+					<div class="ui-block-a">
+						<h2><?php echo $act?>.<?php echo $scene?></h2>
+					</div>
+					<div class="ui-block-b">
+						<?php 
+							echo $location;
+						?></div>
+					<div class="ui-block-c">
+						<?php
+							include("config.php");
+				
+							$query_c="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
+							$result_c=mysql_query($query_c);
+							$numrows_c=mysql_numrows($result_c);
+			
+							$n=0;
+							while($n < $numrows_c){
+								$cid=mysql_result($result_c, $n, "characterID");
+								$query_c_n="SELECT * FROM CharactersInfo WHERE characterID LIKE '{$cid}' AND playID LIKE '{$playID}'";
+								$result_c_n=mysql_query($query_c_n);
+							
+								$cname=mysql_result($result_c_n, 0, "name");
+								echo "- ";
+								echo $cname;
+								echo "<br>";
+								$n++;
+							}
+						?>			
+					</div>
+           		</div><!-- /grid-a -->
+        	</div>
+	    	<div class="ui-block-b">
+            	<div class="ui-grid-b">
+	            	<div class="ui-block-a">
+						<?php
+							include("config.php");
+				
+							$query_p="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
+							$result_p=mysql_query($query_p);
+							$numrows_p=mysql_numrows($result_p);
+			
+							$x=0;
+							while($x < $numrows_p){
+								$pid=mysql_result($result_p, $x, "propID");
+								$query_p_n="SELECT * FROM PropsInfo WHERE propID LIKE '{$pid}' AND playID LIKE '{$playID}'";
+								$result_p_n=mysql_query($query_p_n);
+							
+								$pname=mysql_result($result_p_n, '0', "name");
+								echo "- ";
+								echo $pname;
+								echo "<br>";
+								$x++;
+							}
+						?>	
+					</div>
+					<div class="ui-block-b">
+						<?php
+							include("config.php");
+				
+							$query_e="SELECT * FROM ElementsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
+							$result_e=mysql_query($query_e);
+							$numrows_e=mysql_numrows($result_e);
+			
+							$x=0;
+							while($x < $numrows_e){
+								$eid=mysql_result($result_e, $x, "elementID");
+								$query_e_n="SELECT * FROM ElementsInfo WHERE elementID LIKE '{$eid}' AND playID LIKE '{$playID}'";
+								$result_e_n=mysql_query($query_e_n);
+							
+								$ename=mysql_result($result_e_n, '0', "name");
+								echo "- ";
+								echo $ename;
+								echo "<br>";
+								$x++;
+							}
+						?>	
+					</div>
+					<div class="ui-block-c">TIME: 
+						<?php 
+							echo $time;
+							echo "<br>";
+							echo $notes;
+						?>
+					</div>
+            	</div><!-- /grid-a -->
+        	</div>
+    	</div><!-- /grid-a -->
+				
+			
+		<?php
+		$i++;
+		}
+		?>
 		
 	</div><!-- /content -->
 	
