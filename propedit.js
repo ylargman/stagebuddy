@@ -24,7 +24,7 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteprop").unbind("click");
 	$(".deleteprop").bind("click", function (event, ui){
-		propToDelete = $(this).parents(".propCollapsible").find(".currPropID").val();
+		propToDelete = $(this).parents("#deletePropPopup").find(".currPropID").val();
 		$.post("delete_prop.php", {propid: propToDelete});
 				
 		delayedRefresh();
@@ -52,7 +52,7 @@ $(document).live('pagechange', function(){
 	
 	$(".deletechar").unbind("click");
 	$(".deletechar").bind("click", function (event, ui){
-		charToDelete = $(this).parents(".charCollapsible").find(".currCharID").val();
+		charToDelete = $(this).parents("#deleteCharPopup").find(".currCharID").val();
 		$.post("delete_char.php", {charid: charToDelete});
 		delayedRefresh();
 	});
@@ -80,7 +80,7 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteelem").unbind("click");
 	$(".deleteelem").bind("click", function (event, ui){
-		elemToDelete = $(this).parents(".elemCollapsible").find(".currElemID").val();
+		elemToDelete = $(this).parents("#deleteElemPopup").find(".currElemID").val();
 		$.post("delete_elem.php", {elemid: elemToDelete});
 				
 		delayedRefresh();

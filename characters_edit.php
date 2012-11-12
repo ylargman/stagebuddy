@@ -117,10 +117,14 @@
 						</textarea>
 					</div>
 				</form>
-				<a data-role="button" data-inline="true"
-				class="savechar">Save</a>
-				<a data-role="button" data-inline="true"
-				class="deletechar">Delete</a>
+				<a data-role="button" data-inline="true" class="savechar">Save</a>
+				<a href="#deleteCharPopup" data-rel="popup" data-role="button" data-inline="true">Delete</a>
+				<div data-role="popup" id="deleteCharPopup">
+					<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
+					<p>Are you sure you wish to delete?<p> 
+					<p>(Tap elsewhere to cancel)<p>
+					<a data-role="button" data-inline="true" class="deletechar">Delete</a>
+				</div>
 			</p>
 			</div>
 			</li>

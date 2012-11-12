@@ -70,6 +70,7 @@
 				<form class="curElemForm" data-ajax="false">
 					<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
 					<input type="hidden" class="currElemID" value=<?php echo $elemID ?>>
+					
     				<div data-role="fieldcontain">
     					<fieldset data-role="controlgroup">
     					
@@ -119,10 +120,14 @@
 						</textarea>
 					</div>
 				</form>
-				<a data-role="button" data-inline="true"
-				class="saveelem">Save</a>
-				<a data-role="button" data-inline="true"
-				class="deleteelem">Delete</a>
+				<a data-role="button" data-inline="true" class="saveelem">Save</a>
+				<a href="#deleteElemPopup" data-rel="popup" data-role="button" data-inline="true">Delete</a>
+				<div data-role="popup" id="deleteElemPopup">
+					<input type="hidden" class="currElemID" value=<?php echo $elemID ?>>
+					<p>Are you sure you wish to delete?<p> 
+					<p>(Tap elsewhere to cancel)<p>
+					<a data-role="button" data-inline="true" class="deleteelem">Delete</a>
+				</div>
 			</p>
 			</div>
 			</li>
