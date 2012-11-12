@@ -113,8 +113,8 @@
 
 				<input type="text" name="location" id="location" value="<?php echo $location ?>"  />
 				
-				Timer: <?php echo $time ?>
-				<a href="acts_edit.html" id="stopwatch" data-role="button" data-icon="custom" data-inline="true">Timer</a>
+				<label for="time">Time:</label>
+				<input type="text" name="time" id="time" value="<?php echo $time ?>" />
 				
 				<div data-role="fieldcontain">
 				
