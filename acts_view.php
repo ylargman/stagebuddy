@@ -210,7 +210,23 @@
             	</div><!-- /grid-a -->
         	</div>
     	</div><!-- /grid-a -->
-				
+		
+		<div class="ui-grid-a">
+	    	<div class="ui-block-a">
+            	<div class="ui-grid-b">
+	            	<div class="ui-block-a"><br></div>
+	            	<div class="ui-block-b"><br></div>
+	            	<div class="ui-block-c"><br></div>
+           		</div><!-- /grid-a -->
+        	</div>
+	    	<div class="ui-block-b">
+            	<div class="ui-grid-b">
+	            	<div class="ui-block-a"><br></div>
+	            	<div class="ui-block-b"><br></div>
+	            	<div class="ui-block-c"><br></div>
+            	</div><!-- /grid-a -->
+        	</div>
+    	</div><!-- /grid-a -->		
 			
 		<?php
 		$i++;
