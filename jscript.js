@@ -24,11 +24,19 @@ $(document).live('pagechange pageshow pageinit', function(){
 			$('#scenePop').popup("open");
 			$('.ui-page').trigger('create');
 			
+			
 			$(".playCreateButton").click(function(){
 				event.preventDefault();
 				serArray = $(this).parents(".genShowForm").serializeArray();
 				showTitle = $("#playname").val();
 				numActs = $("#numActs").val();
+				for(var i = 0; i < serArray.length; i++) {
+					numScenes = serArray[i].value;
+					if(numScenes < 1 || numScenes >	30) {
+						alert("Number of scenes must be between 1 and 30.");
+						return;
+					}
+				}				
 				serArray.push({"name": "showTitle", "value": showTitle});
 				serArray.push({"name": "numActs", "value": numActs});
 				console.info(serArray);
