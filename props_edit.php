@@ -66,6 +66,16 @@
 			<div class="propCollapsible" data-role="collapsible" data-collapsed="true">
 			<h3><div class="propName"><?php echo $name ?></div></h3>
 			<p>    				
+			
+			<a data-role="button" data-inline="true" class="saveprop">Save</a>
+			<a href="#deletePropPopup" data-rel="popup" data-role="button" data-inline="true">Delete</a>
+			<div data-role="popup" id="deletePropPopup">
+				<input type="hidden" class="currPropID" value=<?php echo $propID ?>>
+				<p>Are you sure you wish to delete?<p> 
+				<p>(Tap elsewhere to cancel)<p>
+				<a data-role="button" data-inline="true" class="deleteprop">Delete</a>
+			</div>
+			
 				<form class="curPropForm" data-ajax="false">
 					<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
 					<input type="hidden" class="currPropID" value=<?php echo $propID ?>>
