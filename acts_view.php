@@ -119,7 +119,7 @@
 				$notes=mysql_result($result, $i, "notes");
 		?>
 
-    	
+    	<ul data-role="listview" data-inset="true" data-theme="c"><li>
     	<div class="ui-grid-a">
 	    	<div class="ui-block-a">
             	<div class="ui-grid-b">	            			
@@ -210,28 +210,14 @@
             	</div><!-- /grid-a -->
         	</div>
     	</div><!-- /grid-a -->
+    	</li>
 		
-		<div class="ui-grid-a">
-	    	<div class="ui-block-a">
-            	<div class="ui-grid-b">
-	            	<div class="ui-block-a"><br></div>
-	            	<div class="ui-block-b"><br></div>
-	            	<div class="ui-block-c"><br></div>
-           		</div><!-- /grid-a -->
-        	</div>
-	    	<div class="ui-block-b">
-            	<div class="ui-grid-b">
-	            	<div class="ui-block-a"><br></div>
-	            	<div class="ui-block-b"><br></div>
-	            	<div class="ui-block-c"><br></div>
-            	</div><!-- /grid-a -->
-        	</div>
-    	</div><!-- /grid-a -->		
-			
+					
 		<?php
 		$i++;
 		}
 		?>
+		</ul>
 		
 	</div><!-- /content -->
 	
