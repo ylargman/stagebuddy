@@ -30,7 +30,7 @@
 			echo $name;
 		?>
 		</h1>
-		<a href="acts_view_alternate.php?playID=<?php echo $playID?>" class="ui-btn-active ui-state-persist">Edit</a>
+		<a href="acts_view_alternate.php?playID=<?php echo $playID?>" data-icon="gear" class="ui-btn-active ui-state-persist">Edit</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	      
@@ -104,7 +104,7 @@
 				
 				<div data-role="collapsible" class="sceneCollapsible" data-collapsed="false">
 					
-					<h1><div class="sceneName"><p><h1><?php echo $act ?>.<?php echo $scene ?>: Scene Name</h1></p></div></h1>
+					<h1><div class="sceneName"><p><h3><?php echo $act ?>.<?php echo $scene ?>: Scene Name</h3></p></div></h1>
 					
 					<form class="curSceneForm">
 				<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>

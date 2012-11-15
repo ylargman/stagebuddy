@@ -30,7 +30,7 @@
 			echo $name;
 		?>
 		</h1>
-		<a href="acts_edit_alternate.php?playID=<?php echo $playID?>">Edit</a>
+		<a href="acts_edit_alternate.php?playID=<?php echo $playID?>" data-icon="gear">Edit</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	      
@@ -85,6 +85,7 @@
     	
     	
     	<div data-role="collapsible-set" data-theme="d" data-content-theme="d">
+			
 			<?php
 			include("config.php");
 			
@@ -104,7 +105,7 @@
 				
 				<div data-role="collapsible" class="sceneCollapsible" data-collapsed="false">
 					
-					<h1><div class="sceneName"><p><h1><?php echo $act ?>.<?php echo $scene ?>: Scene Name</h1></p></div></h1>
+					<h1><div class="sceneName"><h3><?php echo $act ?>.<?php echo $scene ?>: Scene Name</h3></div></h1>
 					
 					<h3>Location: <?php echo $location ?></h3>
 					
