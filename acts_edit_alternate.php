@@ -103,7 +103,7 @@
 				$notes=mysql_result($result, $i, "notes");
 				?>
 				<li>
-				<div data-role="collapsible" class="sceneCollapsible" data-collapsed="false">
+				<div data-role="collapsible" class="sceneCollapsible" data-collapsed="true">
 					
 					<h1><div class="sceneName"><p><h3><?php echo $act ?>.<?php echo $scene ?>: Scene Name</h3></p></div></h1>
 					
