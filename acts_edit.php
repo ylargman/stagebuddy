@@ -17,6 +17,7 @@
 
 	<div data-role="header" data-position="fixed">
 		<a href="index.php" data-icon="grid">Home</a>
+		<a href="login.php" data-icon="gear" data-ajax="false">Change User</a>
 		<h1>
 		<?php
 			include("config.php");

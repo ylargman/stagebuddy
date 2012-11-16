@@ -21,6 +21,11 @@
 
 <body> 
 
+<?php
+	session_start();
+	$userID = $_SESSION['id'];
+?>
+
 <div data-role="page" data-theme="b" data-content-theme="b">
 
 	<div data-role="content">	 
@@ -47,7 +52,7 @@
 			
 			<?php
 				include("config.php");
-				$query="SELECT * FROM Plays";
+				$query="SELECT * FROM Plays WHERE userID='$userID'";
 				$result=mysql_query($query);
 				$numrows=mysql_numrows($result);
 				

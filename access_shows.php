@@ -21,42 +21,6 @@
 </head> 
 
 <body> 
-<?php
-session_start();
-include("config.php");
-
-if (empty($_SESSION['id'])) {
-
-	$username = mysql_real_escape_string($_POST['username']);
-	$password = md5(mysql_real_escape_string($_POST['password']));
-	$shit = "allgood";
-
-	if (!isset($username) || !isset($password)) {
-
-		$shit = "shit1";
-	}
-
-	elseif (empty($username) || empty($password)) {
-		$shit = "shit2";
-		
-	} else {
-		
-		$result   = mysql_query("SELECT * FROM Users WHERE username LIKE '{$username}' AND password LIKE '{$password}'");
-		$rowCheck = mysql_num_rows($result);
-		print_r("Test");
-		if ($rowCheck > 0) {
-			while ($row = mysql_fetch_array($result)) {
-				print_r("Test");
-				$_SESSION['id'] = $row['id'];
-				$_SESSION['username'] = $username;
-			}
-			
-		} else {
-			$shit = "shit3";
-		}
-	}
-}
-?>
 
 <div data-role="page" data-theme="b" data-content-theme="b">
 
@@ -70,22 +34,21 @@ if (empty($_SESSION['id'])) {
 			<div class="ui-block-c">
 				<form action="submit.php" method="post">
 					<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     				<a href="index.php" data-role="button" class="ui-btn-active"  data-ajax="false">
+     				<a href="acess_shows.php" data-role="button" class="ui-btn-active">
      				Access</a>
-					<a href="manageshows.php" data-role="button"  data-ajax="false">
+					<a href="manageshows.php" data-role="button">
      				Manage</a>
 					</fieldset>
 				</form>
 			</div>
 			
 			<div class="ui-block-a">
-				<a href="createshow.php" data-role="button"><img src="Plus-sign.png"/><br>+ New Show <br></a>
+				<a href="createshow.html" data-role="button"><img src="Plus-sign.png"/><br>+ New Show <br></a>
 			</div>
 		
 		<?php
 			include("config.php");
-			$userID = $_SESSION['id'];
-			$query="SELECT * FROM Plays WHERE userID='$userID'";
+			$query="SELECT * FROM Plays";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			

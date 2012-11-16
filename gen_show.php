@@ -1,11 +1,13 @@
 <?
 	include("config.php");
+	$userid = $_POST['userID'];
+	
 	$playID=uniqid();
 	$playTitle =$_POST['showTitle'];
 	$numActs = $_POST['numActs'];
 	
 	print_r($playID);
-	$query_info = "INSERT INTO Plays VALUES ('$playTitle', '$playID', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')";
+	$query_info = "INSERT INTO Plays VALUES ('$playTitle', '$playID', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '$userid')";
 	mysql_query($query_info);
 	
 	$a=1;

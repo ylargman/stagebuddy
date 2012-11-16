@@ -36,7 +36,10 @@ $(document).live('pagechange pageshow pageinit', function(){
 						alert("Number of scenes must be between 1 and 30.");
 						return;
 					}
-				}				
+				}
+				userID = $(document).find("#userID").val();
+				serArray.push({"name": "userID", "value": userID});
+				
 				serArray.push({"name": "showTitle", "value": showTitle});
 				serArray.push({"name": "numActs", "value": numActs});
 				console.info(serArray);
