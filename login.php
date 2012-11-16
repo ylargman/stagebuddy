@@ -22,15 +22,6 @@
 
 <body> 
 
-<?php
-	session_start();
-    session_unset();
-    session_destroy();
-    session_write_close();
-    setcookie(session_name(),'',0,'/');
-    session_regenerate_id(true);
-?>
-
 <div data-role="page" data-theme="b" data-content-theme="b">
 
 	<div data-role="content">	 

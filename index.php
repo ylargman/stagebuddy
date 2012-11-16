@@ -51,16 +51,17 @@ if (empty($_SESSION['id'])) {
 				$_SESSION['username'] = $username;
 			}
 			
-		} else {
-			$shit = "shit3";
-		}
+		} 
 	}
 }
 ?>
 
 <div data-role="page" data-theme="b" data-content-theme="b">
 
-	<div data-role="content">	 
+	<div data-role="content">
+		<?php
+		if($rowCheck >0){
+		?>
 	
 		<div class="ui-grid-b">
 			<div class="ui-block-a">
@@ -102,6 +103,13 @@ if (empty($_SESSION['id'])) {
 			}
 		?>
 		</div>
+		<?php
+		}
+		else{
+			echo "Incorrect login credentials.  Click Change User to try again.";
+		}
+		?>
+		<a href="login.php" data-role="button" data-ajax="false">Change User</a>
 	</div><!-- /content -->
 	
 </div><!-- /page -->
