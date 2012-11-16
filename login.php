@@ -1,3 +1,8 @@
+<?php
+	session_start();
+    session_unset();
+    session_destroy();
+?>
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -21,15 +26,9 @@
 </head> 
 
 <body> 
-<?php
-	session_start();
-    session_unset();
-    session_destroy();
-?>
 <div data-role="page" data-theme="b" data-content-theme="b">
 
-	<div data-role="content">	
-	<h1>Stage Buddy</h1> 
+	<div data-role="content">	 
 	<form action="index.php" method="post" id="login">
 		<h2><span>Login</span></h2>
 		
