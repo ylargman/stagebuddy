@@ -24,20 +24,20 @@
 <?php
 session_start();
 include("config.php");
+$loggedin = 1;
 
 if (empty($_SESSION['id'])) {
 
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = md5(mysql_real_escape_string($_POST['password']));
-	$shit = "allgood";
 
 	if (!isset($username) || !isset($password)) {
 
-		$shit = "shit1";
+		$loggedin = 0;
 	}
 
 	elseif (empty($username) || empty($password)) {
-		$shit = "shit2";
+		$loggedin = 0;
 		
 	} else {
 		
@@ -52,6 +52,9 @@ if (empty($_SESSION['id'])) {
 			}
 			
 		} 
+		else{
+			$loggedin = 0;
+		}
 	}
 }
 ?>
@@ -60,12 +63,13 @@ if (empty($_SESSION['id'])) {
 
 	<div data-role="content">
 		<?php
-		if($rowCheck >0){
+		if($loggedin != 0){
 		?>
 	
 		<div class="ui-grid-b">
 			<div class="ui-block-a">
 				<h1>Stage Buddy</h1>
+				<h2>Welcome <?php echo $_SESSION['username'] ?> </h2>
 			</div>
 			<div class="ui-block-b"></div>
 			<div class="ui-block-c">
@@ -106,7 +110,7 @@ if (empty($_SESSION['id'])) {
 		<?php
 		}
 		else{
-			echo "Incorrect login credentials.  Click Change User to try again.";
+			echo "Incorrect login credentials {$username}.  Click Change User to try again.";
 		}
 		?>
 		<a href="login.php" data-role="button" data-ajax="false">Change User</a>

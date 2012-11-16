@@ -21,7 +21,11 @@
 </head> 
 
 <body> 
-
+<?php
+	session_start();
+    session_unset();
+    session_destroy();
+?>
 <div data-role="page" data-theme="b" data-content-theme="b">
 
 	<div data-role="content">	 
