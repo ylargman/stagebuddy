@@ -28,7 +28,8 @@
 ?>
 <div data-role="page" data-theme="b" data-content-theme="b">
 
-	<div data-role="content">	 
+	<div data-role="content">	
+	<h1>Stage Buddy</h1> 
 	<form action="index.php" method="post" id="login">
 		<h2><span>Login</span></h2>
 		
