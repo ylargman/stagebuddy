@@ -12,6 +12,10 @@
 	-webkit-border-radius: 0 !important;
 	border-radius: 0 !important;
 }
+.ui-listview-filter:nth-child(n+2) {
+    display : none;
+}
+
 #acts .ui-icon {
 	background:  url(PNGicons/152-rolodex.png) 50% 50% no-repeat; background-size: 26px 18px;
 }

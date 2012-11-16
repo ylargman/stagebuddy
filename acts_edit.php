@@ -86,7 +86,10 @@
 			</ul>
 		</div><!-- /navbar -->
 		
+		<p>
+		</p>
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+			<ul data-role="listview" data-filter="true" id="outer-ul">
 			<?php
 			include("config.php");
 			
@@ -104,7 +107,8 @@
 			$notes=mysql_result($result, $i, "notes");
 			?>
 			
-			<div data-role="collapsible" class="sceneCollapsible" data-collapsed="false">
+			<li>
+			<div data-role="collapsible" class="sceneCollapsible" data-collapsed="true">
 			
 				<h3><div class="sceneName"><?php echo $act ?>.<?php echo $scene ?></div></h3>
 				
@@ -195,12 +199,12 @@
 				</div>
 				</form>
 			</div>
-			
+			</li>
 			<?php
 			$i++;
 			}
 			?>
-							
+			</ul>				
 	</div><!-- /content -->
 	
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">

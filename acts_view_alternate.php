@@ -85,7 +85,7 @@
     	
     	
     	<div data-role="collapsible-set" data-theme="d" data-content-theme="d">
-			
+			<ul data-role="listview" data-filter="true" id="outer-ul">
 			<?php
 			include("config.php");
 			
@@ -102,8 +102,8 @@
 				$time=mysql_result($result, $i, "time");
 				$notes=mysql_result($result, $i, "notes");
 				?>
-				
-				<div data-role="collapsible" class="sceneCollapsible" data-collapsed="false">
+				<li>
+				<div data-role="collapsible" class="sceneCollapsible" data-collapsed="true">
 					
 					<h1><div class="sceneName"><h3><?php echo $act ?>.<?php echo $scene ?>: Scene Name</h3></div></h1>
 					
@@ -205,11 +205,12 @@
 					</div>
 					
 				</div>	
-					
+				</li>
 				<?php
-				$i++;
-			}
-			?>
+					$i++;
+				}
+				?>
+			</ul>
     	
     	</div>
     			
