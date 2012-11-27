@@ -15,7 +15,7 @@
 <body> 
 
 <div data-role="page" data-theme="b" data-content-theme="b">
-
+	<script src="//cdn.optimizely.com/js/141933355.js"></script>
 	<div data-role="header" data-position="fixed">
 		<a href="index.php" data-icon="grid">Home</a>
 		<a href="login.php" data-icon="gear" data-ajax="false">Change User</a>
@@ -138,6 +138,7 @@
 			
 						$cc=0;
 						while($cc < $numrows_c){
+						
 						$cname=mysql_result($result_c, $cc, "name");
 						$cid=mysql_result($result_c, $cc, "characterID");
 						$query_cs = "SELECT * FROM CharactersScenes WHERE characterID LIKE '{$cid}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}' ORDER BY scene";
@@ -157,6 +158,58 @@
 						}
 						?>
 					</fieldset>
+					<a href="#createCharPopup<?php echo $i ?>" data-rel="popup" data-role="button" data-inline="true" class="createCharButton">Create New Character</a>
+					
+					<div data-role="popup" id="createCharPopup<?php echo $i ?>" class="ui-content">
+					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+					<h3>Add New Character</h3>
+					<form action="insert_char.php" method="post" id="newCharForm" data-ajax="false">
+						<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
+						<p>    				
+							<div data-role="fieldcontain">
+								<label for="newcharname">Character name:</label>
+								<input type="text" name="newcharname" id="newcharname" value=""  />
+								
+								<label for="newActorName">Played by:</label>
+								<input type="text" name="newActorName" id="newActorName" value=""  />
+								
+								<fieldset data-role="controlgroup">
+									<legend>Scenes:</legend>
+									<?php
+									include("config.php");
+									$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
+									$result_as=mysql_query($query_as);
+									
+									$a=1;
+									while($a <= 10){
+										$numscenes_as=mysql_result($result_as, '0', "act{$a}");
+										if($numscenes_as < 1)
+											break;
+										$sc=1;
+										while($sc <=$numscenes_as){
+											$asid="a{$a}s{$sc}";
+											?>
+											<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
+											<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
+											<?php
+											$sc++;
+										}
+										$a++;
+									}
+								?>
+								</fieldset>
+								
+								<label for="newnote">Notes:</label>
+								<textarea name="newnote" id="newnote">
+								</textarea>
+								
+								<input type="submit" id="createCharButton" value="Create Character" />
+							</div>
+						</p>
+						</p>
+					</form>
+					</div>
+					
 					<p></p>
 					<fieldset data-role="controlgroup">
 						<legend>Props:</legend>
@@ -188,6 +241,7 @@
 						}
 						?>
 					</fieldset>
+					<a data-role="button" data-inline="true" class="createPropButton">Create Prop Character</a>
 					
 					<p></p>
 					<label for="sceneNotes">Notes:</label>
@@ -205,7 +259,8 @@
 			$i++;
 			}
 			?>
-			</ul>				
+			</ul>
+		</div>
 	</div><!-- /content -->
 	
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">

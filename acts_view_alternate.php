@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
-	<script src="//cdn.optimizely.com/js/141933355.js"></script>
+	
 	<title>Stage Buddy</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" href="style.css">
@@ -15,7 +15,7 @@
 <body> 
 
 <div data-role="page" data-theme="b" data-content-theme="b">
-
+	<script src="//cdn.optimizely.com/js/141933355.js"></script>
 	<div data-role="header" data-position="fixed">
 		<a href="index.php" data-icon="grid">Home</a>
 		<h1>

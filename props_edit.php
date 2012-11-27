@@ -52,7 +52,7 @@
 			<?php
 			include("config.php");
 
-			$query="SELECT * FROM PropsInfo WHERE playID LIKE '{$playID}'";
+			$query="SELECT * FROM PropsInfo WHERE playID LIKE '{$playID}' ORDER BY name";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
@@ -69,7 +69,7 @@
 			<p>    				
 			
 			<a data-role="button" data-inline="true" class="saveprop">Save</a>
-			<a href="#deletePropPopup" data-rel="popup" data-role="button" data-inline="true">Delete</a>
+			<a href="#deletePropPopup<?php echo $i?>" data-rel="popup" data-role="button" data-inline="true">Delete</a>
 			<div data-role="popup" id="deletePropPopup">
 				<input type="hidden" class="currPropID" value=<?php echo $propID ?>>
 				<p>Are you sure you wish to delete?<p> 
@@ -131,8 +131,8 @@
 					</div>
 				</form>
 				<a data-role="button" data-inline="true" class="saveprop">Save</a>
-				<a href="#deletePropPopup" data-rel="popup" data-role="button" data-inline="true">Delete</a>
-				<div data-role="popup" id="deletePropPopup">
+				<a href="#deletePropPopup<?php echo $i?>" data-rel="popup" data-role="button" data-inline="true">Delete</a>
+				<div data-role="popup" class="deletePropPopup" id="deletePropPopup<?php echo $i?>">
 					<input type="hidden" class="currPropID" value=<?php echo $propID ?>>
 					<p>Are you sure you wish to delete?<p> 
 					<p>(Tap elsewhere to cancel)<p>

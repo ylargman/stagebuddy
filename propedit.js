@@ -24,9 +24,11 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteprop").unbind("click");
 	$(".deleteprop").bind("click", function (event, ui){
-		propToDelete = $(this).parents("#deletePropPopup").find(".currPropID").val();
+		propToDelete = $(this).parents(".deletePropPopup").find(".currPropID").val();
 		$.post("delete_prop.php", {propid: propToDelete});
-				
+		
+		$(this).parents(".deletePropPopup").popup("close");
+		//$.mobile.changePage("props_edit.php");
 		delayedRefresh();
 	});
 	
@@ -52,7 +54,7 @@ $(document).live('pagechange', function(){
 	
 	$(".deletechar").unbind("click");
 	$(".deletechar").bind("click", function (event, ui){
-		charToDelete = $(this).parents("#deleteCharPopup").find(".currCharID").val();
+		charToDelete = $(this).parents(".deleteCharPopup").find(".currCharID").val();
 		$.post("delete_char.php", {charid: charToDelete});
 		delayedRefresh();
 	});

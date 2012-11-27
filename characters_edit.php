@@ -52,7 +52,7 @@
 			<?php
 			include("config.php");
 			
-			$query="SELECT * FROM CharactersInfo WHERE playID LIKE '{$playID}'";
+			$query="SELECT * FROM CharactersInfo WHERE playID LIKE '{$playID}' ORDER BY name";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			
@@ -67,10 +67,10 @@
 			<li>
 			<div class="charCollapsible" data-role="collapsible" data-collapsed="true">
 			<h3><div class="charName"><?php echo $name ?></div></h3>
-			<p>  
+			<p> </p> 
 			
 			<a data-role="button" data-inline="true" class="savechar">Save</a>
-			<a href="#deleteCharPopup" data-rel="popup" data-role="button" data-inline="true">Delete</a>
+			<a href="#deleteCharPopup<?php echo $i?>" data-rel="popup" data-role="button" data-inline="true">Delete</a>
 			<div data-role="popup" id="deleteCharPopup">
 				<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
 				<p>Are you sure you wish to delete?<p> 
@@ -129,14 +129,14 @@
 					</div>
 				</form>
 				<a data-role="button" data-inline="true" class="savechar">Save</a>
-				<a href="#deleteCharPopup" data-rel="popup" data-role="button" data-inline="true">Delete</a>
-				<div data-role="popup" id="deleteCharPopup">
+				<a href="#deleteCharPopup<?php echo $i?>" data-rel="popup" data-role="button" data-inline="true">Delete</a>
+				<div data-role="popup" class="deleteCharPopup" id="deleteCharPopup<?php echo $i ?>">
 					<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
 					<p>Are you sure you wish to delete?<p> 
 					<p>(Tap elsewhere to cancel)<p>
 					<a data-role="button" data-inline="true" class="deletechar">Delete</a>
 				</div>
-			</p>
+			<p></p>
 			</div>
 			</li>
 			<?php

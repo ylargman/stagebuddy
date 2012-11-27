@@ -63,9 +63,9 @@
 				?>
 					<div class="ui-block-b">
 						<div class="showButton">
-							<a href="#popupBasic" data-rel="popup" data-role="button"><img src="playcover.png"/><br><?php echo $name ?><br></a>
+							<a href="#popupBasic<?php echo $p ?>" data-rel="popup" data-role="button"><img src="playcover.png"/><br><?php echo $name ?><br></a>
 							
-							<div data-role="popup" id="popupBasic">
+							<div data-role="popup" id="popupBasic<?php echo $p ?>">
 								<p>Are you sure you wish to delete?<p> 
 								<p>All content associated with this show will be erased.<p>
 								<p>(Tap elsewhere to cancel)<p>
