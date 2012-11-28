@@ -32,6 +32,10 @@
 	background:  url(PNGicons/178-city.png) 50% 50% no-repeat; background-size: 23px 27px;
 }
 
+#people .ui-icon {
+	background:  url(PNGicons/112-group.png) 50% 50% no-repeat; background-size: 23px 27px;
+}
+
 #scheduler .ui-icon {
 	background:  url(PNGicons/83-calendar.png) 50% 50% no-repeat; background-size: 23px 25px;
 }
