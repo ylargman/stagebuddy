@@ -21,7 +21,7 @@
 }
 
 #chars .ui-icon {
-	background:  url(PNGicons/112-group.png) 50% 50% no-repeat; background-size: 32px 21px;
+	background:  url(PNGicons/102-walk.png) 50% 50% no-repeat; background-size: 20px 27px;
 }
 
 #props .ui-icon {
@@ -33,7 +33,7 @@
 }
 
 #people .ui-icon {
-	background:  url(PNGicons/112-group.png) 50% 50% no-repeat; background-size: 23px 27px;
+	background:  url(PNGicons/112-group.png) 50% 50% no-repeat; background-size: 32px 21px;
 }
 
 #scheduler .ui-icon {
