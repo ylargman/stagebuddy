@@ -100,6 +100,7 @@
 		?>
 				
 				<p> 
+				<ul data-role="listview" data-inset="true" data-theme="c"><li>
 				<div class="ui-grid-c">
 					<div class="ui-block-a">
 						<?php  
@@ -130,6 +131,7 @@
 					<div class="ui-block-d"><br></div>
 				</p>
 				</div><!-- /grid-c -->
+				</li>
 		<?php
 				}
 				
@@ -137,7 +139,7 @@
 			}
 		?>
 			
-			
+		</ul>
 	
 	</div><!-- /content -->
 	

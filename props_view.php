@@ -213,6 +213,7 @@
 			<li><a href="characters_view.php?playID=<?php echo $playID?>" id="chars" data-icon="custom">Characters/Actors</a></li>
 			<li><a href="props_view.php?playID=<?php echo $playID?>" id="props" data-icon="custom" class="ui-btn-active">Props</a></li>
 			<li><a href="elements_view.php?playID=<?php echo $playID?>" id="elements" data-icon="custom">Set Elements</a></li>
+			<li><a href="people_view.php?playID=<?php echo $playID?>" id="people" data-icon="custom">People</a></li>
 		</ul>
 		</div>
 	</div>

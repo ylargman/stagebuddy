@@ -373,6 +373,7 @@
 			<li><a href="characters_view.php?playID=<?php echo $playID?>" id="chars" data-icon="custom">Characters/Actors</a></li>
 			<li><a href="props_view.php?playID=<?php echo $playID?>" id="props" data-icon="custom">Props</a></li>
 			<li><a href="elements_view.php?playID=<?php echo $playID?>" id="elements" data-icon="custom">Set Elements</a></li>
+			<li><a href="people_view.php?playID=<?php echo $playID?>" id="people" data-icon="custom">People</a></li>
 		</ul>
 		</div>
 	</div>
@@ -387,6 +388,7 @@
 		var options = {
 			x: _MouseX,
 			y: _MouseY
+			transition: "pop"
 		};		
 		$("#Character_Popup").popup("open", options);
 	});
@@ -399,6 +401,7 @@
 		var options = {
 			x: _MouseX,
 			y: _MouseY
+			transition: "pop"
 		};		
 		$("#Prop_Popup").popup("open", options);
 	});
@@ -411,6 +414,7 @@
 		var options = {
 			x: _MouseX,
 			y: _MouseY
+			transition: "pop"
 		};		
 		$("#Element_Popup").popup("open", options);
 	});
