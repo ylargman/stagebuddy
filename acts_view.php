@@ -132,11 +132,11 @@
 						<?php 
 							echo $location;
 						?></div>
-					<div class="ui-block-c">
+					<div class="ui-block-c" id="Character_Block">
 						<?php
 							include("config.php");
 				
-							$query_c="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
+							$query_c="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
 							$result_c=mysql_query($query_c);
 							$numrows_c=mysql_numrows($result_c);
 			
@@ -152,55 +152,198 @@
 								echo "<br>";
 								$n++;
 							}
-						?>			
+						?>		
 					</div>
+					<div data-role="popup" id="Character_Popup">
+							<div data-role="collapsible-set" data-inset="true">
+								<?php
+									$query_cp="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
+									
+									$result_cp=mysql_query($query_cp);
+									$numrows_cp=mysql_numrows($result_cp);
+			
+									$np=0;
+									while($np < $numrows_cp){
+										$cpid=mysql_result($result_cp, $np, "characterID");
+										$query_c_n_p="SELECT * FROM CharactersInfo WHERE characterID LIKE '{$cpid}' AND playID LIKE '{$playID}'";
+										$result_c_n_p=mysql_query($query_c_n_p);
+									
+										$cpname=mysql_result($result_c_n_p, 0, "name");
+										$cpactor=mysql_result($result_c_n_p, 0, "actor");
+										$cpnotes=mysql_result($result_c_n_p, 0, "notes");
+										?>
+										<div data-role="collapsible">
+											<h3><?php echo $cpname ?></h3>
+											<h3>Played By: <?php echo $cpactor ?></h3>
+											<h3>Notes: </h3>
+											<div><?php echo $cpnotes ?></div>
+											<h3>Scenes: </h3>
+											<div> 
+											<?php
+												$query_scenes="SELECT * FROM CharactersScenes WHERE characterID LIKE '{$cpid}' AND playID LIKE '{$playID}' ORDER BY act, scene";
+												$result_scenes=mysql_query($query_scenes);
+												$numrows_scenes=mysql_numrows($result_scenes);
+												
+												$j=0;
+												while($j < $numrows_scenes){
+													$act=mysql_result($result_scenes, $j, "act");
+													$scene=mysql_result($result_scenes, $j, "scene");
+													echo $act;
+													echo ".";
+													echo $scene;
+													echo "<br>";
+													$j++;
+												}
+											?>
+											</div>
+										</div>
+										<?php
+										$np++;
+									}
+								?>
+							</div>
+						</div>
            		</div><!-- /grid-a -->
         	</div>
 	    	<div class="ui-block-b">
             	<div class="ui-grid-b">
-	            	<div class="ui-block-a">
-						<?php
-							include("config.php");
+	            	<div class="ui-block-a" id="Prop_Block">
+							<?php
+								include("config.php");
+					
+								$query_p="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
+								$result_p=mysql_query($query_p);
+								$numrows_p=mysql_numrows($result_p);
 				
-							$query_p="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
-							$result_p=mysql_query($query_p);
-							$numrows_p=mysql_numrows($result_p);
-			
-							$x=0;
-							while($x < $numrows_p){
-								$pid=mysql_result($result_p, $x, "propID");
-								$query_p_n="SELECT * FROM PropsInfo WHERE propID LIKE '{$pid}' AND playID LIKE '{$playID}'";
-								$result_p_n=mysql_query($query_p_n);
-							
-								$pname=mysql_result($result_p_n, '0', "name");
-								echo "- ";
-								echo $pname;
-								echo "<br>";
-								$x++;
-							}
-						?>	
+								$x=0;
+								while($x < $numrows_p){
+									$pid=mysql_result($result_p, $x, "propID");
+									$query_p_n="SELECT * FROM PropsInfo WHERE propID LIKE '{$pid}' AND playID LIKE '{$playID}'";
+									$result_p_n=mysql_query($query_p_n);
+								
+									$pname=mysql_result($result_p_n, '0', "name");
+									echo "- ";
+									echo $pname;
+									echo "<br>";
+									$x++;
+								}
+							?>	
 					</div>
-					<div class="ui-block-b">
-						<?php
-							include("config.php");
-				
-							$query_e="SELECT * FROM ElementsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
-							$result_e=mysql_query($query_e);
-							$numrows_e=mysql_numrows($result_e);
+					<div data-role="popup" id="Prop_Popup">
+							<div data-role="collapsible-set" data-inset="true">
+								<?php
+									$query_pp="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
+									
+									$result_pp=mysql_query($query_pp);
+									$numrows_pp=mysql_numrows($result_pp);
 			
-							$x=0;
-							while($x < $numrows_e){
-								$eid=mysql_result($result_e, $x, "elementID");
-								$query_e_n="SELECT * FROM ElementsInfo WHERE elementID LIKE '{$eid}' AND playID LIKE '{$playID}'";
-								$result_e_n=mysql_query($query_e_n);
-							
-								$ename=mysql_result($result_e_n, '0', "name");
-								echo "- ";
-								echo $ename;
-								echo "<br>";
-								$x++;
-							}
-						?>	
+									$xp=0;
+									while($xp < $numrows_pp){
+										$ppid=mysql_result($result_pp, $xp, "propID");
+										$query_p_n_p="SELECT * FROM PropsInfo WHERE propID LIKE '{$ppid}' AND playID LIKE '{$playID}'";
+										$result_p_n_p=mysql_query($query_p_n_p);
+									
+										$ppname=mysql_result($result_p_n_p, 0, "name");
+										$ppnotes=mysql_result($result_p_n_p, 0, "notes");
+										?>
+										<div data-role="collapsible">
+											<h3><?php echo $ppname ?></h3>
+											<h3>Notes: </h3>
+											<div><?php echo $ppnotes ?></div>
+											<h3>Scenes: </h3>
+											<div> 
+											<?php
+												$query_scenes="SELECT * FROM PropsScenes WHERE propID LIKE '{$ppid}' AND playID LIKE '{$playID}' ORDER BY act, scene";
+												$result_scenes=mysql_query($query_scenes);
+												$numrows_scenes=mysql_numrows($result_scenes);
+												
+												$j=0;
+												while($j < $numrows_scenes){
+													$act=mysql_result($result_scenes, $j, "act");
+													$scene=mysql_result($result_scenes, $j, "scene");
+													echo $act;
+													echo ".";
+													echo $scene;
+													echo "<br>";
+													$j++;
+												}
+											?>
+											</div>
+										</div>
+										<?php
+										$xp++;
+									}
+								?>
+							</div>
+					</div>	
+					<div class="ui-block-b" id="Element_Block">
+							<?php
+								include("config.php");
+					
+								$query_e="SELECT * FROM ElementsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}' ORDER BY scene";
+								$result_e=mysql_query($query_e);
+								$numrows_e=mysql_numrows($result_e);
+				
+								$x=0;
+								while($x < $numrows_e){
+									$eid=mysql_result($result_e, $x, "elementID");
+									$query_e_n="SELECT * FROM ElementsInfo WHERE elementID LIKE '{$eid}' AND playID LIKE '{$playID}'";
+									$result_e_n=mysql_query($query_e_n);
+								
+									$ename=mysql_result($result_e_n, '0', "name");
+									echo "- ";
+									echo $ename;
+									echo "<br>";
+									$x++;
+								}
+							?>	
+					</div>
+					<div data-role="popup" id="Element_Popup">
+							<div data-role="collapsible-set" data-inset="true">
+								<?php
+									$query_ep="SELECT * FROM ElementsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
+									
+									$result_ep=mysql_query($query_ep);
+									$numrows_ep=mysql_numrows($result_ep);
+			
+									$xe=0;
+									while($xe < $numrows_ep){
+										$epid=mysql_result($result_ep, $xe, "elementID");
+										$query_e_n_p="SELECT * FROM ElementsInfo WHERE elementID LIKE '{$epid}' AND playID LIKE '{$playID}'";
+										$result_e_n_p=mysql_query($query_e_n_p);
+									
+										$epname=mysql_result($result_e_n_p, 0, "name");
+										$epnotes=mysql_result($result_e_n_p, 0, "notes");
+										?>
+										<div data-role="collapsible">
+											<h3><?php echo $epname ?></h3>
+											<h3>Notes: </h3>
+											<div><?php echo $epnotes ?></div>
+											<h3>Scenes: </h3>
+											<div> 
+											<?php
+												$query_scenes="SELECT * FROM ElementsScenes WHERE elementID LIKE '{$epid}' AND playID LIKE '{$playID}' ORDER BY act, scene";
+												$result_scenes=mysql_query($query_scenes);
+												$numrows_scenes=mysql_numrows($result_scenes);
+												
+												$j=0;
+												while($j < $numrows_scenes){
+													$act=mysql_result($result_scenes, $j, "act");
+													$scene=mysql_result($result_scenes, $j, "scene");
+													echo $act;
+													echo ".";
+													echo $scene;
+													echo "<br>";
+													$j++;
+												}
+											?>
+											</div>
+										</div>
+										<?php
+										$xe++;
+									}
+								?>
+							</div>
 					</div>
 					<div class="ui-block-c">TIME: 
 						<?php 
@@ -234,6 +377,44 @@
 		</div>
 	</div>
 </div><!-- /page -->
+
+<script type="text/javascript">
+	$("#Character_Block").unbind("click");
+	$("#Character_Block").bind("click", function(event) {
+		ev = window.event;
+		_MouseX = ev.clientX;
+		_MouseY = ev.clientY; 
+		var options = {
+			x: _MouseX,
+			y: _MouseY
+		};		
+		$("#Character_Popup").popup("open", options);
+	});
+	
+	$("#Prop_Block").unbind("click");
+	$("#Prop_Block").bind("click", function(event) {
+		ev = window.event;
+		_MouseX = ev.clientX;
+		_MouseY = ev.clientY; 
+		var options = {
+			x: _MouseX,
+			y: _MouseY
+		};		
+		$("#Prop_Popup").popup("open", options);
+	});
+	
+	$("#Element_Block").unbind("click");
+	$("#Element_Block").bind("click", function(event) {
+		ev = window.event;
+		_MouseX = ev.clientX;
+		_MouseY = ev.clientY; 
+		var options = {
+			x: _MouseX,
+			y: _MouseY
+		};		
+		$("#Element_Popup").popup("open", options);
+	});
+</script>
 
 <script type="text/javascript">
 setTimeout(function(){var a=document.createElement("script");

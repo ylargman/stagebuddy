@@ -30,6 +30,7 @@
 
 	<div data-role="content">	 
 	<form action="index.php" method="post" id="login">
+		<h1><span>Stage Buddy</span><h1>
 		<h2><span>Login</span></h2>
 		
 		<p><label>Username</label></p>
