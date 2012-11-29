@@ -25,7 +25,7 @@
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 </head> 
 
-<body style="background-image:url(StageBuddyLowResBackground.png)"> 
+<body> 
 <div data-role="page" data-theme="b" data-content-theme="b">
 
 	<div data-role="content">	 

@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<link type="text/css" rel="stylesheet" href="../fpdf.css">
 	
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script src="propedit.js"></script>
@@ -17,7 +18,6 @@
 
 	<div data-role="header" data-position="fixed">
 		<a href="index.php" data-icon="grid">Home</a>
-		<a href="login.php" data-icon="gear" data-ajax="false">Change User</a>
 		<h1>
 		<?php
 			include("config.php");
@@ -31,9 +31,13 @@
 			echo $name;
 		?>
 		</h1>
+		<a href="login.php" data-icon="gear" data-ajax="false">Change User</a>
 	</div><!-- /header -->
 
-	<div data-role="content">	      
+	<div data-role="content">	
+	
+	<p class='demo'><a href='PDF_Generator/tutorial/printablepeople.php?playID=<?php echo $playID ?>' target='_blank' class='demo' data-role="button" data-icon="forward" data-inline="true">Export as PDF</a></p>
+	      
 		<form action="submit.php" method="post">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
      		<a href="people_view.php?playID=<?php echo $playID?>" data-role="button" class="ui-btn-active">
