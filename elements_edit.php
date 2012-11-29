@@ -48,7 +48,7 @@
 		
 		<p></p>
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-			<ul data-role="listview" data-filter="true" id="outer-ul">
+			<ul data-role="listview" data-filter="true" class="outer-ul">
 			<?php
 			include("config.php");
 
@@ -65,7 +65,7 @@
 			?>
 			
 			<li>
-			<div class="elemCollapsible" data-role="collapsible" data-collapsed="true">
+			<div class="elemCollapsible itemCollapsible" data-role="collapsible" data-collapsed="true">
 			<h3><div class="elemName"><?php echo $name ?></div></h3>
 			<p>    				
 				<form class="curElemForm" data-ajax="false">

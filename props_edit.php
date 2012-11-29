@@ -48,7 +48,7 @@
 		
 		<p></p>
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-			<ul data-role="listview" data-filter="true" id="outer-ul">
+			<ul data-role="listview" data-filter="true" class="outer-ul">
 			<?php
 			include("config.php");
 
@@ -64,7 +64,7 @@
 			$notes=mysql_result($result, $i, "notes");
 			?>
 			<li>
-			<div class="propCollapsible" data-role="collapsible" data-collapsed="true">
+			<div class="propCollapsible itemCollapsible" data-role="collapsible" data-collapsed="true">
 			<h3><div class="propName"><?php echo $name ?></div></h3>
 			<p>    				
 			

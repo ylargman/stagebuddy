@@ -139,9 +139,20 @@ $(document).live('pagechange', function(){
 		delayedRefresh();
 	});
 	
+	$(".editNumScenesButton").unbind("click");
+	$(".editNumScenesButton").bind("click", function (event, ui){
+		event.preventDefault();
+		
+		serArray = $(this).parents("#editNumScenesForm").serializeArray();
+		
+		$.post("edit_num_scenes.php", serArray);
+		$(this).parents("#editNumScenesPopup").popup("close");
+		delayedRefresh();
+	});
+	
 	//find the headings we want to watch
 	//$(this).find('#outer-ul').find('.ui-collapsible-heading').unbind("click");
-    $(this).find('#outer-ul').find('.ui-collapsible-heading').on('click', function () {
+    $(this).find('.outer-ul').find('.ui-collapsible-heading').on('click', function () {
 
         //cache the parent collapsible widget
         var that = $(this).closest('.ui-collapsible')[0];

@@ -48,7 +48,7 @@
 		
 		<p></p>
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-			<ul data-role="listview" data-filter="true" id="outer-ul">
+			<ul data-role="listview" data-filter="true" class="outer-ul">
 			<?php
 			include("config.php");
 			

@@ -89,8 +89,39 @@
 		
 		<p>
 		</p>
+		<!-- Edit number of scenes -->
+		<a href="#editNumScenesPopup" data-rel="popup" data-role="button" data-inline="true">Edit Number of Scenes</a>
+		<div data-role="popup" id="editNumScenesPopup" class="ui-content">
+			<form id="editNumScenesForm">
+		<?php
+			include("config.php");
+		
+			$query_p="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
+			$result_p=mysql_query($query_p);
+			$numrows_p=mysql_numrows($result_p);
+		
+			$ac = 1;
+			while($ac <= 10){
+				$numscenes_a=mysql_result($result_p, 0, "act{$ac}");
+				if ($numscenes_a > 0){
+		?>
+					<label for="a<?php echo $ac?>NumScenes">Act <?php echo $ac ?> Number of Scenes</label>
+					<input type="hidden" name="a<?php echo $ac ?>CurNumScenes" value="<?php echo $numscenes_a ?>">
+					<input type="number" name="a<?php echo $ac ?>NumScenes" value="<?php echo $numscenes_a ?>">
+		<?php
+				}
+				$ac++;
+			}
+		?>
+			<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
+			<input type="submit" class="editNumScenesButton" value="Save Number of Scenes">
+			</form>
+		</div>
+		<p>
+		</p>
+		
 		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-			<ul data-role="listview" data-filter="true" id="outer-ul">
+			<ul data-role="listview" data-filter="true" class="outer-ul">
 			<?php
 			include("config.php");
 			
@@ -109,7 +140,7 @@
 			?>
 			
 			<li>
-			<div data-role="collapsible" class="sceneCollapsible" data-collapsed="true">
+			<div data-role="collapsible" class="sceneCollapsible itemCollapsible" data-collapsed="true">
 			
 				<h3><div class="sceneName"><?php echo $act ?>.<?php echo $scene ?></div></h3>
 				
