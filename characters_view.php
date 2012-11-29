@@ -33,13 +33,14 @@
 		</h1>
 	</div><!-- /header -->
 
-	<div data-role="content">	      
+	<div data-role="content">	 
+	     
 		<form action="submit.php" method="post">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
      		<a href="characters_view.php?playID=<?php echo $playID?>" data-role="button" class="ui-btn-active">
      		View</a>
 
-     		<a href="characters_edit.php?playID=<?php echo $playID?>" data-role="button" data-transition="slideup">
+     		<a href="characters_edit.php?playID=<?php echo $playID?>" data-role="button">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -70,7 +71,7 @@
 			<div class="ui-grid-b">
 				<div class="ui-block-a"><?php echo $name ?><p></p>Played by: <?php echo $actor ?></div>
 					<div class="ui-block-b">
-						<a href="#Scenes_Popup" data-rel="popup" data-transition="pop">
+						<a href="#Scenes_PopupC<?php echo $charID ?>" data-rel="popup" data-transition="pop">
 							<?php
 								$query_scenes="SELECT * FROM CharactersScenes WHERE characterID LIKE '{$charID}' AND playID LIKE '{$playID}' ORDER BY act, scene";
 								$result_scenes=mysql_query($query_scenes);
@@ -88,7 +89,7 @@
 								}
 							?>
 						</a>
-						<div data-role="popup" id="Scenes_Popup">
+						<div data-role="popup" id="Scenes_PopupC<?php echo $charID ?>">
 							<div data-role="collapsible-set" data-inset="true">
 								<?php
 									$query_scenes_p="SELECT * FROM CharactersScenes WHERE characterID LIKE '{$charID}' AND playID LIKE '{$playID}' ORDER BY act, scene";

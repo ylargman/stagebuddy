@@ -39,7 +39,7 @@
      		<a href="props_view.php?playID=<?php echo $playID?>" data-role="button" class="ui-btn-active">
      		View</a>
 
-     		<a href="props_edit.php?playID=<?php echo $playID?>" data-role="button" data-transition="slideup">
+     		<a href="props_edit.php?playID=<?php echo $playID?>" data-role="button">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -71,7 +71,7 @@
 			<div class="ui-grid-b">
 				<div class="ui-block-a"><?php echo $name ?></div>
 					<div class="ui-block-b">
-						<a href="#Scenes_Popup" data-rel="popup" data-transition="pop">
+						<a href="#Scenes_PopupP<?php echo $propID ?>" data-rel="popup" data-transition="pop">
 							<?php
 								$query_s_n="SELECT * FROM PropsScenes WHERE propID LIKE '{$propID}' AND playID LIKE '{$playID}' ORDER BY act, scene";
 								$result_s_n=mysql_query($query_s_n);
@@ -89,7 +89,7 @@
 								}
 							?>
 						</a>
-						<div data-role="popup" id="Scenes_Popup">
+						<div data-role="popup" id="Scenes_PopupP<?php echo $propID ?>">
 							<div data-role="collapsible-set" data-inset="true">
 								<?php
 									$query_scenes_p="SELECT * FROM PropsScenes WHERE propID LIKE '{$propID}' AND playID LIKE '{$playID}' ORDER BY act, scene";
