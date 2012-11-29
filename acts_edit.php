@@ -205,7 +205,7 @@
 						while($pp < $numrows_p){
 						$pname=mysql_result($result_p, $pp, "name");
 						$pid=mysql_result($result_p, $pp, "propID");
-						$query_ps = "SELECT * FROM PropsScenes WHERE propID LIKE '{$pid}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}' ORDER BY scene";
+						$query_ps = "SELECT * FROM PropsScenes WHERE propID='{$pid}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}' ORDER BY scene";
 						$results_ps = mysql_query($query_ps);
 						$numrows_ps=mysql_numrows($results_ps);
 
@@ -223,6 +223,8 @@
 						?>
 					</fieldset>
 					<a href="#createPropPopup" data-rel="popup" data-role="button" data-inline="true">Create New Prop</a>
+					
+					
 					
 					<p></p>
 					<label for="sceneNotes">Notes:</label>

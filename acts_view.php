@@ -187,11 +187,11 @@
 												
 												$j=0;
 												while($j < $numrows_scenes){
-													$act=mysql_result($result_scenes, $j, "act");
-													$scene=mysql_result($result_scenes, $j, "scene");
-													echo $act;
+													$charact=mysql_result($result_scenes, $j, "act");
+													$charscene=mysql_result($result_scenes, $j, "scene");
+													echo $charact;
 													echo ".";
-													echo $scene;
+													echo $charscene;
 													echo "<br>";
 													$j++;
 												}
@@ -262,11 +262,11 @@
 												
 												$j=0;
 												while($j < $numrows_scenes){
-													$act=mysql_result($result_scenes, $j, "act");
-													$scene=mysql_result($result_scenes, $j, "scene");
-													echo $act;
+													$propact=mysql_result($result_scenes, $j, "act");
+													$propscene=mysql_result($result_scenes, $j, "scene");
+													echo $propact;
 													echo ".";
-													echo $scene;
+													echo $propscene;
 													echo "<br>";
 													$j++;
 												}
@@ -333,11 +333,11 @@
 												
 												$j=0;
 												while($j < $numrows_scenes){
-													$act=mysql_result($result_scenes, $j, "act");
-													$scene=mysql_result($result_scenes, $j, "scene");
-													echo $act;
+													$elemact=mysql_result($result_scenes, $j, "act");
+													$elemscene=mysql_result($result_scenes, $j, "scene");
+													echo $elemact;
 													echo ".";
-													echo $scene;
+													echo $elemscene;
 													echo "<br>";
 													$j++;
 												}
