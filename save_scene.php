@@ -44,7 +44,6 @@
 	$p=0;
 	while($p < $numprows){
 		$pID=mysql_result($presult, $p, "propID");
-		$upquery ="";
 		
 		$pasid="a{$act}s{$scene}prop{$pID}";
 		$query_ps="SELECT * FROM PropsScenes WHERE propID LIKE '{$pID}' AND act='$act' AND scene='$scene'";
@@ -61,6 +60,31 @@
 			}		
 		
 		$p++;
+	}
+	
+	$equery="SELECT * FROM ElementsInfo";
+	$eresult=mysql_query($equery);
+	$numerows=mysql_numrows($eresult);
+	
+	$e=0;
+	while($e < $numerows){
+		$eID=mysql_result($eresult, $e, "elementID");
+		
+		$easid="a{$act}s{$scene}elem{$pID}";
+		$query_es="SELECT * FROM ElementsScenes WHERE elementID LIKE '{$eID}' AND act='$act' AND scene='$scene'";
+	   		$result_es=mysql_query($query_es);
+	   		$numrows_es=mysql_numrows($result_es);
+	   		
+			if(isset($_POST[$easid]) && $numrows_es < 1){
+				$upquery_e="INSERT INTO ElementsScenes VALUES ('$playID', '$eID', '$act', '$scene')";
+				mysql_query($upquery_e);
+			}
+			else if(!(isset($_POST[$easid])) && $numrows_es > 0){
+				$upquery_e="DELETE FROM ElementsScenes WHERE elementID LIKE '{$eID}' AND act='$act' AND scene='$scene'";
+				mysql_query($upquery_e);
+			}		
+		
+		$e++;
 	}
 	//echo "finished save_scene"
 ?>

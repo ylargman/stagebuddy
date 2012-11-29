@@ -224,7 +224,38 @@
 					</fieldset>
 					<a href="#createPropPopup" data-rel="popup" data-role="button" data-inline="true">Create New Prop</a>
 					
-					
+					<p></p>
+					<fieldset data-role="controlgroup">
+						<legend>Set Elements:</legend>
+						<?php
+						include("config.php");
+				
+						$query_e="SELECT * FROM ElementsInfo WHERE playID LIKE '{$playID}'";
+						$result_e=mysql_query($query_e);
+						$numrows_e=mysql_numrows($result_e);
+			
+						$ee=0;
+						while($ee < $numrows_e){
+						$ename=mysql_result($result_e, $ee, "name");
+						$eid=mysql_result($result_e, $ee, "elementID");
+						$query_es = "SELECT * FROM ElementsScenes WHERE elementID='{$eid}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}' ORDER BY scene";
+						$results_es = mysql_query($query_es);
+						$numrows_es=mysql_numrows($results_es);
+
+						$elemid="a{$act}s{$scene}elem{$eid}";
+						?>
+						<input type="checkbox" name="<?php echo $elemid ?>" id="<?php echo $elemid ?>" class="custom" 
+						<?php
+							if($numrows_es > 0)
+								echo 'checked="checked"'
+						?>/>
+						<label for="<?php echo $elemid ?>"><?php echo $ename ?></label>
+						<?php
+						$ee++;
+						}
+						?>
+					</fieldset>
+					<a href="#createElemPopup" data-rel="popup" data-role="button" data-inline="true">Create New Element</a>
 					
 					<p></p>
 					<label for="sceneNotes">Notes:</label>
