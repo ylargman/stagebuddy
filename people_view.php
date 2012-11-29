@@ -3,8 +3,10 @@
 <head> 
 	<title>Stage Buddy</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	
+	<link rel="stylesheet" href="themes/stagebuddytheme.min.css" />
+  	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 	<link type="text/css" rel="stylesheet" href="../fpdf.css">
 	
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -14,7 +16,7 @@
 
 <body> 
 
-<div data-role="page" data-theme="b" data-content-theme="b">
+<div data-role="page" data-theme="a" data-content-theme="a">
 
 	<div data-role="header" data-position="fixed">
 		<a href="index.php" data-icon="grid">Home</a>

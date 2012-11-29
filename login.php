@@ -12,9 +12,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="viewport" content="height=device-height, initial-scale=1"> 
 
-	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="themes/stagebuddytheme.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+  	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
+	<link rel="stylesheet" href="style.css">
 	
 	<link rel="apple-touch-icon" href="StageBuddyHighResIcon.png" />
 	<link rel="apple-touch-startup-image" href="StageBuddyHighResLaunchImage.png" />
@@ -23,10 +23,10 @@
 	<script src="jscript.js"></script>
 	<script src="propedit.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-</head> 
+</head>
 
 <body> 
-<div data-role="page" data-theme="b" data-content-theme="b">
+<div data-role="page" data-theme="a" data-content-theme="a">
 
 	<div data-role="content">	 
 	<form action="index.php" method="post" id="login">
@@ -40,7 +40,7 @@
 		<p><label>Password</label>
 		<input type="password" id="password" name="password"/></p>
 		
-		<input type="submit" value="Login" />
+		<input type="submit" value="Login" data-theme="a"/>
 	</form>
 	<p></p>
 	Or if you don't have a user account, click here to create one:

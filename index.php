@@ -7,9 +7,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="viewport" content="height=device-height, initial-scale=1"> 
 
-	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="themes/stagebuddytheme.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+  	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
+	<link rel="stylesheet" href="style.css">
 	
 	<link rel="apple-touch-icon" href="StageBuddyHighResIcon.png" />
 	<link rel="apple-touch-startup-image" href="StageBuddyHighResLaunchImage.png" />
@@ -59,7 +59,7 @@ if (empty($_SESSION['id'])) {
 }
 ?>
 
-<div data-role="page" data-theme="b" data-content-theme="b">
+<div data-role="page" data-theme="a" data-content-theme="a">
 
 	<div data-role="content">
 		<?php
@@ -75,9 +75,9 @@ if (empty($_SESSION['id'])) {
 			<div class="ui-block-c">
 				<form action="submit.php" method="post">
 					<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     				<a href="index.php" data-role="button" class="ui-btn-active"  data-ajax="false">
+     				<a href="index.php" data-role="button" class="ui-btn-active">
      				Access</a>
-					<a href="manageshows.php" data-role="button"  data-ajax="false">
+					<a href="manageshows.php" data-role="button">
      				Manage</a>
 					</fieldset>
 				</form>
