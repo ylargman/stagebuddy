@@ -133,7 +133,7 @@
 							echo $location;
 						?></div>
 					<div class="ui-block-c">
-						<a href="#Character_Popup" data-rel="popup" data-transition="pop">
+						<a href="#Character_PopupA<?php echo $act?>S<?php echo $scene?>" data-rel="popup" data-transition="pop">
 						<?php
 							include("config.php");
 				
@@ -155,7 +155,7 @@
 							}
 						?>	
 						</a>
-						<div data-role="popup" id="Character_Popup">
+						<div data-role="popup" id="Character_PopupA<?php echo $act?>S<?php echo $scene?>">
 							<div data-role="collapsible-set" data-inset="true">
 								<?php
 									$query_cp="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
