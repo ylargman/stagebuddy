@@ -69,56 +69,43 @@
 				$email=mysql_result($result_p, $i, "email");
 				$phone=mysql_result($result_p, $i, "phone");
 				$position=NULL;
-				$chars=" - ";
-				$numchars = 0;
 				
-				$query_q="SELECT * FROM PeoplePositions WHERE personID LIKE '{$personID}'";
+				
+				$query_q="SELECT * FROM PeoplePositions WHERE personID LIKE '{$personID}' AND playID LIKE '{$playID}'";
 				$result_q=mysql_query($query_q);
 				$numrows_q=mysql_numrows($result_q);
 				
-				$j=0;
-				while($j < $numrows_q){
-					$p_playID=mysql_result($result_q, $j, "playID");
+				if($numrows_q > 0){
 					
-					if(strcmp($p_playID, $playID) == 0){
-						$position=mysql_result($result_q, $j, "position");
-						if(strcasecmp($position, "actor") == 0){
-							$ncharID=mysql_result($result_q, $j, "characterID");
-							
-							$query_r="SELECT * FROM CharactersInfo WHERE characterID LIKE '{$ncharID}'";
-							$result_r=mysql_query($query_r);
-							
-							$nchar=mysql_result($result_r, '0', "name");
-							
-							if($numchars > 0){
-								$chars .= ", ";
-							}						
-							$chars .= $nchar;
-							$numchars++;
-						}
-						
-					}
-					$j++;
-				}
-				if($position != NULL){
-		?>
+					?>
 				
-				<p> 
-				<ul data-role="listview" data-inset="true" data-theme="c"><li>
-				<div class="ui-grid-c">
-					<div class="ui-block-a">
-						<?php  
-							echo $name;
+					<p> 
+					<ul data-role="listview" data-inset="true" data-theme="c">
+					<li>
+					<div class="ui-grid-c">
+						<div class="ui-block-a">
+							<?php  
+								echo $name;
+							?>
+						</div>
+						
+						<div class="ui-block-b">
+					
+					<?php
+				
+					$j=0;
+					while($j < $numrows_q){
+						$position=mysql_result($result_q, $j, "position");
 						?>
-					</div>
-					<div class="ui-block-b">
 						<?php
-							echo $position;
-							if($numchars > 0){
-								echo $chars;
-							}
+						echo $position;						
+						echo "<br>";
+						$j++;
+					}
+					if($position != NULL){
 						?>
-					</div>
+					
+					</div>			
 					<div class="ui-block-c">
 						<?php 
 							echo $email;
@@ -137,6 +124,7 @@
 				</div><!-- /grid-c -->
 				</li>
 		<?php
+					}
 				}
 				
 				$i++;
