@@ -38,10 +38,10 @@
 		      
 		<form action="submit.php" method="post" data-ajax="false">
 			<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     		<a href="characters_view.php?playID=<?php echo $playID?>" data-role="button">
+     		<a href="people_view.php?playID=<?php echo $playID?>" data-role="button">
      		View</a>
 
-     		<a href="characters_edit.php?playID=<?php echo $playID?>" data-role="button" class="ui-btn-active">
+     		<a href="people_edit.php?playID=<?php echo $playID?>" data-role="button" class="ui-btn-active">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -51,142 +51,96 @@
 			<ul data-role="listview" data-filter="true" id="outer-ul">
 			<?php
 			include("config.php");
-			
-			$query="SELECT * FROM CharactersInfo WHERE playID LIKE '{$playID}' ORDER BY name";
-			$result=mysql_query($query);
-			$numrows=mysql_numrows($result);
+			$query_p="SELECT * FROM PeopleInfo";
+			$result_p=mysql_query($query_p);
+			$numrows_p=mysql_numrows($result_p);
 			
 			$i=0;
-			while($i < $numrows){
+			while($i < $numrows_p){
 			
-			$charID=mysql_result($result, $i, "characterID");
-			$name=mysql_result($result, $i, "name");
-			$actor=mysql_result($result, $i, "actor");
-			$notes=mysql_result($result, $i, "notes");
-			?>
+				$personID=mysql_result($result_p, $i, "personID");
+				$name=mysql_result($result_p, $i, "name");
+				$email=mysql_result($result_p, $i, "email");
+				$phone=mysql_result($result_p, $i, "phone");
+				$position=NULL;
+				$chars=" - ";
+				$numchars = 0;
+				
+				$query_q="SELECT * FROM PeoplePositions WHERE personID LIKE '{$personID}' AND playID LIKE '{$playID}'";
+				$result_q=mysql_query($query_q);
+				$numrows_q=mysql_numrows($result_q);
+				
+				if($numrows_q > 0){
+					$j=0;
+					while($j < $numrows_q){
+						$position=mysql_result($result_q, $j, "position");
+						$j++;	
+					}
+				}
+				if($position != NULL){
+		?>
+		
 			<li>
-			<div class="charCollapsible" data-role="collapsible" data-collapsed="true">
-			<h3><div class="charName"><?php echo $name ?></div></h3>
-			<p> </p> 
-			
-			<a data-role="button" data-inline="true" class="savechar">Save</a>
-			<a href="#deleteCharPopup<?php echo $i?>" data-rel="popup" data-role="button" data-inline="true">Delete</a>
-			<div data-role="popup" id="deleteCharPopup">
-				<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
-				<p>Are you sure you wish to delete?<p> 
-				<p>(Tap elsewhere to cancel)<p>
-				<a data-role="button" data-inline="true" class="deletechar">Delete</a>
-			</div>
+			<div class="personCollapsible" data-role="collapsible" data-collapsed="true">
+			<h3><div class="personName"><?php echo $name ?></div></h3>
+			<p> </p>
 			  				
-				<form class="curCharForm" data-ajax="false">
+				<form class="curPersonForm" data-ajax="false">
 					<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
-					<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
+					<input type="hidden" class="currPersonID" value=<?php echo $personID ?>>
 
     				<div data-role="fieldcontain">
-						<label for="actorname">Actor:</label>
-						<textarea name="actorname" id="actorname"><?php echo $actor ?>
-						</textarea>
-    					<fieldset data-role="controlgroup">
-    						<legend>Scenes:</legend>
-	   						
-	   						<?php
-	   						include("config.php");
-	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
-	   						$result_acts=mysql_query($query_acts);
-	   						
-	   						$act=1;
-	   						while($act <= 10){
-	   							$numscenes=mysql_result($result_acts, '0', "act{$act}");
-	   							if($numscenes < 1)
-	   								break;
-	   							$scene=1;
-	   							while($scene <=$numscenes){
-	   								$query_cs = "SELECT * FROM CharactersScenes WHERE characterID LIKE '{$charID}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}'";
-									$results_cs = mysql_query($query_cs);
-									$numrows_cs=mysql_numrows($results_cs);
-
-									$cid="a{$act}s{$scene}char{$charID}";
-									?>
-									<input type="checkbox" name="<?php echo $cid ?>" id="<?php echo $cid ?>" class="custom" 
-									<?php
-									if($numrows_cs > 0)
-										echo 'checked="checked"'
-									?>/>
-									<label for="<?php echo $cid ?>"><?php echo "{$act}.{$scene}" ?></label>
-									<?php
-									$scene++;
-	   							}
-	   							$act++;
-	   						}
-	   					?>
-
-   					 	</fieldset>
-						<p>
-						</p>
-						<label for="charnotes">Notes:</label>
-						<textarea name="charnotes" id="charnotes"><?php echo $notes ?>
-						</textarea>
+						<label for="personName">Name:</label>
+						<input type="text" name="personName" id="personName" value="<?php echo $name ?>"  />
+						
+						<label for="personPosition">Position:</label>
+						<input type="text" name="personPosition" id="personPosition" value= "<?php echo $position ?>"  />
+						
+						<label for="personEmail">Email address:</label>
+						<input type="text" name="personEmail" id="personEmail" value="<?php echo $email ?>"  />
+    					
+						<label for="personPhone">Phone number:</label>
+						<input type="text" name="personPhone" id="personPhone" value="<?php echo $phone ?>" />
 					</div>
 				</form>
-				<a data-role="button" data-inline="true" class="savechar">Save</a>
-				<a href="#deleteCharPopup<?php echo $i?>" data-rel="popup" data-role="button" data-inline="true">Delete</a>
-				<div data-role="popup" class="deleteCharPopup" id="deleteCharPopup<?php echo $i ?>">
-					<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
+				<a data-role="button" data-inline="true" class="saveperson">Save</a>
+				<a href="#deletePersonPopup<?php echo $i?>" data-rel="popup" data-role="button" data-inline="true">Delete</a>
+				<div data-role="popup" class="deletePersonPopup" id="deletePersonPopup<?php echo $i ?>">
+					<input type="hidden" class="currPlayID" value=<?php echo $playID ?>>
+					<input type="hidden" class="currPersonID" value=<?php echo $personID ?>>
 					<p>Are you sure you wish to delete?<p> 
 					<p>(Tap elsewhere to cancel)<p>
-					<a data-role="button" data-inline="true" class="deletechar">Delete</a>
+					<a data-role="button" data-inline="true" class="deleteperson">Delete</a>
 				</div>
 			<p></p>
 			</div>
 			</li>
+			
 			<?php
+				}
 			$i++;
 			}
 			?>
 			</ul>
 			
-			<h3>Add New Character</h3>
-			<form action="insert_char.php" method="post" id="newCharForm" data-ajax="false">
+			<h3>Add New Person</h3>
+			<form action="insert_person.php" method="post" id="newPersonForm" data-ajax="false">
 				<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
 				<p>    				
     				<div data-role="fieldcontain">
-						<label for="newcharname">Character name:</label>
-						<input type="text" name="newcharname" id="newcharname" value=""  />
+						<label for="newPersonName">Name:</label>
+						<input type="text" name="newPersonName" id="newPersonName" value=""  />
 						
-						<label for="newActorName">Played by:</label>
-						<input type="text" name="newActorName" id="newActorName" value=""  />
+						<label for="newPersonPosition">Position:</label>
+						<input type="text" name="newPersonPosition" id="newPersonPosition" value=""  />
 						
-    					<fieldset data-role="controlgroup">
-    						<legend>Scenes:</legend>
-	   						<?php
-	   						include("config.php");
-	   						$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
-	   						$result_as=mysql_query($query_as);
-	   						
-	   						$a=1;
-	   						while($a <= 10){
-	   							$numscenes_as=mysql_result($result_as, '0', "act{$a}");
-	   							if($numscenes_as < 1)
-	   								break;
-	   							$sc=1;
-	   							while($sc <=$numscenes_as){
-	   								$asid="a{$a}s{$sc}";
-	   								?>
-									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
-									<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
-									<?php
-									$sc++;
-	   							}
-	   							$a++;
-	   						}
-	   					?>
-   					 	</fieldset>
-						
-						<label for="newnote">Notes:</label>
-						<textarea name="newnote" id="newnote">
-						</textarea>
-						
-						<input type="submit" id="createCharButton" value="Create Character" />
+						<label for="newPersonEmail">Email address:</label>
+						<input type="text" name="newPersonEmail" id="newPersonEmail" value=""  />
+    					
+						<label for="newPersonPhone">Phone number:</label>
+						<input type="text" name="newPersonPhone" id="newPersonPhone" value="" />
+
+						<input type="submit" id="createPersonButton" value="Add Person" />
 					</div>
 				</p>
 				</p>
