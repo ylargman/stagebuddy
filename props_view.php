@@ -39,7 +39,7 @@
      		<a href="props_view.php?playID=<?php echo $playID?>" data-role="button" class="ui-btn-active">
      		View</a>
 
-     		<a href="props_edit.php?playID=<?php echo $playID?>" data-role="button">
+     		<a href="props_edit.php?playID=<?php echo $playID?>" data-role="button" data-transition="slideup">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -209,11 +209,11 @@
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
 		<div data-role="navbar" class="nav-glyphish-example">
 		<ul>
-			<li><a href="acts_view.php?playID=<?php echo $_GET['playID']?>" id="acts" data-icon="custom">Acts</a></li>
-			<li><a href="characters_view.php?playID=<?php echo $playID?>" id="chars" data-icon="custom">Characters/Actors</a></li>
-			<li><a href="props_view.php?playID=<?php echo $playID?>" id="props" data-icon="custom" class="ui-btn-active">Props</a></li>
-			<li><a href="elements_view.php?playID=<?php echo $playID?>" id="elements" data-icon="custom">Set Elements</a></li>
-			<li><a href="people_view.php?playID=<?php echo $playID?>" id="people" data-icon="custom">People</a></li>
+			<li><a href="acts_view.php?playID=<?php echo $_GET['playID']?>" id="acts" data-icon="custom" data-transition="slide">Acts</a></li>
+			<li><a href="characters_view.php?playID=<?php echo $playID?>" id="chars" data-icon="custom" data-transition="slide">Characters/Actors</a></li>
+			<li><a href="props_view.php?playID=<?php echo $playID?>" id="props" data-icon="custom" class="ui-btn-active" data-transition="slide">Props</a></li>
+			<li><a href="elements_view.php?playID=<?php echo $playID?>" id="elements" data-icon="custom" data-transition="slide">Set Elements</a></li>
+			<li><a href="people_view.php?playID=<?php echo $playID?>" id="people" data-icon="custom" data-transition="slide">People</a></li>
 		</ul>
 		</div>
 	</div>

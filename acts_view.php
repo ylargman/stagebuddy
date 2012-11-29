@@ -40,7 +40,7 @@
      		<a href="acts_view.php?playID=<?php echo $playID?>" data-role="button" class="ui-btn-active">
      		View</a>
 
-     		<a href="acts_edit.php?playID=<?php echo $playID?>" data-role="button">
+     		<a href="acts_edit.php?playID=<?php echo $playID?>" data-role="button" data-transition="slideup">
      		Edit</a>
 			</fieldset>
 		</form>
@@ -132,7 +132,8 @@
 						<?php 
 							echo $location;
 						?></div>
-					<div class="ui-block-c" id="Character_Block">
+					<div class="ui-block-c">
+						<a href="#Character_Popup" data-rel="popup" data-transition="pop">
 						<?php
 							include("config.php");
 				
@@ -152,9 +153,9 @@
 								echo "<br>";
 								$n++;
 							}
-						?>		
-					</div>
-					<div data-role="popup" id="Character_Popup">
+						?>	
+						</a>
+						<div data-role="popup" id="Character_Popup">
 							<div data-role="collapsible-set" data-inset="true">
 								<?php
 									$query_cp="SELECT * FROM CharactersScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
@@ -203,11 +204,13 @@
 								?>
 							</div>
 						</div>
+					</div>
            		</div><!-- /grid-a -->
         	</div>
 	    	<div class="ui-block-b">
             	<div class="ui-grid-b">
-	            	<div class="ui-block-a" id="Prop_Block">
+	            	<div class="ui-block-a">
+	            		<a href="#Prop_Popup" data-rel="popup" data-transition="pop">
 							<?php
 								include("config.php");
 					
@@ -228,8 +231,8 @@
 									$x++;
 								}
 							?>	
-					</div>
-					<div data-role="popup" id="Prop_Popup">
+						</a>
+						<div data-role="popup" id="Prop_Popup">
 							<div data-role="collapsible-set" data-inset="true">
 								<?php
 									$query_pp="SELECT * FROM PropsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
@@ -275,8 +278,10 @@
 									}
 								?>
 							</div>
+						</div>
 					</div>	
 					<div class="ui-block-b" id="Element_Block">
+						<a href="#Element_Popup" data-rel="popup" data-transition="pop">
 							<?php
 								include("config.php");
 					
@@ -297,8 +302,8 @@
 									$x++;
 								}
 							?>	
-					</div>
-					<div data-role="popup" id="Element_Popup">
+						</a>
+						<div data-role="popup" id="Element_Popup">
 							<div data-role="collapsible-set" data-inset="true">
 								<?php
 									$query_ep="SELECT * FROM ElementsScenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
@@ -344,6 +349,7 @@
 									}
 								?>
 							</div>
+						</div>
 					</div>
 					<div class="ui-block-c">TIME: 
 						<?php 
@@ -369,56 +375,15 @@
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
 		<div data-role="navbar" class="nav-glyphish-example">
 		<ul>
-			<li><a href="acts_view.php?playID=<?php echo $playID?>" id="acts" data-icon="custom" class="ui-btn-active" >Acts</a></li>
-			<li><a href="characters_view.php?playID=<?php echo $playID?>" id="chars" data-icon="custom">Characters/Actors</a></li>
-			<li><a href="props_view.php?playID=<?php echo $playID?>" id="props" data-icon="custom">Props</a></li>
-			<li><a href="elements_view.php?playID=<?php echo $playID?>" id="elements" data-icon="custom">Set Elements</a></li>
-			<li><a href="people_view.php?playID=<?php echo $playID?>" id="people" data-icon="custom">People</a></li>
+			<li><a href="acts_view.php?playID=<?php echo $playID?>" id="acts" data-icon="custom" class="ui-btn-active" data-transition="slide" >Acts</a></li>
+			<li><a href="characters_view.php?playID=<?php echo $playID?>" id="chars" data-icon="custom" data-transition="slide">Characters/Actors</a></li>
+			<li><a href="props_view.php?playID=<?php echo $playID?>" id="props" data-icon="custom" data-transition="slide">Props</a></li>
+			<li><a href="elements_view.php?playID=<?php echo $playID?>" id="elements" data-icon="custom" data-transition="slide">Set Elements</a></li>
+			<li><a href="people_view.php?playID=<?php echo $playID?>" id="people" data-icon="custom" data-transition="slide">People</a></li>
 		</ul>
 		</div>
 	</div>
 </div><!-- /page -->
-
-<script type="text/javascript">
-	$("#Character_Block").unbind("click");
-	$("#Character_Block").bind("click", function(event) {
-		ev = window.event;
-		_MouseX = ev.clientX;
-		_MouseY = ev.clientY; 
-		var options = {
-			x: _MouseX,
-			y: _MouseY
-			transition: "pop"
-		};		
-		$("#Character_Popup").popup("open", options);
-	});
-	
-	$("#Prop_Block").unbind("click");
-	$("#Prop_Block").bind("click", function(event) {
-		ev = window.event;
-		_MouseX = ev.clientX;
-		_MouseY = ev.clientY; 
-		var options = {
-			x: _MouseX,
-			y: _MouseY
-			transition: "pop"
-		};		
-		$("#Prop_Popup").popup("open", options);
-	});
-	
-	$("#Element_Block").unbind("click");
-	$("#Element_Block").bind("click", function(event) {
-		ev = window.event;
-		_MouseX = ev.clientX;
-		_MouseY = ev.clientY; 
-		var options = {
-			x: _MouseX,
-			y: _MouseY
-			transition: "pop"
-		};		
-		$("#Element_Popup").popup("open", options);
-	});
-</script>
 
 <script type="text/javascript">
 setTimeout(function(){var a=document.createElement("script");
