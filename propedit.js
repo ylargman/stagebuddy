@@ -22,13 +22,51 @@ $(document).live('pagechange', function(){
 		delayedRefresh();
 	});
 	
+	$(".createCharButton").unbind("click");
+	$(".createCharButton").bind("click", function (event) {
+		event.preventDefault();
+		console.info(this);
+		console.info($(this).closest("form"));
+		
+		$.post("insert_char.php", $(this).closest("form").serialize(), function(data) {
+		});
+		$(document).find("#createCharPopup").popup("close");
+		delayedRefresh();
+	});
+	
+	$("#createElemButton").unbind("click");
+	$("#createElemButton").bind("click", function (event) {
+		event.preventDefault();
+		$.post("insert_elem.php", $("#newElemForm").serialize(), function(data) {
+		});
+			
+		delayedRefresh();
+	});
+	
 	$(".deleteprop").unbind("click");
 	$(".deleteprop").bind("click", function (event, ui){
 		propToDelete = $(this).parents(".deletePropPopup").find(".currPropID").val();
 		$.post("delete_prop.php", {propid: propToDelete});
 		
 		$(this).parents(".deletePropPopup").popup("close");
-		//$.mobile.changePage("props_edit.php");
+		delayedRefresh();
+	});
+	
+	$(".deletechar").unbind("click");
+	$(".deletechar").bind("click", function (event, ui){
+		charToDelete = $(this).parents(".deleteCharPopup").find(".currCharID").val();
+		$.post("delete_char.php", {charid: charToDelete});
+		
+		$(this).parents(".deleteCharPopup").popup("close");
+		delayedRefresh();
+	});
+	
+	$(".deleteelem").unbind("click");
+	$(".deleteelem").bind("click", function (event, ui){
+		elemToDelete = $(this).parents(".deleteElemPopup").find(".currElemID").val();
+		$.post("delete_elem.php", {elemid: elemToDelete});
+		
+		$(this).parents(".deleteElemPopup").popup("close");
 		delayedRefresh();
 	});
 	
@@ -44,21 +82,6 @@ $(document).live('pagechange', function(){
 		delayedRefresh();
 	});
 	
-	$("#createCharButton").unbind("click");
-	$("#createCharButton").bind("click", function (event) {
-		event.preventDefault();
-		$.post("insert_char.php", $("#newCharForm").serialize(), function(data) {
-		});
-		delayedRefresh();
-	});
-	
-	$(".deletechar").unbind("click");
-	$(".deletechar").bind("click", function (event, ui){
-		charToDelete = $(this).parents(".deleteCharPopup").find(".currCharID").val();
-		$.post("delete_char.php", {charid: charToDelete});
-		delayedRefresh();
-	});
-	
 	$(".savechar").unbind("click");
 	$(".savechar").bind("click", function (event, ui){
 		charToUpdate = $(this).parents(".charCollapsible").find(".currCharID").val();
@@ -68,23 +91,6 @@ $(document).live('pagechange', function(){
 		
 		$.post("save_char.php", serArray);
 		
-		delayedRefresh();
-	});
-	
-	$("#createElemButton").unbind("click");
-	$("#createElemButton").bind("click", function (event) {
-		event.preventDefault();
-		$.post("insert_elem.php", $("#newElemForm").serialize(), function(data) {
-		});
-			
-		delayedRefresh();
-	});
-	
-	$(".deleteelem").unbind("click");
-	$(".deleteelem").bind("click", function (event, ui){
-		elemToDelete = $(this).parents("#deleteElemPopup").find(".currElemID").val();
-		$.post("delete_elem.php", {elemid: elemToDelete});
-				
 		delayedRefresh();
 	});
 	
@@ -118,10 +124,18 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteshow").unbind("click");
 	$(".deleteshow").bind("click", function (event, ui){
-		//showToDelete = $(this).val();
-		//alert(showToDelete);
 		serArray = $(this).parents(".deleteShowForm").serializeArray();
 		$.post("deleteshow.php", serArray);
+		delayedRefresh();
+	});
+	
+	$(".changeShowName").unbind("click");
+	$(".changeShowName").bind("click", function (event, ui){
+		event.preventDefault();
+		
+		serArray = $(this).parents(".changeShowForm").serializeArray();
+		$.post("change_show_name.php", serArray);
+		$(this).parents(".manageShowPopup").popup("close");
 		delayedRefresh();
 	});
 	
@@ -131,16 +145,18 @@ $(document).live('pagechange', function(){
 
         //cache the parent collapsible widget
         var that = $(this).closest('.ui-collapsible')[0];
+		
+		if($(this).closest('.ui-collapsible').hasClass('itemCollapsible')){
+			//collapse all other collapsible widgets
+			$(this).closest('ul').find('.ui-collapsible').filter(function () {
 
-        //collapse all other collapsible widgets
-        $(this).closest('ul').find('.ui-collapsible').filter(function () {
+				//filter-out the collapsible widget that got clicked, so it functions
+				return this !== that;
+			}).trigger('collapse');
 
-            //filter-out the collapsible widget that got clicked, so it functions
-            return this !== that;
-        }).trigger('collapse');
-
-        //since we are messing around with the listview widget, let's refresh it
-        $(this).closest('ul').trigger('refresh');
+			//since we are messing around with the listview widget, let's refresh it
+			$(this).closest('ul').trigger('refresh');
+		}
     });
 
 })

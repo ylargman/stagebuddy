@@ -65,18 +65,18 @@
 			$notes=mysql_result($result, $i, "notes");
 			?>
 			<li>
-			<div class="charCollapsible" data-role="collapsible" data-collapsed="true">
+			<div class="charCollapsible itemCollapsible" data-role="collapsible" data-collapsed="true">
 			<h3><div class="charName"><?php echo $name ?></div></h3>
 			<p> </p> 
 			
-			<a data-role="button" data-inline="true" class="savechar">Save</a>
-			<a href="#deleteCharPopup<?php echo $i?>" data-rel="popup" data-role="button" data-inline="true">Delete</a>
-			<div data-role="popup" id="deleteCharPopup">
-				<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
-				<p>Are you sure you wish to delete?<p> 
-				<p>(Tap elsewhere to cancel)<p>
-				<a data-role="button" data-inline="true" class="deletechar">Delete</a>
-			</div>
+				<a data-role="button" data-inline="true" class="savechar">Save</a>
+				<a href="#deleteCharPopup<?php echo $i?>" data-rel="popup" data-role="button" data-inline="true">Delete</a>
+				<div data-role="popup" class="deleteCharPopup" id="deleteCharPopup<?php echo $i?>">
+					<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
+					<p>Are you sure you wish to delete?<p> 
+					<p>(Tap elsewhere to cancel)<p>
+					<a data-role="button" data-inline="true" class="deletechar">Delete</a>
+				</div>
 			  				
 				<form class="curCharForm" data-ajax="false">
 					<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
@@ -88,7 +88,7 @@
 						</textarea>
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
-	   						
+							<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
 	   						<?php
 	   						include("config.php");
 	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
@@ -99,6 +99,10 @@
 	   							$numscenes=mysql_result($result_acts, '0', "act{$act}");
 	   							if($numscenes < 1)
 	   								break;
+								?>
+								<div data-role="collapsible">
+								<h2>Act <?php echo $act ?></h2>
+								<?php
 	   							$scene=1;
 	   							while($scene <=$numscenes){
 	   								$query_cs = "SELECT * FROM CharactersScenes WHERE characterID LIKE '{$charID}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}'";
@@ -116,10 +120,12 @@
 									<?php
 									$scene++;
 	   							}
-	   							$act++;
+	   							$act++; ?>
+							</div>
+							<?php
 	   						}
 	   					?>
-
+							</div>
    					 	</fieldset>
 						<p>
 						</p>
@@ -144,54 +150,64 @@
 			}
 			?>
 			</ul>
-			
-			<h3>Add New Character</h3>
-			<form action="insert_char.php" method="post" id="newCharForm" data-ajax="false">
-				<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
-				<p>    				
-    				<div data-role="fieldcontain">
-						<label for="newcharname">Character name:</label>
-						<input type="text" name="newcharname" id="newcharname" value=""  />
-						
-						<label for="newActorName">Played by:</label>
-						<input type="text" name="newActorName" id="newActorName" value=""  />
-						
-    					<fieldset data-role="controlgroup">
-    						<legend>Scenes:</legend>
-	   						<?php
-	   						include("config.php");
-	   						$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
-	   						$result_as=mysql_query($query_as);
-	   						
-	   						$a=1;
-	   						while($a <= 10){
-	   							$numscenes_as=mysql_result($result_as, '0', "act{$a}");
-	   							if($numscenes_as < 1)
-	   								break;
-	   							$sc=1;
-	   							while($sc <=$numscenes_as){
-	   								$asid="a{$a}s{$sc}";
-	   								?>
-									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
-									<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
-									<?php
-									$sc++;
-	   							}
-	   							$a++;
-	   						}
-	   					?>
-   					 	</fieldset>
-						
-						<label for="newnote">Notes:</label>
-						<textarea name="newnote" id="newnote">
-						</textarea>
-						
-						<input type="submit" id="createCharButton" value="Create Character" />
-					</div>
-				</p>
-				</p>
-			</form>	
 		</div>
+		
+		<h3>Add New Character</h3>
+		<form action="insert_char.php" method="post" id="newCharForm" data-ajax="false">
+			<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
+			<p>    				
+				<div data-role="fieldcontain">
+					<label for="newcharname">Character name:</label>
+					<input type="text" name="newcharname" id="newcharname" value=""  />
+					
+					<label for="newActorName">Played by:</label>
+					<input type="text" name="newActorName" id="newActorName" value=""  />
+					
+					<fieldset data-role="controlgroup">
+						<legend>Scenes:</legend>
+						<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+						<?php
+						include("config.php");
+						$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
+						$result_as=mysql_query($query_as);
+						
+						$a=1;
+						while($a <= 10){
+							$numscenes_as=mysql_result($result_as, '0', "act{$a}");
+							if($numscenes_as < 1)
+								break;
+							$sc=1;
+							?>
+							<div data-role="collapsible">
+							<h2>Act <?php echo $a ?></h2>
+							<?php
+							while($sc <=$numscenes_as){
+								$asid="a{$a}s{$sc}";
+								?>
+								<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
+								<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
+								<?php
+								$sc++;
+							}
+							$a++;
+							?>
+							</div>
+							<?php
+						}
+					?>
+						</div>
+					</fieldset>
+					
+					<label for="newnote">Notes:</label>
+					<textarea name="newnote" id="newnote">
+					</textarea>
+					
+					<input type="submit" id="test" class="createCharButton" value="Create Character" />
+				</div>
+			</p>
+			</p>
+		</form>	
+		
 	</div><!-- /content -->
 	
 	<div data-role="footer" data-id="navigation" data-position="fixed" data-theme="c" class="nav-glyphish-example">
