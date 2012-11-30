@@ -43,6 +43,15 @@ $(document).live('pagechange', function(){
 		delayedRefresh();
 	});
 	
+	$("#createPersonButton").unbind("click");
+	$("#createPersonButton").bind("click", function (event) {
+		event.preventDefault();
+		$.post("insert_person.php", $("#newPersonForm").serialize(), function(data) {
+		});
+			
+		delayedRefresh();
+	});
+	
 	$(".deleteprop").unbind("click");
 	$(".deleteprop").bind("click", function (event, ui){
 		propToDelete = $(this).parents(".deletePropPopup").find(".currPropID").val();
@@ -67,6 +76,15 @@ $(document).live('pagechange', function(){
 		$.post("delete_elem.php", {elemid: elemToDelete});
 		
 		$(this).parents(".deleteElemPopup").popup("close");
+		delayedRefresh();
+	});
+	
+	$(".deleteperson").unbind("click");
+	$(".deleteperson").bind("click", function (event, ui){
+		personToDelete = $(this).parents(".deletePersonPopup").find(".currPersonID").val();
+		$.post("delete_person.php", {personid: personToDelete});
+		
+		$(this).parents(".deletePersonPopup").popup("close");
 		delayedRefresh();
 	});
 	
@@ -102,6 +120,18 @@ $(document).live('pagechange', function(){
 		console.info(serArray);
 		
 		$.post("save_elem.php", serArray);
+		
+		delayedRefresh();
+	});
+	
+	$(".saveperson").unbind("click");
+	$(".saveperson").bind("click", function (event, ui){
+		personToUpdate = $(this).parents(".personCollapsible").find(".currPersonID").val();
+		serArray = $(this).parents(".personCollapsible").find(".curPersonForm").serializeArray();
+		serArray.push({"name": "personid", "value": personToUpdate});
+		console.info(serArray);
+		
+		$.post("save_person.php", serArray);
 		
 		delayedRefresh();
 	});
