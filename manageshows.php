@@ -38,9 +38,9 @@
 			<div class="ui-block-c">
 				<form action="submit.php" method="post">
 					<fieldset data-role="controlgroup" data-type="horizontal" class="localnav">
-     				<a href="index.php" data-role="button" data-ajax="false">
+     				<a href="index.php" data-role="button">
      				Access</a>
-					<a href="manageshows.php" data-role="button" class="ui-btn-active"  data-ajax="false">
+					<a href="manageshows.php" data-role="button" class="ui-btn-active">
      				Manage</a>
 					</fieldset>
 				</form>

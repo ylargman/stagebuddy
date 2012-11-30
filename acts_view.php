@@ -20,7 +20,7 @@
 	<script src="//cdn.optimizely.com/js/141933355.js"></script>
 	<div data-role="header" data-position="fixed">
 		<a href="index.php" data-icon="grid">Home</a>
-		<a href="login.php" data-icon="gear" data-ajax="false">Change User</a>
+		<a href="login.php" data-icon="gear">Change User</a>
 		<h1>
 		<?php
 			include("config.php");
@@ -92,16 +92,16 @@
  		<div class="ui-grid-a">
 	    	<div class="ui-block-a">
             	<div class="ui-grid-b">
-	            	<div class="ui-block-a"><h2>Scene</h2></div>
-	            	<div class="ui-block-b"><h2>Location</h2></div>
-	            	<div class="ui-block-c"><h2>Characters</h2></div>
+	            	<div class="ui-block-a"><h3>Scene</h3></div>
+	            	<div class="ui-block-b"><h3>Location</h3></div>
+	            	<div class="ui-block-c"><h3>Characters</h3></div>
            		</div><!-- /grid-a -->
         	</div>
 	    	<div class="ui-block-b">
             	<div class="ui-grid-b">
-	            	<div class="ui-block-a"><h2>Props</h2></div>
-	            	<div class="ui-block-b"><h2>Set Elements</h2></div>
-	            	<div class="ui-block-c"><h2>Notes</h2></div>
+	            	<div class="ui-block-a"><h3>Props</h3></div>
+	            	<div class="ui-block-b"><h3>Set Elements</h3></div>
+	            	<div class="ui-block-c"><h3>Notes</h3></div>
             	</div><!-- /grid-a -->
         	</div>
     	</div><!-- /grid-a -->
@@ -386,6 +386,21 @@
 		</div>
 	</div>
 </div><!-- /page -->
+
+<script type="text/javascript">
+window.onorientationchange = function() {
+	var orientation = window.orientation;
+
+	switch(orientation) {
+	    case 0:
+	         //Portrait mode
+	    case 90: 
+	         alert("StageBuddy does not support landscape orientation. Please rotate the device back. If things don't reorient correctly, exit the app and relaunch it.");
+	    case -90:
+//	         alert("StageBuddy does not support landscape orientation. Please rotate the device back. If things don't reorient correctly, exit the app and relaunch it.");
+	}
+}
+</script>
 
 <script type="text/javascript">
 setTimeout(function(){var a=document.createElement("script");
