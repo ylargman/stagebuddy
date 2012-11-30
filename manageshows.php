@@ -47,7 +47,7 @@
 			</div>
 			
 			<div class="ui-block-a"><br><br><br>
-				<h2>Click on a show to erase it and all its content.</h2>
+				<h2>Click on a show to edit it. You can change a show's name or erase it and its content from this page.</h2>
 			</div>
 			
 			<?php
@@ -63,7 +63,7 @@
 				?>
 					<div class="ui-block-b">
 						<div class="showButton">
-							<a href="#manageShowPopup<?php echo $p ?>" data-rel="popup" data-role="button"><img src="playcover.png"/><br><?php echo $name ?><br></a>
+							<a href="#manageShowPopup<?php echo $p ?>" data-rel="popup" data-role="button" data-transition="pop"><img src="playcover.png"/><br><?php echo $name ?><br></a>
 							
 							<div data-role="popup" id="manageShowPopup<?php echo $p ?>" class="ui-content">
 								<form class="changeShowForm" data-ajax="false">
@@ -71,7 +71,7 @@
 									<input type="text" name="newShowName" value="<?php echo $name ?>"/>
 									<input type="submit" class="changeShowName" value="Change Show Name" />
 									<input type="hidden" name="currPlayID" value="<?php echo $playid ?>"/>
-									<a href="#popupBasic<?php echo $p ?>" data-rel="popup" data-role="button">Delete Show</a>
+									<a href="#popupBasic<?php echo $p ?>" data-rel="popup" data-role="button" data-transition="pop">Delete Show</a>
 								</form>
 							</div>
 							
