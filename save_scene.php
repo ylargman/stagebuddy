@@ -8,7 +8,7 @@
 	$playID=$_POST['currPlayID'];;
 	
 	$query="UPDATE Scenes SET location='$location', time='$time', notes='$notes' WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
-	print_r($query);
+	echo($query);
 	mysql_query($query);
 	
 	$cquery="SELECT * FROM CharactersInfo";
@@ -70,19 +70,22 @@
 	while($e < $numerows){
 		$eID=mysql_result($eresult, $e, "elementID");
 		
-		$easid="a{$act}s{$scene}elem{$pID}";
+		$easid="a{$act}s{$scene}elem{$eID}";
 		$query_es="SELECT * FROM ElementsScenes WHERE elementID LIKE '{$eID}' AND act='$act' AND scene='$scene'";
-	   		$result_es=mysql_query($query_es);
-	   		$numrows_es=mysql_numrows($result_es);
-	   		
-			if(isset($_POST[$easid]) && $numrows_es < 1){
-				$upquery_e="INSERT INTO ElementsScenes VALUES ('$playID', '$eID', '$act', '$scene')";
-				mysql_query($upquery_e);
-			}
-			else if(!(isset($_POST[$easid])) && $numrows_es > 0){
-				$upquery_e="DELETE FROM ElementsScenes WHERE elementID LIKE '{$eID}' AND act='$act' AND scene='$scene'";
-				mysql_query($upquery_e);
-			}		
+		$result_es=mysql_query($query_es);
+		$numrows_es=mysql_numrows($result_es);
+
+		echo($easid);
+		if(isset($_POST[$easid]) && $numrows_es < 1){
+			$upquery_e="INSERT INTO ElementsScenes VALUES ('$playID', '$eID', '$act', '$scene')";
+			mysql_query($upquery_e);
+			echo($upquery_e);
+		}
+		else if(!(isset($_POST[$easid])) && $numrows_es > 0){
+			$upquery_e="DELETE FROM ElementsScenes WHERE elementID LIKE '{$eID}' AND act='$act' AND scene='$scene'";
+			mysql_query($upquery_e);
+			echo($upquery_e);
+		}		
 		
 		$e++;
 	}

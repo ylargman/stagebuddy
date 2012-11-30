@@ -94,6 +94,8 @@
 		<!-- Edit number of scenes -->
 		<a href="#editNumScenesPopup" data-rel="popup" data-role="button" data-inline="true">Edit Number of Scenes</a>
 		<div data-role="popup" id="editNumScenesPopup" class="ui-content">
+			<div class="warning">WARNING: Reducing the number of scenes will delete scenes from the end of the act</div>
+			<p></p>
 			<form id="editNumScenesForm">
 		<?php
 			include("config.php");
@@ -390,6 +392,65 @@
 						</textarea>
 						
 						<input type="submit" id="createPropButton" value="Create Prop" />
+					</div>
+				</p>
+				</p>
+			</form>
+		</div>
+		
+		<div data-role="popup" id="createElemPopup" class="ui-content">
+			<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+			
+			<h3>Add New Set Element</h3>
+			<form action="insert_elem.php?playID=<?php echo $playID?>" method="post" id="newElemForm" data-ajax="false">
+				<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
+
+				<p>    				
+    				<div data-role="fieldcontain">
+						<label for="newelemname">Set element name:</label>
+						<input type="text" name="newelemname" id="newelemname" value=""  />
+						
+						
+    					<fieldset data-role="controlgroup">
+    						<legend>Scenes:</legend>
+							<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+	   						<?php
+	   						include("config.php");
+	   						$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
+	   						$result_as=mysql_query($query_as);
+	   						
+	   						$a=1;
+	   						while($a <= 10){
+	   							$numscenes_as=mysql_result($result_as, '0', "act{$a}");
+	   							if($numscenes_as < 1)
+	   								break;
+									
+								?>
+								<div data-role="collapsible">
+								<h2>Act <?php echo $a ?></h2>
+								<?php
+									
+	   							$sc=1;
+	   							while($sc <=$numscenes_as){
+	   								$asid="a{$a}s{$sc}";
+	   								?>
+									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
+									<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
+									<?php
+									$sc++;
+	   							}
+	   							$a++; ?>
+							</div>
+							<?php
+	   						}
+	   					?>
+   					 	</fieldset>
+						
+						<label for="newnote">Notes:</label>
+						<textarea name="newnote" id="newnote">
+						</textarea>
+						
+						<input type="submit" id="createElemButton" value="Create Set Element" />
 					</div>
 				</p>
 				</p>

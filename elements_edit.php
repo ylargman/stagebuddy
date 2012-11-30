@@ -77,7 +77,7 @@
     					<fieldset data-role="controlgroup">
     					
        						<legend>Scenes:</legend>
-    						
+    						<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
     						<?php
 	   						include("config.php");
 	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
@@ -88,6 +88,12 @@
 	   							$numscenes=mysql_result($result_acts, '0', "act{$act}");
 	   							if($numscenes < 1)
 	   								break;
+									
+								?>
+								<div data-role="collapsible">
+								<h2>Act <?php echo $act ?></h2>
+								<?php
+									
 	   							$scene=1;
 	   							while($scene <=$numscenes){
 	   								$query_ps = "SELECT * FROM ElementsScenes WHERE elementID LIKE '{$elemID}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}'";
@@ -111,7 +117,9 @@
 									<?php
 									$scene++;
 	   							}
-	   							$act++;
+	   							$act++; ?>
+							</div>
+							<?php
 	   						}
 	   					?>
    					 	</fieldset>
@@ -147,6 +155,7 @@
 						
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
+							<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
 	   						<?php
 	   						include("config.php");
 	   						$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
@@ -157,6 +166,12 @@
 	   							$numscenes_as=mysql_result($result_as, '0', "act{$a}");
 	   							if($numscenes_as < 1)
 	   								break;
+									
+								?>
+								<div data-role="collapsible">
+								<h2>Act <?php echo $a ?></h2>
+								<?php
+									
 	   							$sc=1;
 	   							while($sc <=$numscenes_as){
 	   								$asid="a{$a}s{$sc}";
@@ -166,7 +181,9 @@
 									<?php
 									$sc++;
 	   							}
-	   							$a++;
+	   							$a++; ?>
+							</div>
+							<?php
 	   						}
 	   					?>
    					 	</fieldset>

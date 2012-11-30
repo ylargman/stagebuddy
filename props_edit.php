@@ -87,7 +87,7 @@
     					<fieldset data-role="controlgroup">
     					
        						<legend>Scenes:</legend>
-    						
+    						<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
     						<?php
 	   						include("config.php");
 	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
@@ -98,6 +98,12 @@
 	   							$numscenes=mysql_result($result_acts, '0', "act{$act}");
 	   							if($numscenes < 1)
 	   								break;
+									
+								?>
+								<div data-role="collapsible">
+								<h2>Act <?php echo $act ?></h2>
+								<?php
+									
 	   							$scene=1;
 	   							while($scene <=$numscenes){
 	   								$query_ps = "SELECT * FROM PropsScenes WHERE propID LIKE '{$propID}' AND act=$act AND scene=$scene AND playID LIKE '{$playID}'";
@@ -121,7 +127,9 @@
 									<?php
 									$scene++;
 	   							}
-	   							$act++;
+	   							$act++; ?>
+							</div>
+							<?php
 	   						}
 	   					?>
    					 	</fieldset>

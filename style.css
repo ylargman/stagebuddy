@@ -16,6 +16,11 @@
     display : none;
 }
 
+.warning{
+	font-size:150%;
+	color: red;
+}
+
 #acts .ui-icon {
 	background:  url(PNGicons/152-rolodex.png) 50% 50% no-repeat; background-size: 26px 18px;
 }
