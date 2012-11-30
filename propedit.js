@@ -154,7 +154,7 @@ $(document).live('pagechange', function(){
 	
 	$(".deleteshow").unbind("click");
 	$(".deleteshow").bind("click", function (event, ui){
-		serArray = $(this).parents(".deleteShowForm").serializeArray();
+		serArray = $(this).parents("form").serializeArray();
 		$.post("deleteshow.php", serArray);
 		delayedRefresh();
 	});

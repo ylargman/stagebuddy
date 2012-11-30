@@ -71,17 +71,14 @@
 									<input type="text" name="newShowName" value="<?php echo $name ?>"/>
 									<input type="submit" class="changeShowName" value="Change Show Name" />
 									<input type="hidden" name="currPlayID" value="<?php echo $playid ?>"/>
-									<a href="#popupBasic<?php echo $p ?>" data-rel="popup" data-role="button" data-transition="pop">Delete Show</a>
-								</form>
-							</div>
-							
-							<div data-role="popup" id="popupBasic<?php echo $p ?>">
-								<p>Are you sure you wish to delete?<p> 
-								<p>All content associated with this show will be erased.<p>
-								<p>(Tap elsewhere to cancel)<p>
-								<form class="deleteShowForm" data-ajax="false">
-									<a data-role="button" class="deleteshow" id=<?php echo $playid?>>
-									<input type="hidden" name="currPlayID" value=<?php echo $playid ?>>Delete</a>
+									
+									<div data-role="collapsible" data-collapsed-icon="delete" data-expanded-icon="delete" >
+									   <h3>Delete Show</h3>
+									   <p>Are you sure you wish to delete?<p> 
+										<p>All content associated with this show will be erased.<p>
+										<p>(Tap elsewhere to cancel)<p>
+										<a data-role="button" class="deleteshow" id=<?php echo $playid?>>Delete</a>
+									</div>
 								</form>
 							</div>
 						</div>
