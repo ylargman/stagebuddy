@@ -1,13 +1,14 @@
 <?
 	include("config.php");
 	$notes=$_POST['sceneNotes'];
+	$scName=$_POST['scName'];
 	$location=$_POST['location'];
 	$time=$_POST['time'];
 	$act=$_POST['act'];
 	$scene=$_POST['scene'];
 	$playID=$_POST['currPlayID'];;
 	
-	$query="UPDATE Scenes SET location='$location', time='$time', notes='$notes' WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
+	$query="UPDATE Scenes SET name='$scName', location='$location', time='$time', notes='$notes' WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
 	echo($query);
 	mysql_query($query);
 	

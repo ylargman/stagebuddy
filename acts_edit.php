@@ -138,6 +138,7 @@
 			
 			$act=mysql_result($result, $i, "act");
 			$scene=mysql_result($result, $i, "scene");
+			$sName=mysql_result($result, $i, "name");
 			$location=mysql_result($result, $i, "location");
 			$time=mysql_result($result, $i, "time");
 			$notes=mysql_result($result, $i, "notes");
@@ -146,15 +147,17 @@
 			<li>
 			<div data-role="collapsible" class="sceneCollapsible itemCollapsible" data-collapsed="true">
 			
-				<h3><div class="sceneName"><?php echo $act ?>.<?php echo $scene ?></div></h3>
+				<h3><div class="sceneName"><?php echo $act ?>.<?php echo $scene ?> <?php echo $sName ?></div></h3>
 				
 				<a data-role="button" data-inline="true" class="savescene">Save</a>
 
 				<form class="curSceneForm">
 				<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
+				
+				<label for="scName">Scene name:</label>
+				<input type="text" name="scName" id="scName" value="<?php echo $sName ?>"  />
 								
 				<label for="location">Location:</label>
-
 				<input type="text" name="location" id="location" value="<?php echo $location ?>"  />
 				
 				<label for="time">Time:</label>
@@ -312,10 +315,14 @@
 							<h2>Act <?php echo $a ?></h2>
 							<?php
 							while($sc <=$numscenes_as){
+								$query_sn="SELECT * FROM Scenes WHERE playID LIKE '{$playID}' AND act=$a AND scene=$sc";
+								$result_sn=mysql_query($query_sn);
+								
 								$asid="a{$a}s{$sc}";
+								$scName=mysql_result($result_sn, '0', "name");
 								?>
 								<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
-								<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
+								<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc} {$scName}" ?></label>
 								<?php
 								$sc++;
 							}
@@ -371,10 +378,14 @@
 							<h2>Act <?php echo $a ?></h2>
 							<?php
 							while($sc <=$numscenes_as){
+								$query_sn="SELECT * FROM Scenes WHERE playID LIKE '{$playID}' AND act=$a AND scene=$sc";
+								$result_sn=mysql_query($query_sn);
+								
 								$asid="a{$a}s{$sc}";
+								$scName=mysql_result($result_sn, '0', "name");
 								?>
 								<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
-								<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
+								<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc} {$scName}" ?></label>
 								<?php
 								$sc++;
 							}
@@ -432,10 +443,14 @@
 									
 	   							$sc=1;
 	   							while($sc <=$numscenes_as){
-	   								$asid="a{$a}s{$sc}";
-	   								?>
+	   								$query_sn="SELECT * FROM Scenes WHERE playID LIKE '{$playID}' AND act=$a AND scene=$sc";
+									$result_sn=mysql_query($query_sn);
+								
+									$asid="a{$a}s{$sc}";
+									$scName=mysql_result($result_sn, '0', "name");
+									?>
 									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
-									<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
+									<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc} {$scName}" ?></label>
 									<?php
 									$sc++;
 	   							}

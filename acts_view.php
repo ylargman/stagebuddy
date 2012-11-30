@@ -118,6 +118,7 @@
 			while($i < $numrows){
 				$act=mysql_result($result, $i, "act");
 				$scene=mysql_result($result, $i, "scene");
+				$scName=mysql_result($result, $i, "name");
 				$location=mysql_result($result, $i, "location");
 				$time=mysql_result($result, $i, "time");
 				$notes=mysql_result($result, $i, "notes");
@@ -128,7 +129,7 @@
 	    	<div class="ui-block-a">
             	<div class="ui-grid-b">	            			
 					<div class="ui-block-a">
-						<h2><?php echo $act?>.<?php echo $scene?></h2>
+						<h2><?php echo "{$act}.{$scene} {$scName}"?></h2>
 					</div>
 					<div class="ui-block-b">
 						<?php 

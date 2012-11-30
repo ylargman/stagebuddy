@@ -111,9 +111,13 @@
 									<input type="checkbox" name="<?php echo $eid ?>" id="<?php echo $eid ?>" class="custom" 
 									<?php
 									if($numrows_ps > 0)
-										echo 'checked="checked"'
+										echo 'checked="checked"';
+									
+									$query_sn="SELECT * FROM Scenes WHERE playID LIKE '{$playID}' AND act=$act AND scene=$scene";
+									$result_sn=mysql_query($query_sn);
+									$scName=mysql_result($result_sn, '0', "name");
 									?>/>
-									<label for="<?php echo $eid ?>"><?php echo "{$act}.{$scene}" ?></label>
+									<label for="<?php echo $eid ?>"><?php echo "{$act}.{$scene} {$scName}" ?></label>
 									<?php
 									$scene++;
 	   							}
@@ -174,10 +178,14 @@
 									
 	   							$sc=1;
 	   							while($sc <=$numscenes_as){
-	   								$asid="a{$a}s{$sc}";
-	   								?>
+	   								$query_sn="SELECT * FROM Scenes WHERE playID LIKE '{$playID}' AND act=$a AND scene=$sc";
+									$result_sn=mysql_query($query_sn);
+								
+									$asid="a{$a}s{$sc}";
+									$scName=mysql_result($result_sn, '0', "name");
+									?>
 									<input type="checkbox" name="<?php echo $asid ?>" id="<?php echo $asid ?>" class="custom"/>
-									<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc}" ?></label>
+									<label for="<?php echo $asid ?>"><?php echo "{$a}.{$sc} {$scName}" ?></label>
 									<?php
 									$sc++;
 	   							}

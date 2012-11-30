@@ -83,9 +83,11 @@
 								while($j < $numrows_s_n){
 									$act=mysql_result($result_s_n, $j, "act");
 									$scene=mysql_result($result_s_n, $j, "scene");
-									echo $act;
-									echo ".";
-									echo $scene;
+									$query_sn="SELECT * FROM Scenes WHERE playID LIKE '{$playID}' AND act=$act AND scene=$scene";
+									$result_sn=mysql_query($query_sn);
+									$scName=mysql_result($result_sn, '0', "name");
+									
+									echo "{$act}.{$scene} {$scName}";
 									echo "<br>";
 									$j++;
 								}
@@ -109,15 +111,14 @@
 										$result_sp=mysql_query($query_sp);
 										$numrows_sp=mysql_numrows($result_sp);	
 										
+										$scName=mysql_result($result_sp, 0, "name");
 										$location=mysql_result($result_sp, 0, "location");
 										$time=mysql_result($result_sp, 0, "time");
 										$notes=mysql_result($result_sp, 0, "notes");
 									?>
 									<h3>
 										<?php
-												echo $act;
-												echo ".";
-												echo $scene;
+												echo "{$act}.{$scene} {$scName}";
 										?>
 									</h3>
 									<h3>Location: <?php echo $location ?></h3>
