@@ -4,9 +4,10 @@
 	$playID = $_POST['currPlayID'];
 	$propIDToSave=$_POST['propid'];
 	
+	$name=$_POST['propname'];
 	$note=$_POST['propnotes'];
 	
-	$query="UPDATE PropsInfo SET notes='$note' WHERE propID='$propIDToSave'";
+	$query="UPDATE PropsInfo SET name='$name', notes='$note' WHERE propID='$propIDToSave'";
 
 
 	$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";

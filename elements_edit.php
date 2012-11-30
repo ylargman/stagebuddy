@@ -74,8 +74,10 @@
 					<input type="hidden" name="currPlayID" value=<?php echo $playID ?>>
 					<input type="hidden" class="currElemID" value=<?php echo $elemID ?>>
     				<div data-role="fieldcontain">
+    					<label for="elemname">Element:</label>
+   				 		<input type="text" name="elemname" id="elemname" value="<?php echo $name ?>"  />
+    				
     					<fieldset data-role="controlgroup">
-    					
        						<legend>Scenes:</legend>
     						<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
     						<?php

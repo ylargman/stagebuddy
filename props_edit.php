@@ -84,6 +84,9 @@
 					<input type="hidden" class="currPropID" value=<?php echo $propID ?>>
 					
     				<div data-role="fieldcontain">
+    					<label for="propname">Prop:</label>
+   				 		<input type="text" name="propname" id="propname" value="<?php echo $name ?>"  />
+    					
     					<fieldset data-role="controlgroup">
     					
        						<legend>Scenes:</legend>

@@ -4,9 +4,10 @@
 	$playID = $_POST['currPlayID'];
 	$elemIDToSave=$_POST['elemid'];
 	
+	$name=$_POST['elemname'];
 	$note=$_POST['elemnotes'];
 	
-	$query="UPDATE ElementsInfo SET notes='$note' WHERE elementID='$elemIDToSave'";
+	$query="UPDATE ElementsInfo SET name='$name', notes='$note' WHERE elementID='$elemIDToSave'";
 
 
 	$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";

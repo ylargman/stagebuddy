@@ -4,10 +4,11 @@
 	$playID = $_POST['currPlayID'];
 	$charIDToSave=$_POST['charid'];
 	
+	$name=$_POST['charname'];
 	$note=$_POST['charnotes'];
 	$actor=$_POST['actorname'];
 	
-	$query="UPDATE CharactersInfo SET actor='$actor', notes='$note' WHERE characterID='$charIDToSave'";
+	$query="UPDATE CharactersInfo SET name='$name', actor='$actor', notes='$note' WHERE characterID='$charIDToSave'";
 
 
 	$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";

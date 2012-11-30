@@ -85,9 +85,11 @@
 					<input type="hidden" class="currCharID" value=<?php echo $charID ?>>
 
     				<div data-role="fieldcontain">
+						<label for="charname">Character:</label>
+   				 		<input type="text" name="charname" id="charname" value="<?php echo $name ?>"  />
+						
 						<label for="actorname">Actor:</label>
-						<textarea name="actorname" id="actorname"><?php echo $actor ?>
-						</textarea>
+						<input type="text" name="actorname" id="actorname" value="<?php echo $actor ?>"  />
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
 							<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
