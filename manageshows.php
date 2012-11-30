@@ -23,13 +23,22 @@
 
 <?php
 	session_start();
-	$userID = $_SESSION['id'];
+	$loggedin=0;
+	if(strlen($_SESSION['id'])==0 || empty($_SESSION['id'])){
+		$loggedin=0;
+	}
+	else{
+		$loggedin=1;
+		$userID = $_SESSION['id'];
+	}
 ?>
 
 <div data-role="page" data-theme="a" data-content-theme="a">
 
 	<div data-role="content">	 
-	
+	<?php
+		if($loggedin==1){	
+	?>
 		<div class="ui-grid-b">
 			<div class="ui-block-a">
 				<h1>Stage Buddy</h1>
@@ -89,6 +98,14 @@
 				?>
 		
 		</div>
+	<?php
+		}
+		else{
+			echo "Incorrect login credentials {$username}.  Click Change User to try again.";
+		}
+		?>
+		<a href="login.php" data-role="button" data-ajax="false">Change User</a>
+		
 	</div><!-- /content -->
 	
 </div><!-- /page -->

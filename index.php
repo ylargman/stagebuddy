@@ -39,7 +39,8 @@ if (empty($_SESSION['id'])) {
 	elseif (empty($username) || empty($password)) {
 		$loggedin = 0;
 		
-	} else {
+	}
+	else {
 		
 		$result   = mysql_query("SELECT * FROM Users WHERE username LIKE '{$username}' AND password LIKE '{$password}'");
 		$rowCheck = mysql_num_rows($result);
@@ -56,6 +57,9 @@ if (empty($_SESSION['id'])) {
 			$loggedin = 0;
 		}
 	}
+}
+if(strlen($_SESSION['id'])==0){
+	$loggin=0;
 }
 ?>
 
