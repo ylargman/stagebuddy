@@ -18,6 +18,22 @@
 	<script src="jscript.js"></script>
 	<script src="propedit.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	
+//	<style type="text/css">
+//		body {
+//    		background: url(StageBuddyLowResBackground.png);
+//   			background-repeat:repeat-y;
+//    		background-position:center center;
+//    		background-attachment:scroll;
+//    		background-size:100% 100%;
+//		}
+//		.ui-page {
+//    		background: transparent;
+//		}
+//		.ui-content{
+//    		background: transparent;
+//		}
+//	</style>
 </head> 
 
 <body> 
