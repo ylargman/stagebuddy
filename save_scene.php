@@ -78,7 +78,7 @@
 
 		echo($easid);
 		if(isset($_POST[$easid]) && $numrows_es < 1){
-			$upquery_e="INSERT INTO ElementsScenes VALUES ('$playID', '$eID', '$act', '$scene')";
+			$upquery_e="INSERT INTO ElementsScenes VALUES ('$playID', '$eID', '$act', '$scene', ' ')";
 			mysql_query($upquery_e);
 			echo($upquery_e);
 		}
