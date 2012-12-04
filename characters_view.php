@@ -83,9 +83,15 @@
 								while($j < $numrows_scenes){
 									$act=mysql_result($result_scenes, $j, "act");
 									$scene=mysql_result($result_scenes, $j, "scene");
-									$query_sn="SELECT * FROM Scenes WHERE playID LIKE '{$playID}' AND act=$act AND scene=$scene";
+	   								$query_sn="SELECT * FROM Scenes WHERE playID LIKE '{$playID}' AND act=$act AND scene=$scene";
 									$result_sn=mysql_query($query_sn);
-									$scName=mysql_result($result_sn, '0', "name");
+									$numrows_sn=mysql_numrows($result_sn);
+									if($numrows_sn > 0){
+										$scName=mysql_result($result_sn, '0', "name");
+									}
+									else{
+										$scName = NULL;
+									}
 									
 									echo "{$act}.{$scene} {$scName}";
 									echo "<br>";
@@ -110,11 +116,12 @@
 										$query_sp="SELECT * FROM Scenes WHERE act={$act} AND scene={$scene} AND playID LIKE '{$playID}'";
 										$result_sp=mysql_query($query_sp);
 										$numrows_sp=mysql_numrows($result_sp);	
-										
-										$scName=mysql_result($result_sp, 0, "name");
-										$location=mysql_result($result_sp, 0, "location");
-										$time=mysql_result($result_sp, 0, "time");
-										$notes=mysql_result($result_sp, 0, "notes");
+										if($numrows_sp > 0){
+											$scName=mysql_result($result_sp, 0, "name");
+											$location=mysql_result($result_sp, 0, "location");
+											$time=mysql_result($result_sp, 0, "time");
+											$notes=mysql_result($result_sp, 0, "notes");
+										}
 									?>
 									<h3>
 										<?php
