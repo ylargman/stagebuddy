@@ -13,7 +13,7 @@ function Header()
     // Title
     $this->SetTextColor(190, 0, 0);
     $this->SetFont('Arial', '', 20);
-    require('/afs/ir.stanford.edu/users/s/k/skyguy/cgi-bin/stagebuddy_temp/config.php');
+    require('/afs/ir.stanford.edu/users/s/c/scburke/cgi-bin/cs147/StageBuddy/config.php');
 	$playID = $_GET['playID'];
 			
 	$query_i="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
@@ -39,7 +39,7 @@ function LoadData($file)
 //	return $data;
 	
 	$data = array();
-		require('/afs/ir.stanford.edu/users/s/k/skyguy/cgi-bin/stagebuddy_temp/config.php');
+		require('/afs/ir.stanford.edu/users/s/c/scburke/cgi-bin/cs147/StageBuddy/config.php');
 		
 			$playID = $_GET['playID'];
 		
@@ -55,8 +55,6 @@ function LoadData($file)
 				$email=mysql_result($result_p, $i, "email");
 				$phone=mysql_result($result_p, $i, "phone");
 				$position=NULL;
-				$chars=" - ";
-				$numchars = 0;
 				
 				$query_q="SELECT * FROM PeoplePositions WHERE personID LIKE '{$personID}'";
 				$result_q=mysql_query($query_q);
@@ -68,21 +66,6 @@ function LoadData($file)
 					
 					if(strcmp($p_playID, $playID) == 0){
 						$position=mysql_result($result_q, $j, "position");
-						if(strcasecmp($position, "actor") == 0){
-							$ncharID=mysql_result($result_q, $j, "characterID");
-							
-							$query_r="SELECT * FROM CharactersInfo WHERE characterID LIKE '{$ncharID}'";
-							$result_r=mysql_query($query_r);
-							
-							$nchar=mysql_result($result_r, '0', "name");
-							
-							if($numchars > 0){
-								$chars .= ", ";
-							}						
-							$chars .= $nchar;
-							$numchars++;
-						}
-						
 					}
 					$j++;
 				}
@@ -91,9 +74,6 @@ function LoadData($file)
 					$datastring .= $name;
 					$datastring .= ";";
 					$datastring .= $position;
-					if($numchars > 0){
-						$datastring .= $chars;
-					}
 					$datastring .= ";";
 					$datastring .= $email;
 					$datastring .= ";";
