@@ -28,7 +28,7 @@
 	
 		<div class="ui-grid-b">
 			<div class="ui-block-a">
-				<h1>Stage Buddy</h1>
+				 <img src="Logo.png"/>
 			</div>
 			<div class="ui-block-b"></div>
 			<div class="ui-block-c">

@@ -4,8 +4,7 @@
 	<title>Stage Buddy</title>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="height=device-height, initial-scale=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
 	<link rel="stylesheet" href="themes/stagebuddytheme.min.css" />
   	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
@@ -88,7 +87,7 @@ if(strlen($_SESSION['id'])==0){
 	
 		<div class="ui-grid-b">
 			<div class="ui-block-a">
-				<h1>Stage Buddy</h1>
+				<img src="Logo.png"/>
 				<h2>Welcome <?php echo $_SESSION['username'] ?> </h2>
 			</div>
 			<div class="ui-block-b"></div>

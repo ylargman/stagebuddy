@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="style.css">
 	
 	<link rel="apple-touch-icon" href="StageBuddyHighResIcon.png" />
-	<link rel="apple-touch-startup-image" href="StageBuddyHighResLaunchImage.png" />
+	<link rel="apple-touch-startup-image" href="StageBuddyLowResLaunchImage.png" />
 	
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script src="jscript.js"></script>
@@ -46,7 +46,7 @@
 
 	<div data-role="content">	 
 	<form action="index.php" method="post" id="login">
-		<h1><span>Stage Buddy</span><h1>
+		<img src="Logo.png"/>
 		<h2><span>Login</span></h2>
 		
 		<p><label>Username</label></p>

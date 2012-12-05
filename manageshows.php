@@ -41,7 +41,7 @@
 	?>
 		<div class="ui-grid-b">
 			<div class="ui-block-a">
-				<h1>Stage Buddy</h1>
+				<img src="Logo.png"/>
 			</div>
 			<div class="ui-block-b"></div>
 			<div class="ui-block-c">
@@ -72,9 +72,9 @@
 				?>
 					<div class="ui-block-b">
 						<div class="showButton">
-							<a href="#manageShowPopup<?php echo $p ?>" data-rel="popup" data-role="button" data-transition="pop"><img src="playcover.png"/><br><?php echo $name ?><br></a>
+							<a href="#manageShowPopup<?php echo $p ?>" data-rel="popup" data-role="button" data-transition="pop" data-theme="b" data-content-theme="b"><img src="playcover.png"/><br><?php echo $name ?><br></a>
 							
-							<div data-role="popup" id="manageShowPopup<?php echo $p ?>" class="ui-content">
+							<div data-role="popup" id="manageShowPopup<?php echo $p ?>" class="ui-content" data-theme="b" data-content-theme="b">
 								<form class="changeShowForm" data-ajax="false">
 									<label for="newShowName">Show Name:</label>
 									<input type="text" name="newShowName" value="<?php echo $name ?>"/>
