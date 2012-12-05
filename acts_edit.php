@@ -124,7 +124,7 @@
 		<p>
 		</p>
 		
-		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+		<div data-role="collapsible-set" data-theme="a" data-content-theme="a">
 			<ul data-role="listview" data-filter="true" class="outer-ul">
 			<?php
 			include("config.php");
