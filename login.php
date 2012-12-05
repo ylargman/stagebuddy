@@ -23,10 +23,6 @@
 	<script src="jscript.js"></script>
 	<script src="propedit.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-	
-	<style type="text/css">
-		
-	</style>
 </head>
 
 <body style="background-image:url(StageBuddyLowResBackground.png)"> 
