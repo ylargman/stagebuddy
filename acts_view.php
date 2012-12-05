@@ -92,16 +92,16 @@
  		<div class="ui-grid-a">
 	    	<div class="ui-block-a">
             	<div class="ui-grid-b">
-	            	<div class="ui-block-a"><h3>Scene</h3></div>
-	            	<div class="ui-block-b"><h3>Location</h3></div>
-	            	<div class="ui-block-c"><h3>Characters</h3></div>
+	            	<div class="ui-block-a"><h3 align="center">Scene</h3></div>
+	            	<div class="ui-block-b"><h3 align="center">Location</h3></div>
+	            	<div class="ui-block-c"><h3 align="center">Characters</h3></div>
            		</div><!-- /grid-a -->
         	</div>
 	    	<div class="ui-block-b">
             	<div class="ui-grid-b">
-	            	<div class="ui-block-a"><h3>Props</h3></div>
-	            	<div class="ui-block-b"><h3>Set Elements</h3></div>
-	            	<div class="ui-block-c"><h3>Notes</h3></div>
+	            	<div class="ui-block-a"><h3 align="center">Props</h3></div>
+	            	<div class="ui-block-b"><h3 align="center">Set Elements</h3></div>
+	            	<div class="ui-block-c"><h3 align="center">Notes</h3></div>
             	</div><!-- /grid-a -->
         	</div>
     	</div><!-- /grid-a -->
@@ -129,7 +129,9 @@
 	    	<div class="ui-block-a">
             	<div class="ui-grid-b">	            			
 					<div class="ui-block-a">
-						<h2><?php echo "{$act}.{$scene} {$scName}"?></h2>
+					
+						<b><?php echo "{$act}.{$scene} {$scName}"?></b>
+					
 					</div>
 					<div class="ui-block-b">
 						<?php 
