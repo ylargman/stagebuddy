@@ -56,3 +56,15 @@
 #stopwatch .ui-icon {
 	background:  url(PNGicons/78-stopwatch.png) 50% 50% no-repeat; background-size: 22px 26px;
 }
+
+.ui-page {
+	background: url(StageBuddyLowResBackground.png);
+	background-repeat:repeat-y;
+	background-position:center center;
+	background-attachment:scroll;
+	background-size:100% 100%;
+}
+
+[data-role=content]{
+	background: transparent;
+}

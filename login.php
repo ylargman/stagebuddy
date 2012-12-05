@@ -25,17 +25,7 @@
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 	
 	<style type="text/css">
-		.ui-page {
-    		background: url(StageBuddyLowResBackground.png);
-   			background-repeat:repeat-y;
-    		background-position:center center;
-    		background-attachment:scroll;
-    		background-size:100% 100%;
-		}
 		
-		[data-role=content]{
-    		background: transparent;
-		}
 	</style>
 </head>
 

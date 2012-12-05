@@ -56,7 +56,7 @@
 		
 		<?php
 			include("config.php");
-			$query="SELECT * FROM PropsInfo WHERE playID LIKE '{$playID}'";
+			$query="SELECT * FROM PropsInfo WHERE playID LIKE '{$playID}' ORDER BY name";
 			$result=mysql_query($query);
 			$numrows=mysql_numrows($result);
 			

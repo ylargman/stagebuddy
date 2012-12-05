@@ -59,7 +59,7 @@
 		
 		<?php
 			include("config.php");
-			$query_p="SELECT * FROM PeopleInfo";
+			$query_p="SELECT * FROM PeopleInfo ORDER BY name";
 			$result_p=mysql_query($query_p);
 			$numrows_p=mysql_numrows($result_p);
 			
