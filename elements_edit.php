@@ -79,7 +79,7 @@
     				
     					<fieldset data-role="controlgroup">
        						<legend>Scenes:</legend>
-    						<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+    						<div data-role="collapsible-set" data-theme="a" data-content-theme="a">
     						<?php
 	   						include("config.php");
 	   						$query_acts="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
@@ -166,7 +166,7 @@
 						
     					<fieldset data-role="controlgroup">
     						<legend>Scenes:</legend>
-							<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+							<div data-role="collapsible-set" data-theme="a" data-content-theme="a">
 	   						<?php
 	   						include("config.php");
 	   						$query_as="SELECT * FROM Plays WHERE playID LIKE '{$playID}'";
