@@ -120,7 +120,7 @@
 											$scName=mysql_result($result_sp, 0, "name");
 											$location=mysql_result($result_sp, 0, "location");
 											$time=mysql_result($result_sp, 0, "time");
-											$notes=mysql_result($result_sp, 0, "notes");
+											$s_notes=mysql_result($result_sp, 0, "notes");
 										}
 									?>
 									<h3>
@@ -193,7 +193,7 @@
 										?>
 									</div>
 									<h3>Time: <?php echo $time ?></h3>
-									<h3>Notes: <?php echo $notes ?></h3>
+									<h3>Notes: <?php echo $s_notes ?></h3>
 									
 								</div>
 								<?php
