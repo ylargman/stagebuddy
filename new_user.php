@@ -1,3 +1,8 @@
+<?php
+session_save_path('/afs/ir.stanford.edu/users/s/k/skyguy/cgi-bin/stagebuddy_temp/temp');
+session_start();
+?>
+
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -21,10 +26,6 @@
 </head> 
 
 <body> 
-
-<?php
-session_start();
-?>
 
 <div data-role="page" data-theme="a" data-content-theme="a">
 

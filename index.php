@@ -1,42 +1,5 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-	<title>Stage Buddy</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-
-	<link rel="stylesheet" href="themes/stagebuddytheme.min.css" />
-  	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
-	<link rel="stylesheet" href="style.css">
-	
-	<link rel="apple-touch-icon" href="StageBuddyHighResIcon.png" />
-	<link rel="apple-touch-startup-image" href="StageBuddyHighResLaunchImage.png" />
-	
-	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-	<script src="jscript.js"></script>
-	<script src="propedit.js"></script>
-	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-	
-//	<style type="text/css">
-//		body {
-//    		background: url(StageBuddyLowResBackground.png);
-//   			background-repeat:repeat-y;
-//    		background-position:center center;
-//    		background-attachment:scroll;
-//    		background-size:100% 100%;
-//		}
-//		.ui-page {
-//    		background: transparent;
-//		}
-//		.ui-content{
-//    		background: transparent;
-//		}
-//	</style>
-</head> 
-
-<body> 
 <?php
+session_save_path('/afs/ir.stanford.edu/users/s/k/skyguy/cgi-bin/stagebuddy_temp/temp');
 session_start();
 include("config.php");
 $loggedin = 1;
@@ -77,6 +40,45 @@ if(strlen($_SESSION['id'])==0){
 	$loggin=0;
 }
 ?>
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Stage Buddy</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" href="themes/stagebuddytheme.min.css" />
+  	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
+	<link rel="stylesheet" href="style.css">
+	
+	<link rel="apple-touch-icon" href="StageBuddyHighResIcon.png" />
+	<link rel="apple-touch-startup-image" href="StageBuddyHighResLaunchImage.png" />
+	
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="jscript.js"></script>
+	<script src="propedit.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	
+//	<style type="text/css">
+//		body {
+//    		background: url(StageBuddyLowResBackground.png);
+//   			background-repeat:repeat-y;
+//    		background-position:center center;
+//    		background-attachment:scroll;
+//    		background-size:100% 100%;
+//		}
+//		.ui-page {
+//    		background: transparent;
+//		}
+//		.ui-content{
+//    		background: transparent;
+//		}
+//	</style>
+</head> 
+
+<body> 
 
 <div data-role="page" data-theme="a" data-content-theme="a">
 

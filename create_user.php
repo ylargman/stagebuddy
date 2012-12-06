@@ -1,3 +1,21 @@
+<?php
+session_save_path('/afs/ir.stanford.edu/users/s/k/skyguy/cgi-bin/stagebuddy_temp/temp');
+session_start();
+
+include("config.php");
+
+$username = mysql_real_escape_string($_POST['username']);
+$password = md5(mysql_real_escape_string($_POST['password']));
+$userID=uniqid();
+	
+$query_info = "INSERT INTO Users VALUES ('$username', '$userID','$password')";
+mysql_query($query_info);
+
+$_SESSION['id'] = $userID;
+$_SESSION['username'] = $username;
+
+?>
+
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -21,23 +39,6 @@
 </head> 
 
 <body> 
-
-<?php
-session_start();
-
-include("config.php");
-
-$username = mysql_real_escape_string($_POST['username']);
-$password = md5(mysql_real_escape_string($_POST['password']));
-$userID=uniqid();
-	
-$query_info = "INSERT INTO Users VALUES ('$username', '$userID','$password')";
-mysql_query($query_info);
-
-$_SESSION['id'] = $userID;
-$_SESSION['username'] = $username;
-
-?>
 
 <div data-role="page" data-theme="a" data-content-theme="a">
 

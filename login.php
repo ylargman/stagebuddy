@@ -1,4 +1,5 @@
 <?php
+	session_save_path('/afs/ir.stanford.edu/users/s/k/skyguy/cgi-bin/stagebuddy_temp/temp');
 	session_start();
     session_unset();
     session_destroy();

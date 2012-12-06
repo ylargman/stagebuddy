@@ -1,3 +1,16 @@
+<?php
+	session_save_path('/afs/ir.stanford.edu/users/s/k/skyguy/cgi-bin/stagebuddy_temp/temp'); 
+	session_start();
+	$loggedin=0;
+	if(strlen($_SESSION['id'])==0 || empty($_SESSION['id'])){
+		$loggedin=0;
+	}
+	else{
+		$loggedin=1;
+		$userID = $_SESSION['id'];
+	}
+?>
+
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -20,18 +33,6 @@
 </head> 
 
 <body> 
-
-<?php
-	session_start();
-	$loggedin=0;
-	if(strlen($_SESSION['id'])==0 || empty($_SESSION['id'])){
-		$loggedin=0;
-	}
-	else{
-		$loggedin=1;
-		$userID = $_SESSION['id'];
-	}
-?>
 
 <div data-role="page" data-theme="a" data-content-theme="a">
 
