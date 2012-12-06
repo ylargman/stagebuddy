@@ -124,7 +124,7 @@
 		<p>
 		</p>
 		
-		<div data-role="collapsible-set" data-theme="a" data-content-theme="a">
+		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
 			<ul data-role="listview" data-filter="true" class="outer-ul">
 			<?php
 			include("config.php");
@@ -165,7 +165,7 @@
 				
 				<div data-role="fieldcontain">
 				
-					<fieldset data-role="controlgroup">
+					<div data-role="collapsible">
 						<legend>Characters:</legend>
 						<?php
 						include("config.php");
@@ -195,11 +195,11 @@
 						 $cc++;
 						}
 						?>
-					</fieldset>
+					</div>
 					<a href="#createCharPopup" data-rel="popup" data-role="button" data-inline="true">Create New Character</a>
 					
 					<p></p>
-					<fieldset data-role="controlgroup">
+					<div data-role="collapsible">
 						<legend>Props:</legend>
 						<?php
 						include("config.php");
@@ -228,11 +228,11 @@
 						$pp++;
 						}
 						?>
-					</fieldset>
+					</div>
 					<a href="#createPropPopup" data-rel="popup" data-role="button" data-inline="true">Create New Prop</a>
 					
 					<p></p>
-					<fieldset data-role="controlgroup">
+					<div data-role="collapsible">
 						<legend>Set Elements:</legend>
 						<?php
 						include("config.php");
@@ -261,7 +261,7 @@
 						$ee++;
 						}
 						?>
-					</fieldset>
+					</div>
 					<a href="#createElemPopup" data-rel="popup" data-role="button" data-inline="true">Create New Element</a>
 					
 					<p></p>
