@@ -14,7 +14,7 @@
 			if($newVal > $curVal){
 				$scene=$curVal + 1;
 				while($scene <= $newVal) {
-					$query_newscene = "INSERT INTO Scenes VALUES ('$playID', '$act', '$scene', ' ', ' ', ' ')";
+					$query_newscene = "INSERT INTO Scenes VALUES ('$playID', '$act', '$scene', ' ', ' ', ' ', ' ')";
 					mysql_query($query_newscene);
 					$scene++;		
 				} 
